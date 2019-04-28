@@ -35,7 +35,7 @@ class CreateTempleDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::enableForeignKeyConstraints();
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('temple_details');
         Schema::enableForeignKeyConstraints();
         

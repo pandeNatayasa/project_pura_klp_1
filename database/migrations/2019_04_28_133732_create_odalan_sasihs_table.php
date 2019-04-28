@@ -32,9 +32,8 @@ class CreateOdalanSasihsTable extends Migration
      */
     public function down()
     {
-        Schema::enableForeignKeyConstraints();
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('odalan_sasihs');
         Schema::enableForeignKeyConstraints();
-        
     }
 }

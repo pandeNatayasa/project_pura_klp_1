@@ -27,7 +27,7 @@ class CreateWukusTable extends Migration
      */
     public function down()
     {
-        Schema::enableForeignKeyConstraints();
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('wukus');
         Schema::enableForeignKeyConstraints();
         

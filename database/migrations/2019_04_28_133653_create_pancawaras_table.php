@@ -27,7 +27,7 @@ class CreatePancawarasTable extends Migration
      */
     public function down()
     {
-        Schema::enableForeignKeyConstraints();
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('pancawaras');
         Schema::enableForeignKeyConstraints();
         

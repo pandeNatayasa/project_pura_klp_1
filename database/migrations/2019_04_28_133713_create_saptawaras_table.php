@@ -27,7 +27,7 @@ class CreateSaptawarasTable extends Migration
      */
     public function down()
     {
-        Schema::enableForeignKeyConstraints();
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('saptawaras');
         Schema::enableForeignKeyConstraints();
         

@@ -27,7 +27,7 @@ class CreateProvincesTable extends Migration
      */
     public function down()
     {
-        Schema::enableForeignKeyConstraints();
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('provinces');
         Schema::enableForeignKeyConstraints();
         

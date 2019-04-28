@@ -27,7 +27,7 @@ class CreateSasihsTable extends Migration
      */
     public function down()
     {
-        Schema::enableForeignKeyConstraints();
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('sasihs');
         Schema::enableForeignKeyConstraints();
         

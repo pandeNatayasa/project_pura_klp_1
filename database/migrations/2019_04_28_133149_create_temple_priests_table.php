@@ -30,7 +30,7 @@ class CreateTemplePriestsTable extends Migration
      */
     public function down()
     {
-        Schema::enableForeignKeyConstraints();
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('temple_priests');
         Schema::enableForeignKeyConstraints();
         

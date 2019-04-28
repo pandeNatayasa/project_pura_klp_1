@@ -33,7 +33,7 @@ class CreateTempleElementImagesTable extends Migration
      */
     public function down()
     {
-        Schema::enableForeignKeyConstraints();
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('temple_element_images');
         Schema::enableForeignKeyConstraints();
         

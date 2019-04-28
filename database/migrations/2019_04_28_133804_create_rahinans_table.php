@@ -27,7 +27,7 @@ class CreateRahinansTable extends Migration
      */
     public function down()
     {
-        Schema::enableForeignKeyConstraints();
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('rahinans');
         Schema::enableForeignKeyConstraints();
         
