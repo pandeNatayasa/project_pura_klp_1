@@ -419,7 +419,7 @@
   .chiller-theme .sidebar-wrapper .sidebar-header,
   .chiller-theme .sidebar-wrapper .sidebar-search,
   .chiller-theme .sidebar-wrapper .sidebar-menu {
-      border-top: 1px solid #3a3f48;
+      /* border-top: 1px solid #3a3f48; */
   }
   
   .chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,

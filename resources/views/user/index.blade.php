@@ -9,7 +9,7 @@
     <title>Temple Information</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.css" />
@@ -36,48 +36,39 @@
         </div>
       </div>
       <div class="sidebar-menu">
-        <div style="padding:10px">
+        <div>
             <img src="/img/uluwatu.jpg" alt="" width="100%" style="">
         </div>
-        <div class="card ml-2 mr-2 pt-1">
+        <div class="card ml-2 mr-2 mt-3 pt-1">
             <h5 class="text-center">Pura Goa Gong</h5>
         </div>
-        <div class="p-3">
-            <p>Jln Goa Gong no xx</p>
-            <p>Sejarah Pura :</p>
+        <div class="container mt-3">
+            <p><i class="fas fa-map-marker-alt fa-sm mb-2"></i><span class="mx-1"></span> Jln Goa Gong no xx, Goa Gong Bukit Jimbaran, Badung, Kuta Selatan</p>
+            <p><i class="fas fa-user fa-sm mb-2"></i><span class="mx-1"></span> Jero Mangku Adit</p>
+            <p><i class="fas fa-calendar-week fa-sm mb-2"></i><span class="mx-1"></span> Sasih Kapitu</p>
+            <p class="mb-0"><i class="fas fa-landmark fa-sm mb-2"></i><span class="mx-1"></span> Sejarah :</p>
             <small>Lorem Ipsum adalah contoh teks atau dummy dalam industri percetakan dan penataan huruf atau typesetting. Lorem Ipsum telah menjadi standar contoh teks sejak tahun 1500an, saat seorang tukang cetak yang tidak dikenal mengambil sebuah kumpulan teks dan mengacaknya untuk menjadi sebuah buku contoh huruf. Ia tidak hanya bertahan selama 5 abad, tapi juga telah beralih ke penataan huruf elektronik, tanpa ada perubahan apapun. Ia mulai dipopulerkan pada tahun 1960 dengan diluncurkannya lembaran-lembaran Letraset yang menggunakan kalimat-kalimat dari Lorem Ipsum, dan seiring munculnya perangkat lunak Desktop Publishing seperti Aldus PageMaker juga memiliki versi Lorem Ipsum.</small>
         </div>
-        <div class="container">
+        <div class="container mt-3">
+            <p><img src="/img/element.png" width="21" alt="" class="mb-1"><span class="mx-1"></span> Element Pura :</p>
             <div class="row">
                 <div class="col-4 mb-3">
-                    <div class="card">
-                        <img class="card-img-top" src="/img/uluwatu.jpg" alt="Card image">
-                    </div>
+                    <img class="card-img-top" src="/img/uluwatu.jpg" alt="Card image">
                 </div>
                 <div class="col-4">
-                    <div class="card">
-                        <img class="card-img-top" src="/img/uluwatu.jpg" alt="Card image">
-                    </div>
+                    <img class="card-img-top" src="/img/uluwatu.jpg" alt="Card image">
                 </div>
                 <div class="col-4">
-                    <div class="card">
-                        <img class="card-img-top" src="/img/uluwatu.jpg" alt="Card image">
-                    </div>
+                    <img class="card-img-top" src="/img/uluwatu.jpg" alt="Card image">
                 </div>
                 <div class="col-4">
-                    <div class="card">
-                        <img class="card-img-top" src="/img/uluwatu.jpg" alt="Card image">
-                    </div>
+                    <img class="card-img-top" src="/img/uluwatu.jpg" alt="Card image">
                 </div>
                 <div class="col-4">
-                    <div class="card">
-                        <img class="card-img-top" src="/img/uluwatu.jpg" alt="Card image">
-                    </div>
+                    <img class="card-img-top" src="/img/uluwatu.jpg" alt="Card image">
                 </div>
                 <div class="col-4">
-                    <div class="card">
-                        <img class="card-img-top" src="/img/uluwatu.jpg" alt="Card image">
-                    </div>
+                    <img class="card-img-top" src="/img/uluwatu.jpg" alt="Card image">
                 </div>
             </div>
         </div>
