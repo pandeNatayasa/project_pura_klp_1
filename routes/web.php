@@ -28,5 +28,9 @@ Route::post('/admin/login','AuthAdmin\LoginController@login')->name('admin.login
 Route::get('/admin/logout','AuthAdmin\LoginController@logout')->name('admin.logout');
 
 // TEMPLE TYPE
-Route::resource('/temple-type','TempleController');
+Route::resource('/temple-type','TempleTypeController');
+
+// TEMPLE 
+Route::resource('/temple','Member\TempleController');
+Route::get('/fecth-location','Member\TempleController@fetch')->name('fetch_location');
 

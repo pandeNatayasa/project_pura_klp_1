@@ -1,9 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Member;
 
 use App\Temple;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Province;
+use App\City;
+use App\SubDistrict;
+use App\TempleType;
+use App\TemplePriest;
 
 class TempleController extends Controller
 {
@@ -14,7 +20,7 @@ class TempleController extends Controller
      */
     public function index()
     {
-        //
+        return view('member.temple.list_temple');
     }
 
     /**
@@ -24,7 +30,42 @@ class TempleController extends Controller
      */
     public function create()
     {
-        //
+        $province = Province::all();
+        $temple_type = TempleType::all();
+        $temple_priest = TemplePriest::all();
+        return view('member.temple.add_temple',compact('province','temple_type','temple_priest'));
+    }
+
+    public function fetch(Request $request)
+    {
+        $value = $request->get('value');
+        $dependent = $request->get('dependent');
+
+        if ($dependent=='kota') {
+            $data_kota = City::all()->where('province_id','=',$value);
+
+            $output = '<option value="" disabled selected>Pilih Kabupaten/'.ucfirst($dependent).'</option>';
+
+            foreach ($data_kota as $data) {
+                $output .= '<option value="'.$data->id.'">'.$data->city_name.'</option>';
+            }
+
+            echo $output;
+
+        }elseif ($dependent=='kecamatan') {
+            $data_kecamatan = SubDistrict::all()->where('city_id','=',$value);
+
+            $output = '<option value="" disabled selected>Pilih '.ucfirst($dependent).'</option>';
+
+            foreach ($data_kecamatan as $data) {
+                $output .= '<option value="'.$data->id.'">'.$data->sub_district_name.'</option>';
+            }
+
+            echo $output;
+
+        }else{
+            echo "Error";
+        }
     }
 
     /**
