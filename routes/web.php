@@ -26,3 +26,8 @@ Route::get('/admin', 'AdminController@index')->name('admin.home');
 Route::post('/admin/login','AuthAdmin\LoginController@login')->name('admin.login.submit');
 Route::get('/admin/logout','AuthAdmin\LoginController@logout')->name('admin.logout');
 
+Route::get('/user-maps', 'UserController@maps');
+Route::get('/carousel',function(){
+    return view('user.carousel');
+});
+
