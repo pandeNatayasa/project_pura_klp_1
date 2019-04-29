@@ -35,7 +35,22 @@ class WukuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validator input
+        $validator = Validator::make($request->all(), [
+          'wuku_name' => 'required|string|max:200|unique:wukus'
+        ]);
+
+        // If fails, return error
+        if ($validator->fails()) {
+          return redirect()->back()->with('warning',$validator->errors());
+        }
+
+        // If validtor not fails, then save into database
+        $new = new Wuku();
+        $new->wuku_name = $request->wuku_name;
+        $new->save();
+
+        return $new;
     }
 
     /**

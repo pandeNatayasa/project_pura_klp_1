@@ -35,7 +35,22 @@ class SasihController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validator input
+        $validator = Validator::make($request->all(), [
+          'sasih_name' => 'required|string|max:200|unique:sasihs'
+        ]);
+
+        // If fails, return error
+        if ($validator->fails()) {
+          return redirect()->back()->with('warning',$validator->errors());
+        }
+
+        // If validtor not fails, then save into database
+        $new = new Sasih();
+        $new->sasih_name = $request->sasih_name;
+        $new->save();
+
+        return $new;
     }
 
     /**

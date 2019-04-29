@@ -35,7 +35,7 @@ class TempleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

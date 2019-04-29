@@ -35,7 +35,22 @@ class SaptawaraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validator input
+        $validator = Validator::make($request->all(), [
+          'saptawara_name' => 'required|string|max:200|unique:saptawaras'
+        ]);
+
+        // If fails, return error
+        if ($validator->fails()) {
+          return redirect()->back()->with('warning',$validator->errors());
+        }
+
+        // If validtor not fails, then save into database
+        $new = new Saptawara();
+        $new->saptawara_name = $request->saptawara_name;
+        $new->save();
+
+        return $new;
     }
 
     /**

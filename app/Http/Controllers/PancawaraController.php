@@ -35,7 +35,22 @@ class PancawaraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validator input
+        $validator = Validator::make($request->all(), [
+          'pancawara_name' => 'required|string|max:200|unique:pancawaras'
+        ]);
+
+        // If fails, return error
+        if ($validator->fails()) {
+          return redirect()->back()->with('warning',$validator->errors());
+        }
+
+        // If validtor not fails, then save into database
+        $new = new Pancawara();
+        $new->pancawara_name = $request->pancawara_name;
+        $new->save();
+
+        return $new;
     }
 
     /**
