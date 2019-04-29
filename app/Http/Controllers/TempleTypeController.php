@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\TempleType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TempleTypeController extends Controller
 {
@@ -14,7 +15,7 @@ class TempleTypeController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -35,7 +36,25 @@ class TempleTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validator input
+        $validator = Validator::make($request->all(), [
+          'type_name' => 'required|string|max:50|unique:temple_types',
+          'type_function' => 'required|string|max:50'
+        ]);
+
+        // If fails, return error
+        if ($validator->fails()) {
+          return redirect()->back()->with('warning',$validator->errors());
+        }
+
+        // If validtor not fails, then save into database
+        $new = new TempleType();
+        $new->type_name = $request->type_name;
+        $new->type_function = $request->type_function;
+        $new->save();
+
+        return $new;
+        // return view('//this for your view');
     }
 
     /**

@@ -35,7 +35,22 @@ class RahinanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validator input
+        $validator = Validator::make($request->all(), [
+          'rahinan_name' => 'required|string|max:200|unique:rahinans'
+        ]);
+
+        // If fails, return error
+        if ($validator->fails()) {
+          return redirect()->back()->with('warning',$validator->errors());
+        }
+
+        // If validtor not fails, then save into database
+        $new = new Rahinan();
+        $new->rahinan_name = $request->rahinan_name;
+        $new->save();
+
+        return $new;
     }
 
     /**
