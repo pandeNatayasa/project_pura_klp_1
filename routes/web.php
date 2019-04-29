@@ -27,17 +27,15 @@ Route::get('/admin', 'Admin\AdminController@index')->name('admin.home');
 Route::post('/admin/login','AuthAdmin\LoginController@login')->name('admin.login.submit');
 Route::get('/admin/logout','AuthAdmin\LoginController@logout')->name('admin.logout');
 
-<<<<<<< HEAD
 Route::get('/user-maps', 'UserController@maps');
 Route::get('/carousel',function(){
     return view('user.carousel');
 });
-=======
+
 // TEMPLE TYPE
 Route::resource('/temple-type','TempleTypeController');
 
 // TEMPLE 
 Route::resource('/temple','Member\TempleController');
 Route::get('/fecth-location','Member\TempleController@fetch')->name('fetch_location');
->>>>>>> 507d26bced16967b0f44cdf16171126d3aef05fe
 
