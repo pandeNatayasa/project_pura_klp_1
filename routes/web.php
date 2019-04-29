@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('/member/login', 'Auth\LoginController@showLoginForm2')->name('member.login');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/member/logout','Auth\LoginController@logout')->name('member.logout');

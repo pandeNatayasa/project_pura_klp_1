@@ -28,6 +28,10 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/home';
 
+    public function showLoginForm2(){
+        return view('auth.newlogin');
+    }
+
     /**
      * Create a new controller instance.
      *
