@@ -24,62 +24,99 @@
 
 <body>
 <div class="page-wrapper chiller-theme toggled">
-  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-    <i class="fas fa-bars"></i>
-  </a>
-  <nav id="sidebar" class="sidebar-wrapper">
-    <div class="sidebar-content">
-      <div class="sidebar-brand p-2">
-        <a class="text-center ">Temple Information</a>
-        <div id="close-sidebar">
-          <i class="fas fa-times"></i>
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+        <i class="fas fa-bars"></i>
+    </a>
+    <nav id="sidebar" class="sidebar-wrapper">
+        <div class="sidebar-content">
+        <div class="sidebar-brand p-2">
+            <a class="text-center ">Temple Information</a>
+            <div id="close-sidebar">
+            <i class="fas fa-times"></i>
+            </div>
         </div>
-      </div>
-      <div class="sidebar-menu">
-        <div>
-            <img src="/img/uluwatu.jpg" alt="" width="100%" style="">
-        </div>
-        <div class="card ml-2 mr-2 mt-3 pt-1">
-            <h5 class="text-center">Pura Goa Gong</h5>
-        </div>
-        <div class="container mt-3">
-            <p><i class="fas fa-map-marker-alt fa-sm mb-2"></i><span class="mx-1"></span> Jln Goa Gong no xx, Goa Gong Bukit Jimbaran, Badung, Kuta Selatan</p>
-            <p><i class="fas fa-user fa-sm mb-2"></i><span class="mx-1"></span> Jero Mangku Adit</p>
-            <p><i class="fas fa-calendar-week fa-sm mb-2"></i><span class="mx-1"></span> Sasih Kapitu</p>
-            <p class="mb-0"><i class="fas fa-landmark fa-sm mb-2"></i><span class="mx-1"></span> Sejarah :</p>
-            <small>Lorem Ipsum adalah contoh teks atau dummy dalam industri percetakan dan penataan huruf atau typesetting. Lorem Ipsum telah menjadi standar contoh teks sejak tahun 1500an, saat seorang tukang cetak yang tidak dikenal mengambil sebuah kumpulan teks dan mengacaknya untuk menjadi sebuah buku contoh huruf. Ia tidak hanya bertahan selama 5 abad, tapi juga telah beralih ke penataan huruf elektronik, tanpa ada perubahan apapun. Ia mulai dipopulerkan pada tahun 1960 dengan diluncurkannya lembaran-lembaran Letraset yang menggunakan kalimat-kalimat dari Lorem Ipsum, dan seiring munculnya perangkat lunak Desktop Publishing seperti Aldus PageMaker juga memiliki versi Lorem Ipsum.</small>
-        </div>
-        <div class="container mt-3">
-            <p><img src="/img/element.png" width="21" alt="" class="mb-1"><span class="mx-1"></span> Element Pura :</p>
-            <div class="row">
-                <div class="col-4 mb-3">
-                    <img class="card-img-top" src="/img/uluwatu.jpg" alt="Card image">
-                </div>
-                <div class="col-4">
-                    <img class="card-img-top" src="/img/uluwatu.jpg" alt="Card image">
-                </div>
-                <div class="col-4">
-                    <img class="card-img-top" src="/img/uluwatu.jpg" alt="Card image">
-                </div>
-                <div class="col-4">
-                    <img class="card-img-top" src="/img/uluwatu.jpg" alt="Card image">
-                </div>
-                <div class="col-4">
-                    <img class="card-img-top" src="/img/uluwatu.jpg" alt="Card image">
-                </div>
-                <div class="col-4">
-                    <img class="card-img-top" src="/img/uluwatu.jpg" alt="Card image">
+        <div class="sidebar-menu">
+            <div>
+                <img src="/img/uluwatu.jpg" alt="" width="100%" height="150" style="">
+            </div>
+            <div class="card ml-2 mr-2 mt-3 pt-1">
+                <h5 class="text-center">Pura Goa Gong</h5>
+            </div>
+            <div class="container mt-3">
+                <p><i class="fas fa-map-marker-alt fa-sm mb-2"></i><span class="mx-1"></span> Jln Goa Gong no xx, Goa Gong Bukit Jimbaran, Badung, Kuta Selatan</p>
+                <p><i class="fas fa-user fa-sm mb-2"></i><span class="mx-1"></span> Jero Mangku Adit</p>
+                <p><i class="fas fa-calendar-week fa-sm mb-2"></i><span class="mx-1"></span> Sasih Kapitu</p>
+                <p class="mb-0"><i class="fas fa-landmark fa-sm mb-2"></i><span class="mx-1"></span> Sejarah :</p>
+                <small>Lorem Ipsum adalah contoh teks atau dummy dalam industri percetakan dan penataan huruf atau typesetting. Lorem Ipsum telah menjadi standar contoh teks sejak tahun 1500an, saat seorang tukang cetak yang tidak dikenal mengambil sebuah kumpulan teks dan mengacaknya untuk menjadi sebuah buku contoh huruf. Ia tidak hanya bertahan selama 5 abad, tapi juga telah beralih ke penataan huruf elektronik, tanpa ada perubahan apapun. Ia mulai dipopulerkan pada tahun 1960 dengan diluncurkannya lembaran-lembaran Letraset yang menggunakan kalimat-kalimat dari Lorem Ipsum, dan seiring munculnya perangkat lunak Desktop Publishing seperti Aldus PageMaker juga memiliki versi Lorem Ipsum.</small>
+            </div>
+            <div class="container mt-3">
+                <p class="mb-1"><img src="/img/element.png" width="21" alt="" class="mb-1"><span class="mx-1"></span> Element Pura :</p>
+                <div class="row">
+                    <div class="element col-4 mb-2 p-1">
+                        <img src="/img/element/element1.1.jpg" width="90px" height="50px" alt="Card image">
+                    </div>
+                    <div class="element2 col-4 p-1">
+                            <img src="/img/uluwatu.jpg" width="90px" height="50px" alt="Card image">
+                    </div>
+                    <div class="col-4 p-1">
+                        <a href="#">
+                            <img src="/img/uluwatu.jpg" width="90px" height="50px" alt="Card image">
+                        </a>
+                    </div>
+                    <div class="col-4 p-1">
+                        <a href="#">
+                            <img src="/img/uluwatu.jpg" width="90px" height="50px" alt="Card image">
+                        </a>
+                    </div>
+                    <div class="col-4 p-1">
+                        <a href="#">
+                            <img src="/img/uluwatu.jpg" width="90px" height="50px" alt="Card image">
+                        </a>
+                    </div>
+                    <div class="col-4 p-1">
+                        <a href="#">
+                            <img src="/img/uluwatu.jpg" width="90px" height="50px" alt="Card image">
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-      </div>
-    </div>
-    <!-- sidebar-content  -->
-    {{-- <div class="sidebar-footer">
-      
-    </div> --}}
-  </nav>
-  <!-- sidebar-wrapper  -->
+        </div>
+
+        <div id="myElement" class="hide">
+            <div class="sidebar-brand p-1 mx-auto">
+                <button class="btn btn-default bg-white" id="close-element">
+                    <i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i>
+                </button>
+            </div>
+            <div>
+                <img src="/img/element/element1.1.jpg" alt="" width="100%" height="150" >
+            </div>
+            <div class="card ml-2 mr-2 mt-3 pt-1">
+                <h5 class="text-center">Element 1</h5>
+            </div>
+            <div class="container mt-3">
+                <p><img src="/img/god.png" width="12" class="mb-2" alt=""/><span class="mx-1"></span> Dewa Siwa</p>
+                <p><i class="fas fa-calendar-week fa-sm mb-2"></i><span class="mx-1"></span> Sasih Kapitu</p>
+                <p class="mb-0"><i class="fas fa-landmark fa-sm mb-2"></i><span class="mx-1"></span> Deskripsi :</p>
+            </div>
+        </div>
+
+        <div id="myElement2" class="hide">
+            <div>
+                <img src="/img/uluwatu.jpg" alt="" width="100%" height="150" style="">
+            </div>
+            <div class="card ml-2 mr-2 mt-3 pt-1">
+                <h5 class="text-center">Element 2</h5>
+            </div>
+            <div class="container mt-3">
+                <p><img src="/img/god.png" width="12" class="mb-2" alt=""/><span class="mx-1"></span> Dewa Wisnu</p>
+                <p><i class="fas fa-calendar-week fa-sm mb-2"></i><span class="mx-1"></span> Sasih Kapitu</p>
+                <p class="mb-0"><i class="fas fa-landmark fa-sm mb-2"></i><span class="mx-1"></span> Deskripsi :</p>
+            </div>
+        </div>
+    </nav>
+    <!-- sidebar-wrapper  -->
     <main class="page-content p-0" style="height:100%">
         <div id="header-maps" class="card p-0" style="">
             <div class="card-header text-center">
@@ -88,7 +125,7 @@
         </div>
         <div id="map" class="p-5" style="width:100%;height:92%"></div>
     </main>
-  <!-- page-content" -->
+    <!-- page-content" -->
 </div>
 <!-- page-wrapper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -99,6 +136,24 @@
 
     <script src="/js/sidenav.js"></script>
     <script src="/js/carousel.js"></script>
+
+    <script>
+    $(document).ready(function(){
+    $("#close-element,.element").click(function(){
+        $("#myElement").animate({
+        width: "toggle"
+        });
+        $("#myElement2").hide()
+    });
+
+    $(".element2").click(function(){
+        $("#myElement").hide()
+        $("#myElement2").animate({
+        width: "toggle"
+        });
+    });
+    });
+    </script>
 
     <script>
             $(document).ready(function(){

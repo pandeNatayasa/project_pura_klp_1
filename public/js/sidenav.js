@@ -1,4 +1,5 @@
 jQuery(function ($) {
+    // $(".page-wrapper").removeClass("toogled");
 
     $(".sidebar-dropdown > a").click(function() {
     $(".sidebar-submenu").slideUp(200);
@@ -21,9 +22,9 @@ jQuery(function ($) {
     .addClass("active");
     }
     });
-
     $("#close-sidebar").click(function() {
     $(".page-wrapper").removeClass("toggled");
+    $('#myElement').hide();
     });
     $("#show-sidebar").click(function() {
     $(".page-wrapper").addClass("toggled");
