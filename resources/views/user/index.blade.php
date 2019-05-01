@@ -134,10 +134,10 @@
                     <i class="fas fa-bars fa-lg"></i>
                 </a>
             </div>
-            <div class="col-8">
+            <div class="col-8 pr-0">
                 <input id="floating-search" class="form-control p-0" id="myInput" type="text">
             </div>
-            <div class="col pl-1">
+            <div class="col pr-2">
                     <i class="fas fa-search"></i> <span class="px-1"></span> |<span class="px-1"></span> 
                     <a href="#" id="close-sidebar">
                         <i class="fas fa-times pt-1"></i>
