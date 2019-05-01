@@ -111,7 +111,7 @@
                 <div class="col-md-12 col-xs-12 " >
                   <img id="image_1" class="col-md-offset-3 col-md-5 " style="margin-bottom: 5px; ">
                 </div>
-                <input name="foto_produk_1" id="file_1" id_input_foto="1" class="form-control col-md-7 col-xs-12" required="required" type="file" accept="image/*" onchange="showImage.call(this)">
+                <input name="foto_pura_1" id="file_1" id_input_foto="1" class="form-control col-md-7 col-xs-12" required="required" type="file" accept="image/*" onchange="showImage.call(this)">
                 <span class="text-danger" id='width_1'>* Max Width: 5128 pixel</span><span class="text-danger" id='height_1'>, Max Height: 5128 pixel</span>
                 <span class="text-danger" id="response_1"></span>
               </div>  
@@ -213,7 +213,7 @@
         total_foto++;
 
         var isi = '<div class="item form-group" id="tambah_foto_'+total_foto+'">';
-        isi +='<label class="control-label col-md-3 col-sm-3 col-xs-12" >Foto Pura <span class="required">*</span></label><div class="col-md-6 col-sm-6 col-xs-12"><div class="col-md-12 col-xs-12 " ><img id="image_'+total_foto+'" class="col-md-offset-3 col-md-5 " style="margin-bottom: 5px; "></div><input name="foto_produk_'+total_foto+'" id="file_'+total_foto+'" id_input_foto="'+total_foto+'" class="form-control col-md-7 col-xs-12" required="required" type="file" accept="image/*" onchange="showImage.call(this)"><span class="text-danger" id="width_'+total_foto+'">* Max Width: 5128 pixel</span><span class="text-danger" id="height_'+total_foto+'">, Max Height: 5128 pixel</span><span class="text-danger" id="response_'+total_foto+'"></span></div>';
+        isi +='<label class="control-label col-md-3 col-sm-3 col-xs-12" >Foto Pura <span class="required">*</span></label><div class="col-md-6 col-sm-6 col-xs-12"><div class="col-md-12 col-xs-12 " ><img id="image_'+total_foto+'" class="col-md-offset-3 col-md-5 " style="margin-bottom: 5px; "></div><input name="foto_pura_'+total_foto+'" id="file_'+total_foto+'" id_input_foto="'+total_foto+'" class="form-control col-md-7 col-xs-12" required="required" type="file" accept="image/*" onchange="showImage.call(this)"><span class="text-danger" id="width_'+total_foto+'">* Max Width: 5128 pixel</span><span class="text-danger" id="height_'+total_foto+'">, Max Height: 5128 pixel</span><span class="text-danger" id="response_'+total_foto+'"></span></div>';
         isi +='</div>';
 
         $('#tombol_tambah_foto').before(isi);
@@ -241,31 +241,6 @@
           hapus_foto();
        });
       });
-
-      /* Dengan Rupiah */
-      var dengan_rupiah = document.getElementById('harga');
-      dengan_rupiah.addEventListener('keyup', function(e)
-      {
-        dengan_rupiah.value = formatRupiah(this.value, 'Rp. ');
-      });
-      
-      /* Fungsi */
-      function formatRupiah(angka, prefix)
-      {
-        var number_string = angka.replace(/[^,\d]/g, '').toString(),
-          split = number_string.split(','),
-          sisa  = split[0].length % 3,
-          rupiah  = split[0].substr(0, sisa),
-          ribuan  = split[0].substr(sisa).match(/\d{3}/gi);
-          
-        if (ribuan) {
-          separator = sisa ? '.' : '';
-          rupiah += separator + ribuan.join('.');
-        }
-        
-        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-        return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
-      }
 
       $(document).ready(function(){
         $('.dynamic').change(function(){
