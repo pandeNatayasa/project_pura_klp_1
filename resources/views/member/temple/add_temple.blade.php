@@ -2,6 +2,35 @@
 
 @section('add_css')
 <link href="{{asset('admin/build/css/button_on_off.css')}}" rel="stylesheet">
+<style type="text/css">
+  /* Style the tab */
+  .tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    padding-left: 20px;
+  }
+
+  /* Style the buttons inside the tab */
+  .input-odalan {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 10px;
+    transition: 0.3s;
+    font-size: 17px;
+  }
+
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+</style>
 @endsection
 
 @section('menu_add_product')
@@ -96,7 +125,69 @@
                 </select>
               </div>
             </div>
-           
+            <div class="item form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Pinanggal Odalan<span class="required">*</span>
+              </label>
+              <div class="col-md-6 col-sm-6 col-xs-12 inline-group">
+                <!-- Tab links -->
+                <div class="tab">
+                  <div class="radio-inline input-odalan"><input type="radio" name="odalan" id="odalan_sasih" value="sasih" onclick="openCity(event, 'Sasih')"> Sasih</div>
+                  <div class="radio-inline input-odalan"><input type="radio" name="odalan" id="odalan_wuku" value="wuku" onclick="openCity(event, 'Wuku')"> Wuku</div>
+                  <!-- <button class="tablinks" onclick="openCity(event, 'Sasih')">Sasih</button>
+                  <button class="tablinks" onclick="openCity(event, 'Wuku')">Wuku</button> -->
+                </div>  
+                <!-- Tab content -->
+                <div id="Sasih" class="tabcontent">
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Rahinan <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <select id="rahinan" name="rahinan" class="form-control" required="required">
+                        <option value="" disabled selected>Pilih Hari Rahinan</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Sasih <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <select id="sasih" name="sasih" class="form-control" required="required">
+                        <option value="" disabled selected>Pilih Sasih</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div id="Wuku" class="tabcontent">
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Samptawara <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <select id="saptawara" name="saptawara" class="form-control" required="required">
+                        <option value="" disabled selected>Pilih Saptawara</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Pancawara <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <select id="pancawara" name="pancawara" class="form-control" required="required">
+                        <option value="" disabled selected>Pilih Pancawara</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Wuku <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <select id="wuku" name="wuku" class="form-control" required="required">
+                        <option value="" disabled selected>Pilih Wuku</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="item form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Alamat <span class="required">*</span>
               </label>
@@ -262,5 +353,26 @@
           }
         });
       });
+
+      function openCity(evt, cityName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
     </script>
 @endsection
