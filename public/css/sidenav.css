@@ -110,7 +110,7 @@
   /*----------------sidebar-wrapper----------------*/
   
   .sidebar-wrapper {
-    width: 300px;
+    width: 350px;
     height: 100%;
     max-height: 100%;
     position: fixed;
@@ -435,7 +435,7 @@
   .chiller-theme .sidebar-wrapper .sidebar-brand>a,
   .chiller-theme .sidebar-wrapper .sidebar-menu ul li a,
   .chiller-theme .sidebar-footer>a {
-      color: #818896;
+      color: #000;
   }
   
   .chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover>a,
@@ -443,15 +443,15 @@
   .chiller-theme .sidebar-wrapper .sidebar-header .user-info,
   .chiller-theme .sidebar-wrapper .sidebar-brand>a:hover,
   .chiller-theme .sidebar-footer>a:hover i {
-      color: #b8bfce;
+      color: #000;
   }
   
   .page-wrapper.chiller-theme.toggled #close-sidebar {
-      color: #bdbdbd;
+      color: #000;
   }
   
   .page-wrapper.chiller-theme.toggled #close-sidebar:hover {
-      color: #ffffff;
+      color: #000;
   }
   
   .chiller-theme .sidebar-wrapper ul li:hover a i,
@@ -490,8 +490,8 @@
   #myElement{
     position: absolute;
     z-index: 2;
-    margin-left: 300px;
-    width: 300px;
+    margin-left: 350px;
+    width: 320px;
     height: 100%;
     border-right: 1px solid #000;
     top: 0;
@@ -499,13 +499,14 @@
     background-color: #fff;
     overflow-x: hidden;
     float: left;
+    display: none
   }
 
   #myElement2{
     position: absolute;
     z-index: 2;
-    margin-left: 300px;
-    width: 300px;
+    margin-left: 350px;
+    width: 320px;
     height: 100%;
     border-right: 1px solid #000;
     top: 0;
@@ -513,13 +514,59 @@
     background-color: #fff;
     overflow-x: hidden;
     float: left;
+    display: none
   }
 
-
-  .show{
-    display: block;
+  .btn:focus,.btn:active {
+    outline: none !important;
+    box-shadow: none;
   }
 
-  .hide{
-    display: none;
+  .floating-area{
+    z-index:999;
+    position: fixed;
+    width: 330px;
+    margin-left: 8px;
+    top: 8px;
+    border-radius: 10px
+  }
+
+  .login-floating{
+    position: fixed;
+    z-index: 999; 
+    right: 10px;
+  }
+
+  #floating-search{
+    border: none;
+    outline: none !important;
+    box-shadow: none;
+  }
+
+  #sidebar-control{
+    position: fixed;
+    z-index: 999;
+    width: 200px;
+    height: 100%;
+    background: #fff;
+    display: none
+  }
+
+  .zoom-button{
+    position: fixed;
+    z-index: 999;
+    bottom: 35px;
+    right: 25px;
+  }
+
+  .map-controller{
+    position: absolute;
+    z-index: 999;
+    bottom: 10px;
+    left: 40%;
+    right: 60%;
+  }
+
+  .active{
+    background: white;
   }

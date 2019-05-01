@@ -1,36 +1,30 @@
-jQuery(function ($) {
-    // $(".page-wrapper").removeClass("toogled");
-
-    $(".sidebar-dropdown > a").click(function() {
-    $(".sidebar-submenu").slideUp(200);
-    if (
-    $(this)
-    .parent()
-    .hasClass("active")
-    ) {
-    $(".sidebar-dropdown").removeClass("active");
-    $(this)
-    .parent()
-    .removeClass("active");
-    } else {
-    $(".sidebar-dropdown").removeClass("active");
-    $(this)
-    .next(".sidebar-submenu")
-    .slideDown(200);
-    $(this)
-    .parent()
-    .addClass("active");
-    }
+$(document).ready(function(){
+    $("#close-element,.element").click(function(){
+        $("#myElement").animate({
+        width: "toggle"
+        });
+        $("#myElement2").hide()
     });
+
+    $("#close-element2,.element2").click(function(){
+        $("#myElement").hide()
+        $("#myElement2").animate({
+        width: "toggle"
+        });
+    });
+
     $("#close-sidebar").click(function() {
-    $(".page-wrapper").removeClass("toggled");
-    $('#myElement').hide();
-    });
-    $("#show-sidebar").click(function() {
-    $(".page-wrapper").addClass("toggled");
+        $(".sidebar-wrapper").hide();
+        $('#myElement').hide();
     });
 
+    $("#sidebar-nav").click(function(){
+        $(".sidebar-wrapper").show()
+    })
 
-
-
+    $('button.mapstyles').click(function(e) {
+        e.preventDefault();
+        $('button').removeClass('active');
+        $(this).addClass('active');
     });
+});
