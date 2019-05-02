@@ -164,7 +164,7 @@
             </div>
         </div>
         <!-- Control Floating-->
-        <div class="container fixed-bottom text-center">
+        <div class="container fixed-bottom text-center floating-control">
             <div class="btn-group " role="group" aria-label="map-control">
                 <button id="s_OSM" type="button" name="mapstyles" value="OSM" class="mapstyles btn btn-default active">Street</button>
                 <button id="s_SAT" type="button" name="mapstyles" value="SAT" class="mapstyles btn btn-default">Satelite</button>
