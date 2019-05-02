@@ -10,6 +10,11 @@ use App\City;
 use App\SubDistrict;
 use App\TempleType;
 use App\TemplePriest;
+use App\Rahinan;
+use App\Sasih;
+use App\Wuku;
+use App\Saptawara;
+use App\Pancawara;
 
 class TempleController extends Controller
 {
@@ -33,7 +38,12 @@ class TempleController extends Controller
         $province = Province::all();
         $temple_type = TempleType::all();
         $temple_priest = TemplePriest::all();
-        return view('member.temple.add_temple',compact('province','temple_type','temple_priest'));
+        $rahinan = Rahinan::all();
+        $sasih = Sasih::all();
+        $wuku = Wuku::all();
+        $saptawara = Saptawara::all();
+        $pancawara = Pancawara::all();
+        return view('member.temple.add_temple',compact('province','temple_type','temple_priest','rahinan','sasih','wuku','saptawara','pancawara'));
     }
 
     public function fetch(Request $request)

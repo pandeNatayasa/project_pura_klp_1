@@ -144,6 +144,9 @@
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <select id="rahinan" name="rahinan" class="form-control" required="required">
                         <option value="" disabled selected>Pilih Hari Rahinan</option>
+                        @foreach($rahinan as $data)
+                          <option value="{{$data->id}}">{{$data->rahinan_name}}</option>
+                        @endforeach
                       </select>
                     </div>
                   </div>
@@ -153,6 +156,9 @@
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <select id="sasih" name="sasih" class="form-control" required="required">
                         <option value="" disabled selected>Pilih Sasih</option>
+                        @foreach($sasih as $data)
+                          <option value="{{$data->id}}">{{$data->sasih_name}}</option>
+                        @endforeach
                       </select>
                     </div>
                   </div>
@@ -164,6 +170,9 @@
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <select id="saptawara" name="saptawara" class="form-control" required="required">
                         <option value="" disabled selected>Pilih Saptawara</option>
+                        @foreach($saptawara as $data)
+                          <option value="{{$data->id}}" >{{$data->saptawara_name}}</option>
+                        @endforeach
                       </select>
                     </div>
                   </div>
@@ -173,6 +182,9 @@
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <select id="pancawara" name="pancawara" class="form-control" required="required">
                         <option value="" disabled selected>Pilih Pancawara</option>
+                        @foreach($pancawara as $data)
+                          <option value="{{$data->id}}" >{{$data->pancawara_name}}</option>
+                        @endforeach
                       </select>
                     </div>
                   </div>
@@ -182,6 +194,9 @@
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <select id="wuku" name="wuku" class="form-control" required="required">
                         <option value="" disabled selected>Pilih Wuku</option>
+                        @foreach($wuku as $data)
+                          <option value="{{$data->id}}">{{$data->wuku_name}}</option>
+                        @endforeach
                       </select>
                     </div>
                   </div>
