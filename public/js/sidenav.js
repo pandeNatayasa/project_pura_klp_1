@@ -19,6 +19,21 @@ $(document).ready(function(){
         $('#myElement').hide();
     });
 
+    $("#close-floating-area").click(function() {
+        $("#show-floating-area").show();
+        $(".floating-area").animate({
+            width: "toggle"
+        });;
+      });
+
+      $("#show-floating-area").click(function() {
+        $("#show-floating-area").hide();
+        $(".floating-area").animate({
+            width: "toggle"
+        });;
+      });
+      
+
     $("#close-sidebar-menu").click(function() {
         $("#sidebar-option").animate({
             width: "toggle"

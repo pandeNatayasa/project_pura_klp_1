@@ -19,7 +19,7 @@ $(document).ready(function(){
     //Maps Layouts
     var map = L.map('map',{
         zoomControl:false
-    }).setView([-8.5240574,115.2110998],10);	
+    }).setView([-8.5240574,115.2110998],15);	
     L.tileLayer('https://maps.tilehosting.com/styles/streets/{z}/{x}/{y}.png?key=YrAn6SOXelkLFXHv03o2',{
         attribution:'<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
     }).addTo(map);
@@ -95,18 +95,26 @@ $(document).ready(function(){
     }
     
     map.on('locationerror', onLocationError);
-    
+
     //Maps Marker
     function markerOnClick(e) {
-        $('.sidebar-wrapper').show();
+        $('.sidebar-wrapper').animate({
+            width: "360px"
+        });;;
         map.setView(e.latlng,map.getZoom());
+        console.log(e.latlng);
     }
     
     map.on('click', function(){
-        $('.sidebar-wrapper').hide();
+        $('.sidebar-wrapper').animate({
+            width: "0"
+        });;
+        $('#myElement').hide();
+        $('#myElement2').hide();
     })
     var marker1 = L.marker([-8.708337,115.185124],{icon: icons}).addTo(map).on('click', markerOnClick);
     var marker2 = L.marker([-8.7105212,115.1814639],{icon: icons}).addTo(map).on('click', markerOnClick);
+
 });	
 
     

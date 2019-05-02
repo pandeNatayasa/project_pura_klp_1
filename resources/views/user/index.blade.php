@@ -126,19 +126,27 @@
 
     <!-- Main Content -->
     <main class="page-content p-0" style="height:100%">
+        <!-- Show Search Floating-->
+        <a id="show-floating-area" class="btn btn-sm btn-dark pt-0 pr-1 pl-1" href="#">
+            <i class="fas fa-chevron-right fa-sm"></i>
+        </a>
         <!--Login FLoating-->
-        <div class="login-floating">
+        <div class="login-floating p-0">
+            {{-- @auth --}}
+                <a id="sidebar-nav" href="#" class="p-0"><img src="/user/user.png" width="20px" alt=""></a>
+            {{-- @else
                 <ul class="row  mr-2 p-0 ">
                     <a href="{{ route('member.login') }}" style="color:black">Login</a><span class="mx-2"></span> | <span class="mx-2"></span>
                     <a href="{{ route('register') }}"  style="color:black">Register</a>
                 </ul>
+            @endauth --}}
         </div>
         <!--Search FLoating-->
         <div class="card floating-area p-0 ">
             <div class="card-body row p-2">
             <div class=" col-1 pl-3" style="padding-top: 1px">
-                <a id="sidebar-nav" href="#" style="color: black">
-                    <i class="fas fa-bars fa-lg"></i>
+                <a id="close-floating-area" href="#" style="color: black">
+                    <i class="fas fa-chevron-left fa-lg"></i>
                 </a>
             </div>
             <div class="col-8 pr-0">
@@ -170,14 +178,14 @@
                 <button id="s_OSM" type="button" name="mapstyles" value="OSM" class="mapstyles btn btn-default active">Street</button>
                 <button id="s_SAT" type="button" name="mapstyles" value="SAT" class="mapstyles btn btn-default">Satelite</button>
                 <button id="s_TER" type="button" name="mapstyles" value="TER" class="mapstyles btn btn-default">Terrain</button>
-                <button id="s_HIB" type="button" name="mapstyles" value="TER" class="mapstyles btn btn-default">Hibrid</button>
+                <button id="s_HIB" type="button" name="mapstyles" value="HIB" class="mapstyles btn btn-default">Hibrid</button>
             </div>
         </div>
         <!--Side Menu Option-->
         <div id="sidebar-option" class="hide p-0">
-                <div class="sidebar-brand p-1 text-right">
+                <div class="sidebar-brand p-1">
                     <button class="btn btn-default bg-white btn-sm" id="close-sidebar-menu">
-                        <i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i>
+                        <i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
                 <hr class="mb-3 mt-0"/>
