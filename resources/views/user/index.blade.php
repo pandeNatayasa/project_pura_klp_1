@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>Temple Information</title>
     <!-- Icon -->
-    <link rel="icon" href="/user/temple-icon.png">
+    <link rel="icon" href="user/temple-icon.png">
     <!-- Bootstrap 4 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
@@ -29,11 +29,12 @@
 
 </head>
 
-<body>
+<body >
 <div class="page-wrapper chiller-theme toggled">
     <!--Sidebar-->
-    <nav id="sidebar" class="sidebar-wrapper">
+    <nav id="sidebar" class="sidebar-wrapper loading">
         <!-- Main Sidebar-->
+        <div class="dots-loader"></div>
         <div class="sidebar-content">
         <div class="sidebar-menu">
             <div>
@@ -52,7 +53,7 @@
             <div class="container mt-3">
                 <p class="mb-1"><img src="/user/element.png" width="21" alt="" class="mb-1"><span class="mx-1"></span> Element Pura :</p>
                 <div class="row">
-                    <div class="element col-4 mb-2">
+                    <div class="element col-4 mb-2 pr-0">
                         <img src="/user/element/element1.1.jpg" width="90px" height="50px" alt="Card image">
                     </div>
                     <div class="element2 col-4">
@@ -86,7 +87,7 @@
         <!-- Element Sidebar-->
         <div id="myElement" class="hide">
             <div class="sidebar-brand p-1 mx-auto">
-                <button class="btn btn-default bg-white" id="close-element">
+                <button class="btn btn-default bg-white btn-sm" id="close-element">
                     <i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i>
                 </button>
             </div>
@@ -105,7 +106,7 @@
 
         <div id="myElement2" class="hide">
             <div class="sidebar-brand p-1 mx-auto">
-                <button class="btn btn-default bg-white" id="close-element2">
+                <button class="btn btn-default bg-white btn-sm" id="close-element2">
                     <i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i>
                 </button>
             </div>
@@ -172,6 +173,24 @@
                 <button id="s_HIB" type="button" name="mapstyles" value="TER" class="mapstyles btn btn-default">Hibrid</button>
             </div>
         </div>
+        <!--Side Menu Option-->
+        <div id="sidebar-option" class="hide p-0">
+                <div class="sidebar-brand p-1 text-right">
+                    <button class="btn btn-default bg-white btn-sm" id="close-sidebar-menu">
+                        <i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i>
+                    </button>
+                </div>
+                <hr class="mb-3 mt-0"/>
+                <div class="text-center">
+                    <img src="/user/user.png" alt="" width="40%" style="">
+                </div>
+                <div class="ml-3 mt-4">
+                    <p><img src="/user/link.png" width="18" alt="" class="mr-3"><a href=""  style="color:black"> Bagi Lokasi</a></p>
+                    <p><img src="/user/berkas.png" width="18" alt="" class="mr-3"><a href="" style="color:black"> Kontribusi Anda</a></p>
+                    <p><img src="/user/add.png" width="18" alt="" class="mr-3"><a href=""><a href=""  style="color:black"> Tambahkan Tempat</a></p>
+                </div>
+        </div>
+        
     </main>
 </div>
 
