@@ -525,7 +525,8 @@
   .floating-area{
     z-index:999;
     position: fixed;
-    width: 340px;
+    width: 100%;
+    max-width: 340px;
     margin-left: 8px;
     top: 8px;
     border-radius: 10px
@@ -543,6 +544,10 @@
     box-shadow: none;
   }
 
+  .floating-control{
+    z-index: 1;
+  }
+
   #sidebar-control{
     position: fixed;
     z-index: 999;
@@ -555,8 +560,8 @@
   .zoom-button{
     position: fixed;
     z-index: 999;
-    bottom: 35px;
-    right: 25px;
+    bottom: 3%;
+    right: 2%;
   }
 
   .active{
