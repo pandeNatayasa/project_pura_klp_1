@@ -15,7 +15,9 @@ $(document).ready(function(){
 
 
     $("#close-sidebar").click(function() {
-        $(".sidebar-wrapper").hide();
+        $(".sidebar-wrapper").animate({
+            width: "0"
+        });
         $('#myElement').hide();
     });
 

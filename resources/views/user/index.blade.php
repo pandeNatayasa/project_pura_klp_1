@@ -92,7 +92,7 @@
                 </button>
             </div>
             <div>
-                <img src="/user/element/element1.1.jpg" alt="" width="100%" height="150" >
+                <img src="/user/element/element1.1.jpg" alt="" width="100%" height="163" >
             </div>
             <div class="card ml-2 mr-2 mt-3 pt-1">
                 <h5 class="text-center">Element 1</h5>
@@ -111,7 +111,7 @@
                 </button>
             </div>
             <div>
-                <img src="/user/uluwatu.jpg" alt="" width="100%" height="150" style="">
+                <img src="/user/uluwatu.jpg" alt="" width="100%" height="163" style="">
             </div>
             <div class="card ml-2 mr-2 mt-3 pt-1">
                 <h5 class="text-center">Element 2</h5>
@@ -195,7 +195,11 @@
                 <div class="ml-3 mt-4">
                     <p><img src="/user/link.png" width="18" alt="" class="mr-3"><a href=""  style="color:black"> Bagi Lokasi</a></p>
                     <p><img src="/user/berkas.png" width="18" alt="" class="mr-3"><a href="" style="color:black"> Kontribusi Anda</a></p>
-                    <p><img src="/user/add.png" width="18" alt="" class="mr-3"><a href=""><a href=""  style="color:black"> Tambahkan Tempat</a></p>
+                    <p><img src="/user/add.png" width="18" alt="" class="mr-3"><a href=""><a href=""  style="color:black"> Tambahkan Tempat</a></p>                        
+                </div>
+                {{-- <div style="position:absolute; bottom:5px;right:50%;border-top: #000 solid 2px"> --}}
+                <div class="text-center " style="position:absolute; bottom:5px;right:50%;">
+                        <i class="fas fa-power-off"></i>
                 </div>
         </div>
         
