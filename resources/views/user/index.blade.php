@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Maps Temple">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>Temple Information</title>
     <!-- Icon -->
     <link rel="icon" href="/user/temple-icon.png">
@@ -157,13 +158,13 @@
         <!-- Navigation Floating-->
         <div class="zoom-button p-0">
             <div class="btn-group-vertical">
-                <button class="btn btn-light" id="center" type="text"><i class="fas fa-map-marker"></i></button> <span class="mb-2"></span>
-                <button class="btn btn-light" id="zoomin" type="text">[ + ]</button><span  style="border-bottom: 1px solid #000"></span>
-                <button class="btn btn-light" id="zoomout" type="text">[ - ]</button>
+                <button class="btn btn-light btn-sm" id="center" type="text"><i  class="fas fa-crosshairs"></i></button> <span class="mb-2"></span>
+                <button class="btn btn-light btn-sm" id="zoomin" type="text">[ + ]</button><span  style="border-bottom: 1px solid #000"></span>
+                <button class="btn btn-light btn-sm" id="zoomout" type="text">[ - ]</button>
             </div>
         </div>
         <!-- Control Floating-->
-        <div class="map-controller p-0">
+        <div class="container fixed-bottom text-center">
             <div class="btn-group " role="group" aria-label="map-control">
                 <button id="s_OSM" type="button" name="mapstyles" value="OSM" class="mapstyles btn btn-default active">Street</button>
                 <button id="s_SAT" type="button" name="mapstyles" value="SAT" class="mapstyles btn btn-default">Satelite</button>
@@ -187,5 +188,17 @@
     <!--Custome JS-->
     <script src="/js/sidenav.js"></script>
     <script src="/js/maps.js"></script>
+
+    <script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        url: "/",
+    })
+    </script>
 </body>
 </html>

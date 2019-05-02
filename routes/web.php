@@ -36,3 +36,8 @@ Route::resource('/temple-type','TempleTypeController');
 Route::resource('/temple','Member\TempleController');
 Route::get('/fecth-location','Member\TempleController@fetch')->name('fetch_location');
 
+Route::get('/xxx/{username?}', function ($username) {
+    return 'hai '.$username;
+});
+
+

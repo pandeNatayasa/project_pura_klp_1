@@ -10,7 +10,7 @@ $(document).ready(function(){
     var markers = L.markerClusterGroup();
     var map = L.map('map',{
         zoomControl:false
-    }).setView([-8.5240574,115.2110998],11);	
+    }).setView([-8.5240574,115.2110998],10);	
     L.tileLayer('https://maps.tilehosting.com/styles/streets/{z}/{x}/{y}.png?key=YrAn6SOXelkLFXHv03o2',{
         attribution:'<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
     }).addTo(map);
@@ -73,8 +73,11 @@ $(document).ready(function(){
         // var radius = e.accuracy / 1;
     
         L.marker(e.latlng).addTo(map)
+            // .bindPopup("You are within " + radius + " meters from this point").openPopup();
     
         // L.circle(e.latlng, radius).addTo(map);
+        // console.log(e.latlng);
+
         $("#center").click(function(){
             map.setView(e.latlng,map.getZoom());
         });
@@ -84,15 +87,21 @@ $(document).ready(function(){
 
     function onLocationError(e) {
         alert(e.message);
+        $('#center').addClass('disabled');
     }
     
     map.on('locationerror', onLocationError);
+
+    function markerOnClick(e) {
+        $('.sidebar-wrapper').show();
+      }
     
+    map.on('click', function(){
+        $('.sidebar-wrapper').hide();
+    })
     
-    var marker1 = L.marker([-8.708337,115.185124],{icon: icons}).addTo(map).bindPopup(
-    "<b>Pura Goa Gong</b></br>"+
-    "Alamat : Jl. Pura Mertasari I No.1, Pemecutan Klod, Kuta, Kabupaten Badung, Bali 80361</br>"+
-    "Telp : 0812-1981-1988</br>").openPopup();
-    });	
+    var marker1 = L.marker([-8.708337,115.185124],{icon: icons}).addTo(map).on('click', markerOnClick);
+    var marker2 = L.marker([-8.7105212,115.1814639],{icon: icons}).addTo(map).on('click', markerOnClick);
+});	
 
     
