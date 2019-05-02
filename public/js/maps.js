@@ -4,7 +4,14 @@ $(document).ready(function(){
         iconSize:     [32, 32], // size of the icon
         iconAnchor:   [30, 30], // point of the icon which will correspond to marker's location
         popupAnchor:  [-15, -30] // point from which the popup should open relative to the iconAnchor
-    });		
+    });	
+    
+    var user = L.icon({
+        iconUrl: '/user/user_loc.png',
+        iconSize:     [42, 32], // size of the icon
+        iconAnchor:   [30, 30], // point of the icon which will correspond to marker's location
+        popupAnchor:  [-15, -30] // point from which the popup should open relative to the iconAnchor
+    });	
 
     var marker;
     var markers = L.markerClusterGroup();
@@ -72,7 +79,7 @@ $(document).ready(function(){
     function onLocationFound(e) {
         // var radius = e.accuracy / 1;
     
-        L.marker(e.latlng).addTo(map)
+        L.marker(e.latlng,{icon:user}).addTo(map)
             // .bindPopup("You are within " + radius + " meters from this point").openPopup();
     
         // L.circle(e.latlng, radius).addTo(map);
