@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>Temple Information</title>
     <!-- Icon -->
-    <link rel="icon" href="/user/temple-icon.png">
+    <link rel="icon" href="user/temple-icon.png">
     <!-- Bootstrap 4 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
@@ -29,11 +29,12 @@
 
 </head>
 
-<body>
+<body >
 <div class="page-wrapper chiller-theme toggled">
     <!--Sidebar-->
-    <nav id="sidebar" class="sidebar-wrapper">
+    <nav id="sidebar" class="sidebar-wrapper loading">
         <!-- Main Sidebar-->
+        <div class="dots-loader"></div>
         <div class="sidebar-content">
         <div class="sidebar-menu">
             <div>
@@ -52,7 +53,7 @@
             <div class="container mt-3">
                 <p class="mb-1"><img src="/user/element.png" width="21" alt="" class="mb-1"><span class="mx-1"></span> Element Pura :</p>
                 <div class="row">
-                    <div class="element col-4 mb-2">
+                    <div class="element col-4 mb-2 pr-0">
                         <img src="/user/element/element1.1.jpg" width="90px" height="50px" alt="Card image">
                     </div>
                     <div class="element2 col-4">
@@ -84,14 +85,14 @@
         </div>
 
         <!-- Element Sidebar-->
-        <div id="myElement" class="hide">
+        <div id="myElement" class="myelement hide">
             <div class="sidebar-brand p-1 mx-auto">
-                <button class="btn btn-default bg-white" id="close-element">
+                <button class="btn btn-default bg-white btn-sm" id="close-element">
                     <i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i>
                 </button>
             </div>
             <div>
-                <img src="/user/element/element1.1.jpg" alt="" width="100%" height="150" >
+                <img src="/user/element/element1.1.jpg" alt="" width="100%" height="163" >
             </div>
             <div class="card ml-2 mr-2 mt-3 pt-1">
                 <h5 class="text-center">Element 1</h5>
@@ -105,12 +106,12 @@
 
         <div id="myElement2" class="hide">
             <div class="sidebar-brand p-1 mx-auto">
-                <button class="btn btn-default bg-white" id="close-element2">
+                <button class="btn btn-default bg-white btn-sm" id="close-element2">
                     <i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i>
                 </button>
             </div>
             <div>
-                <img src="/user/uluwatu.jpg" alt="" width="100%" height="150" style="">
+                <img src="/user/uluwatu.jpg" alt="" width="100%" height="163" style="">
             </div>
             <div class="card ml-2 mr-2 mt-3 pt-1">
                 <h5 class="text-center">Element 2</h5>
@@ -125,19 +126,27 @@
 
     <!-- Main Content -->
     <main class="page-content p-0" style="height:100%">
+        <!-- Show Search Floating-->
+        <a id="show-floating-area" class="btn btn-sm btn-dark pt-0 pr-1 pl-1" href="#">
+            <i class="fas fa-chevron-right fa-sm"></i>
+        </a>
         <!--Login FLoating-->
-        <div class="login-floating">
+        <div class="login-floating p-0">
+            @auth
+                <a id="sidebar-nav" href="#" class="p-0"><img src="/user/user.png" width="20px" alt=""></a>
+            @else
                 <ul class="row  mr-2 p-0 ">
                     <a href="{{ route('member.login') }}" style="color:black">Login</a><span class="mx-2"></span> | <span class="mx-2"></span>
                     <a href="{{ route('register') }}"  style="color:black">Register</a>
                 </ul>
+            @endauth
         </div>
         <!--Search FLoating-->
         <div class="card floating-area p-0 ">
             <div class="card-body row p-2">
             <div class=" col-1 pl-3" style="padding-top: 1px">
-                <a id="sidebar-nav" href="#" style="color: black">
-                    <i class="fas fa-bars fa-lg"></i>
+                <a id="close-floating-area" href="#" style="color: black">
+                    <i class="fas fa-chevron-left fa-lg"></i>
                 </a>
             </div>
             <div class="col-8 pr-0">
@@ -169,9 +178,43 @@
                 <button id="s_OSM" type="button" name="mapstyles" value="OSM" class="mapstyles btn btn-default active">Street</button>
                 <button id="s_SAT" type="button" name="mapstyles" value="SAT" class="mapstyles btn btn-default">Satelite</button>
                 <button id="s_TER" type="button" name="mapstyles" value="TER" class="mapstyles btn btn-default">Terrain</button>
-                <button id="s_HIB" type="button" name="mapstyles" value="TER" class="mapstyles btn btn-default">Hibrid</button>
+                <button id="s_HIB" type="button" name="mapstyles" value="HIB" class="mapstyles btn btn-default">Hibrid</button>
             </div>
         </div>
+        <!--Side Menu Option-->
+        <div id="sidebar-option" class="hide p-0">
+                <div class="sidebar-brand p-1">
+                    <button class="btn btn-default bg-white btn-sm" id="close-sidebar-menu">
+                        <i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i>
+                    </button>
+                    <button class="btn btn-default bg-white btn-sm float-right">
+                            <a class="btn-off" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="fas fa-power-off"></i>
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                    </button>
+                </div>
+                <hr class="mb-3 mt-0"/>
+                {{-- <div class="text-center">
+                    <img src="/user/user.png" alt="" width="40%" style="">
+                </div> --}}
+                <div class=" mt-4">
+                    <div class="ml-3">
+                        <p><img src="/user/user-icon.png" width="18" alt="" class="mr-3"><a href=""  style="color:black"> Profil</a></p>
+                        <p><img src="/user/link.png" width="18" alt="" class="mr-3"><a href=""  style="color:black"> Bagi Lokasi</a></p>
+                        <p><img src="/user/berkas.png" width="18" alt="" class="mr-3"><a href="" style="color:black"> Kontribusi Anda</a></p>
+                        <p><img src="/user/add.png" width="18" alt="" class="mr-3"><a href=""><a href=""  style="color:black"> Tambahkan Tempat</a></p>
+                    </div>
+                    <hr>
+                    <div class="ml-3">
+                        <p><img src="/user/settings.png" width="18" alt="" class="mr-3"><a href=""><a href=""  style="color:black"> Pengaturan</a></p>    
+                    </div>
+                </div>
+        </div>
+        
     </main>
 </div>
 

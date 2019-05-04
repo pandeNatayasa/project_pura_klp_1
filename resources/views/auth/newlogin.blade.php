@@ -39,10 +39,14 @@
     </header>
     <main>
         <section id="card">
+<<<<<<< HEAD
             <!-- <section id="card1">
+=======
+            <section id="card1" class="card-active active">
+>>>>>>> 15b1e9774813308d2c0a28a0c2192a4642561d38
                 <a href="#">Login</a>
             </section>
-            <section id="card2">
+            <section id="card2" class="card-active">
                 <a href="#">Register</a>
             </section> -->
             <div id="ph5">
@@ -65,7 +69,7 @@
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
 
-                     @if ($errors->has('password'))
+                    @if ($errors->has('password'))
                         <span class="help-block">
                             <strong>{{ $errors->first('password') }}</strong>
                         </span>
@@ -85,5 +89,7 @@
         </section>
     </main>
 </body>
+
+<script src="/js/newlogin.js"></script>
 
 </html>
