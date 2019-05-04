@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="{{asset('css/newlogin.css')}}">
+    <title>Login Temple Information</title>
+    <link rel="stylesheet" href="{{asset('css/login.css')}}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -23,21 +23,31 @@
 <body>
 
     <div id="bg">
-        <img id="iconic" src="{{asset('img/bg-img.svg')}}">
+    <h1 id="namaatas">Temple Information</h1>
+        <img id="iconic" src="/login/img/pura.svg">
     </div>
+    <div id="bg-dasar">
     <header>
-        <nav id="nav-body" class="navbar navbar-light bg-light">
-            <span class="navbar-brand mb-0 h1"></span>
+        <nav id="nav-body" class="navbar">
+            <span class="navbar-brand mb-0 h1">Temple Information</span>
+            <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a id="tulisansamping"class="nav-link active" href="#">Back To Map</a>
+            </li>
+        </ul>
         </nav>
     </header>
     <main>
         <section id="card">
-            <section id="card1">
+            <!-- <section id="card1">
                 <a href="#">Login</a>
             </section>
             <section id="card2">
                 <a href="#">Register</a>
-            </section>
+            </section> -->
+            <div id="ph5">
+            <h3>Login</h3>
+            </div>
             <form id="form-login" method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
                 <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
@@ -65,7 +75,12 @@
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div>
-                <button id="btn-login" type="submit" class="btn btn-primary">Submit</button>
+                <button id="btn-login" type="submit" class="btn btn-primary">Submit</button><br>
+                <br>
+                <span id="regis">
+                    <a href="#">Registrasi Disini!</a>
+
+                    </span>
             </form>
         </section>
     </main>
