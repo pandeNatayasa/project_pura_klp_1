@@ -198,7 +198,7 @@
                     <p><img src="/user/add.png" width="18" alt="" class="mr-3"><a href=""><a href=""  style="color:black"> Tambahkan Tempat</a></p>                        
                 </div>
                 {{-- <div style="position:absolute; bottom:5px;right:50%;border-top: #000 solid 2px"> --}}
-                <div class="text-center " style="position:absolute; bottom:5px;right:50%;">
+                <div class="text-center " style="position:absolute; bottom:8px;right:50%;">
                         <i class="fas fa-power-off"></i>
                 </div>
         </div>

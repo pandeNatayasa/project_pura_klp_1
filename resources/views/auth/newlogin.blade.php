@@ -32,10 +32,10 @@
     </header>
     <main>
         <section id="card">
-            <section id="card1">
+            <section id="card1" class="card-active active">
                 <a href="#">Login</a>
             </section>
-            <section id="card2">
+            <section id="card2" class="card-active">
                 <a href="#">Register</a>
             </section>
             <form id="form-login" method="POST" action="{{ route('login') }}">
@@ -55,7 +55,7 @@
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
 
-                     @if ($errors->has('password'))
+                    @if ($errors->has('password'))
                         <span class="help-block">
                             <strong>{{ $errors->first('password') }}</strong>
                         </span>
@@ -70,5 +70,7 @@
         </section>
     </main>
 </body>
+
+<script src="/js/newlogin.js"></script>
 
 </html>

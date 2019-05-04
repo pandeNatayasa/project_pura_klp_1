@@ -43,10 +43,14 @@ main #card {
   margin-right: 10%;
 }
 
+.active{
+  background: #4E7280 !important;
+}
+
 main #card #card1 {
   -ms-grid-columns: 60px 60px;
-      grid-template-columns: 60px 60px;
-  background: #4E7280;
+  grid-template-columns: 60px 60px;
+  background: #628e9f;
   border-radius: 2px;
   display: inline-block;
   height: 35px;
