@@ -85,7 +85,7 @@
         </div>
 
         <!-- Element Sidebar-->
-        <div id="myElement" class="hide">
+        <div id="myElement" class="myelement hide">
             <div class="sidebar-brand p-1 mx-auto">
                 <button class="btn btn-default bg-white btn-sm" id="close-element">
                     <i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i>
@@ -132,14 +132,14 @@
         </a>
         <!--Login FLoating-->
         <div class="login-floating p-0">
-            {{-- @auth --}}
+            @auth
                 <a id="sidebar-nav" href="#" class="p-0"><img src="/user/user.png" width="20px" alt=""></a>
-            {{-- @else
+            @else
                 <ul class="row  mr-2 p-0 ">
                     <a href="{{ route('member.login') }}" style="color:black">Login</a><span class="mx-2"></span> | <span class="mx-2"></span>
                     <a href="{{ route('register') }}"  style="color:black">Register</a>
                 </ul>
-            @endauth --}}
+            @endauth
         </div>
         <!--Search FLoating-->
         <div class="card floating-area p-0 ">
@@ -187,19 +187,31 @@
                     <button class="btn btn-default bg-white btn-sm" id="close-sidebar-menu">
                         <i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i>
                     </button>
+                    <button class="btn btn-default bg-white btn-sm float-right">
+                            <a class="btn-off" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="fas fa-power-off"></i>
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                    </button>
                 </div>
                 <hr class="mb-3 mt-0"/>
-                <div class="text-center">
+                {{-- <div class="text-center">
                     <img src="/user/user.png" alt="" width="40%" style="">
-                </div>
-                <div class="ml-3 mt-4">
-                    <p><img src="/user/link.png" width="18" alt="" class="mr-3"><a href=""  style="color:black"> Bagi Lokasi</a></p>
-                    <p><img src="/user/berkas.png" width="18" alt="" class="mr-3"><a href="" style="color:black"> Kontribusi Anda</a></p>
-                    <p><img src="/user/add.png" width="18" alt="" class="mr-3"><a href=""><a href=""  style="color:black"> Tambahkan Tempat</a></p>                        
-                </div>
-                {{-- <div style="position:absolute; bottom:5px;right:50%;border-top: #000 solid 2px"> --}}
-                <div class="text-center " style="position:absolute; bottom:8px;right:50%;">
-                        <i class="fas fa-power-off"></i>
+                </div> --}}
+                <div class=" mt-4">
+                    <div class="ml-3">
+                        <p><img src="/user/user-icon.png" width="18" alt="" class="mr-3"><a href=""  style="color:black"> Profil</a></p>
+                        <p><img src="/user/link.png" width="18" alt="" class="mr-3"><a href=""  style="color:black"> Bagi Lokasi</a></p>
+                        <p><img src="/user/berkas.png" width="18" alt="" class="mr-3"><a href="" style="color:black"> Kontribusi Anda</a></p>
+                        <p><img src="/user/add.png" width="18" alt="" class="mr-3"><a href=""><a href=""  style="color:black"> Tambahkan Tempat</a></p>
+                    </div>
+                    <hr>
+                    <div class="ml-3">
+                        <p><img src="/user/settings.png" width="18" alt="" class="mr-3"><a href=""><a href=""  style="color:black"> Pengaturan</a></p>    
+                    </div>
                 </div>
         </div>
         
