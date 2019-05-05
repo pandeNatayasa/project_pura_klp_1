@@ -23,7 +23,7 @@ Route::get('/member/logout','Auth\LoginController@logout')->name('member.logout'
 
 //Route Admin =>Registration
 Route::get('/admin/login','AuthAdmin\LoginController@showLoginForm')->name('admin.login');
-Route::get('/admin', 'Admin\AdminController@index')->name('admin.home');
+Route::get('/admin/home', 'Admin\AdminController@index')->name('admin.home');
 Route::post('/admin/login','AuthAdmin\LoginController@login')->name('admin.login.submit');
 Route::get('/admin/logout','AuthAdmin\LoginController@logout')->name('admin.logout');
 
@@ -37,7 +37,7 @@ Route::resource('/temple-type','TempleTypeController');
 
 // TEMPLE 
 Route::resource('/temple','Member\TempleController');
-Route::get('/fecth-location','Member\TempleController@fetch')->name('fetch_location');
+Route::post('/fecth-location','Member\TempleController@fetch')->name('fetch_location');
 
 // Route::get('/xxx/{username?}', function ($username) {
 //     return 'hai '.$username;
