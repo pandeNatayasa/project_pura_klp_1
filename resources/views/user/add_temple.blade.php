@@ -17,7 +17,7 @@
                 <form>
                     <!-- Form List Gambar-->
                     <div class="card mb-5">
-                        Gambar
+                        <input type="file" id="file-1" name="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1">
                     </div>
                     <!-- Form Nama Pura-->
                     <div class="form-group row">
@@ -326,6 +326,10 @@
                 <div class="col-sm-9 col-md-9 col-xs-12">
                     <input type="text" class="form-control " id="inputNamePura" required>
                 </div>
+            </div>
+
+            <div class="float-right">
+              <button class="btn btn-success">Tambah Element</button>
             </div>
           </form>                         
         </div>
