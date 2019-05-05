@@ -116,6 +116,10 @@ main #card #card2 {
   margin-right: 10%;
 }
 
+.active{
+  background: #4E7280 !important;
+}
+
 main #card #card2 a {
   color: #fff;
   font-display: inline-block;

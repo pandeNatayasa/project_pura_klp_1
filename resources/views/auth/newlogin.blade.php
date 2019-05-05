@@ -32,7 +32,7 @@
             <span class="navbar-brand mb-0 h1">Temple Information</span>
             <ul class="nav justify-content-end">
             <li class="nav-item">
-                <a id="tulisansamping"class="nav-link active" href="#">Back To Map</a>
+                <a id="tulisansamping"class="nav-link active" href="/">Back To Map</a>
             </li>
         </ul>
         </nav>
