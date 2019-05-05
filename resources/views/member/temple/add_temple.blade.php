@@ -30,7 +30,14 @@
     border: 1px solid #ccc;
     border-top: none;
   }
+  #mymap {top: 10px;bottom: 10px;height: 300px;}
 </style>
+
+<!-- This is css and js for map to enable add position on map -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+  crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+  crossorigin=""></script>
 @endsection
 
 @section('menu_add_product')
@@ -75,7 +82,7 @@
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Jenis Pura <span class="required">*</span>
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <select class="form-control" required="required" id="temple_type" name="temple_type">
+                <select class="form-control" required="required" id="temple_type_id" name="temple_type_id">
                   <option value="" disabled selected>Pilih Jenis Pura</option>
                   @foreach($temple_type as $data)
                     <option value="{{$data->id}}">{{$data->type_name}}</option>
@@ -87,7 +94,7 @@
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Pemangku <span class="required">*</span>
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <select class="form-control dynamic" required="required" id="province" name="province" data-dependent="city">
+                <select class="form-control" required="required" id="temple_priest_id" name="temple_priest_id">
                   <option value="" disabled selected>Pilih Pemangku</option>
                   @foreach($temple_priest as $data)
                     <option value="{{$data->id}}">{{$data->priest_name}}</option>
@@ -131,8 +138,8 @@
               <div class="col-md-6 col-sm-6 col-xs-12 inline-group">
                 <!-- Tab links -->
                 <div class="tab">
-                  <div class="radio-inline input-odalan"><input type="radio" name="odalan" id="odalan_sasih" value="sasih" onclick="openCity(event, 'Sasih')"> Sasih</div>
-                  <div class="radio-inline input-odalan"><input type="radio" name="odalan" id="odalan_wuku" value="wuku" onclick="openCity(event, 'Wuku')"> Wuku</div>
+                  <div class="radio-inline input-odalan"><input type="radio" name="odalan_type" id="odalan_sasih" value="sasih" onclick="openOdalanType(event, 'Sasih')"> Sasih</div>
+                  <div class="radio-inline input-odalan"><input type="radio" name="odalan_type" id="odalan_wuku" value="wuku" onclick="openOdalanType(event, 'Wuku')"> Wuku</div>
                   <!-- <button class="tablinks" onclick="openCity(event, 'Sasih')">Sasih</button>
                   <button class="tablinks" onclick="openCity(event, 'Wuku')">Wuku</button> -->
                 </div>  
@@ -142,7 +149,7 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Rahinan <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <select id="rahinan" name="rahinan" class="form-control" required="required">
+                      <select id="rahinan" name="rahinan" class="form-control" >
                         <option value="" disabled selected>Pilih Hari Rahinan</option>
                         @foreach($rahinan as $data)
                           <option value="{{$data->id}}">{{$data->rahinan_name}}</option>
@@ -154,7 +161,7 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Sasih <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <select id="sasih" name="sasih" class="form-control" required="required">
+                      <select id="sasih" name="sasih" class="form-control" >
                         <option value="" disabled selected>Pilih Sasih</option>
                         @foreach($sasih as $data)
                           <option value="{{$data->id}}">{{$data->sasih_name}}</option>
@@ -168,7 +175,7 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Samptawara <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <select id="saptawara" name="saptawara" class="form-control" required="required">
+                      <select id="saptawara" name="saptawara" class="form-control" >
                         <option value="" disabled selected>Pilih Saptawara</option>
                         @foreach($saptawara as $data)
                           <option value="{{$data->id}}" >{{$data->saptawara_name}}</option>
@@ -180,7 +187,7 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Pancawara <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <select id="pancawara" name="pancawara" class="form-control" required="required">
+                      <select id="pancawara" name="pancawara" class="form-control" >
                         <option value="" disabled selected>Pilih Pancawara</option>
                         @foreach($pancawara as $data)
                           <option value="{{$data->id}}" >{{$data->pancawara_name}}</option>
@@ -192,7 +199,7 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Wuku <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <select id="wuku" name="wuku" class="form-control" required="required">
+                      <select id="wuku" name="wuku" class="form-control" >
                         <option value="" disabled selected>Pilih Wuku</option>
                         @foreach($wuku as $data)
                           <option value="{{$data->id}}">{{$data->wuku_name}}</option>
@@ -232,7 +239,7 @@
               <label class="control-label col-md-3 col-sm-3 col-xs-12" >Posisi pada map <span class="required">*</span>
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <button class="btn btn-primary" id="map_position" name="map_position"> Posisi pada Map</button>
+                <button type="button" class="btn btn-primary" id="map_position" name="map_position" data-toggle="modal" data-target="#modal_add_location"> Posisi pada Map</button>
               </div>
             </div>
             <div class="ln_solid"></div>
@@ -248,6 +255,51 @@
   </div>
 </div>
 
+<!-- Modal Edit Shipping Cost-->
+<div class="modal fade" id="modal_add_location" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" >Posisi Pada Map</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal form-label-left">
+          <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" >Latitude <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" id="latitude" name="latitude" disabled placeholder="ex: 119.023365" value="" class="form-control col-md-6 col-xs-12">
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" >Longitude <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" id="longitude" name="longitude" disabled placeholder="ex: 119.023365" value="" class="form-control col-md-6 col-xs-12">
+            </div>
+          </div>
+          <div class="item form-group" >
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" >Tekan pada map ini <span class="required">*</span>
+            </label>
+            <div id="mymap" class="col-md-12 col-sm-12 col-xs-12">
+              
+            </div>
+          </div>
+          <div class="ln_solid"></div>
+          <div class="form-group">
+            <div class="col-md-2 col-md-offset-10 col-sm-4 col-sm-offset-">
+              <button id="selected" type="button" class="btn btn-success" data-dismiss="modal">Pilih</button>
+            </div>
+          </div>
+        </form>                         
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End of Modal Edit Shipping Cost -->
 <!-- /page content -->
 @endsection
 
@@ -256,6 +308,7 @@
     <script src="{{asset('admin/vendors/validator/validator.js')}}"></script>
 
     <script type="text/javascript">
+      // Javascript to show image are selected
       function showImage(){
         if( this.files && this.files[0]){
           var obj = new FileReader();
@@ -275,7 +328,7 @@
           }
           obj.readAsDataURL(this.files[0]);
 
-          //Validasi ukuran image
+          // Validate image size
           var _URL = window.URL || window.webkitURL;
 
           var total_foto = document.getElementById('total_semua_foto').value;
@@ -310,10 +363,11 @@
           }
         }
       }
+      // End of show image
+
 
       $(document).ready(function(){
-
-       //untuk form dinamis foto product
+       // Javascript to make dymanic input of image temple
        var total_foto = 1;
        function tambah_foto(){
         total_foto++;
@@ -347,7 +401,9 @@
           hapus_foto();
        });
       });
+      // End of dynamic input of image temple
 
+      // Javascript to make dynamic of city and sub district
       $(document).ready(function(){
         $('.dynamic').change(function(){
           if($(this).val() != ''){
@@ -363,13 +419,19 @@
               success:function(result)
               {
                 $('#'+dependent).html(result);
+              },
+              error(e)
+              {
+                console.log(e);
               }
             })  
           }
         });
       });
+      // end of dynamic city and sub district
 
-      function openCity(evt, cityName) {
+      // Javascript to make dynamic input of odalan type (sasih or wuku)
+      function openOdalanType(evt, odalanType) {
         // Declare all variables
         var i, tabcontent, tablinks;
 
@@ -386,8 +448,59 @@
         }
 
         // Show the current tab, and add an "active" class to the button that opened the tab
-        document.getElementById(cityName).style.display = "block";
+        document.getElementById(odalanType).style.display = "block";
         evt.currentTarget.className += " active";
       }
+      // End of dynamic input odalan type
+
+      // Javascript of modal to add location on map
+      $('#modal_add_location').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) 
+        // var judul = button.data('judul') 
+
+        // var modal = $(this)
+        // modal.find('.modal-body #judul').val(judul)
+        // modal.find('.modal-body #deskripsi_singkat').text(deskripsi_singkat)
+        // modal.find('.modal-body #image').attr('src',image)
+      });
+      // End of modal
+
+      $(document).ready(function(){
+        var mymap = L.map('mymap',{
+          zoomControl:false
+        }).setView([-8.8013433,115.1652095],17);
+
+        var marker;
+
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+          attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          maxZoom: 20,
+          id: 'mapbox.streets',
+          accessToken: 'pk.eyJ1IjoidHJpb3B1dHJhcCIsImEiOiJjam00ajRzbHMweXg2M2xxdDVwNHo4NmhiIn0.m9AganPvwoRN0HhmUJk0xg'
+          }).addTo(mymap);
+
+        var popup = L.popup();
+        // function onMapClick(e) {
+        //     popup
+        //     .setLatLng(e.latlng)
+        //     .setContent("Lokasi yang dipilih: " + e.latlng.toString())
+        //     .openOn(mymap);
+        // }
+        // mymap.on('click', onMapClick);
+
+        mymap.on('mousemove',function(e){
+            $("#latitude").val(e.latlng.lat);
+            $("#longitude").val(e.latlng.lng);
+          });
+        
+        mymap.on('click',function(e){
+          if(marker){
+            mymap.removeLayer(marker);
+          }
+
+          marker = L.marker(e.latlng).addTo(mymap); 
+          
+        });
+      });
     </script>
 @endsection

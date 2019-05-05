@@ -39,16 +39,12 @@
     </header>
     <main>
         <section id="card">
-<<<<<<< HEAD
-            <!-- <section id="card1">
-=======
             <section id="card1" class="card-active active">
->>>>>>> 15b1e9774813308d2c0a28a0c2192a4642561d38
                 <a href="#">Login</a>
             </section>
             <section id="card2" class="card-active">
                 <a href="#">Register</a>
-            </section> -->
+            </section>
             <div id="ph5">
             <h3>Login</h3>
             </div>
