@@ -102,7 +102,7 @@ main #card #card1 a {
 main #card #card2 {
   -ms-grid-columns: 60px 60px;
       grid-template-columns: 60px 60px;
-  background: #5dabff;
+  background: #2A90FF;
   border-radius: 2px;
   display: inline-block;
   height: 35px;
@@ -117,7 +117,7 @@ main #card #card2 {
 }
 
 .active{
-  background: #4E7280 !important;
+  background: #5dabff !important;
 }
 
 main #card #card2 a {
