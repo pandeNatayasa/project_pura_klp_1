@@ -103,14 +103,14 @@
         </a>
         <!--Login FLoating-->
         <div class="login-floating p-0">
-            @auth
+            {{-- @auth --}}
                 <a id="sidebar-nav" href="#" class="p-0"><img src="/user/user.png" width="20px" alt=""></a>
-            @else
+            {{-- @else
                 <ul class="row  mr-2 p-0 ">
                     <a href="{{ route('member.login') }}" style="color:black">Login</a><span class="mx-2"></span> | <span class="mx-2"></span>
                     <a href="{{ route('register') }}"  style="color:black">Register</a>
                 </ul>
-            @endauth
+            @endauth --}}
         </div>
         <!--Search FLoating-->
         <div class="card floating-area p-0 ">
@@ -170,7 +170,7 @@
                         <p><img src="/user/user-icon.png" width="18" alt="" class="mr-3"><a href=""  style="color:black"> Profil</a></p>
                         <p><img src="/user/link.png" width="18" alt="" class="mr-3"><a href="#sharelocModal" data-toggle="modal" style="color:black"> Bagi Lokasi</a></p>
                         <p><img src="/user/berkas.png" width="18" alt="" class="mr-3"><a href="" style="color:black"> Kontribusi Anda</a></p>
-                        <p><img src="/user/add.png" width="18" alt="" class="mr-3"><a href=""><a href="/user/add_location"  style="color:black"> Tambahkan Tempat</a></p>
+                        <p><img src="/user/add.png" width="18" alt="" class="mr-3"><a href=""><a href="/user/add_temple"  style="color:black"> Tambahkan Tempat</a></p>
                     </div>
                     <hr>
                     <div class="ml-3">

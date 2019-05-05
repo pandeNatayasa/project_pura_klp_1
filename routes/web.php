@@ -30,7 +30,8 @@ Route::get('/admin/logout','AuthAdmin\LoginController@logout')->name('admin.logo
 
 // User
 Route::get('/', 'UserController@maps');
-Route::get('/user/add_location', 'UserController@addlocation')->name('addlocation');
+Route::get('/user/add_temple', 'UserController@add_temple')->name('add_temple');
+Route::post('/fetch_data','UserController@fetch');
 
 // TEMPLE TYPE
 Route::resource('/temple-type','TempleTypeController');

@@ -58,5 +58,6 @@
         url: "/",
     })
     </script>
+    @yield('script')
 </body>
 </html>
