@@ -27,7 +27,10 @@ Route::get('/admin', 'Admin\AdminController@index')->name('admin.home');
 Route::post('/admin/login','AuthAdmin\LoginController@login')->name('admin.login.submit');
 Route::get('/admin/logout','AuthAdmin\LoginController@logout')->name('admin.logout');
 
+
+// User
 Route::get('/', 'UserController@maps');
+Route::get('/user/add_location', 'UserController@addlocation')->name('addlocation');
 
 // TEMPLE TYPE
 Route::resource('/temple-type','TempleTypeController');

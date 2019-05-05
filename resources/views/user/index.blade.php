@@ -1,36 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.user')
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Maps Temple">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>Temple Information</title>
-    <!-- Icon -->
-    <link rel="icon" href="user/temple-icon.png">
-    <!-- Bootstrap 4 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <!-- Leaflet -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.css" />
-    <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.Default.css" />
-    <script src="https://leaflet.github.io/Leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
-    <!--Google Fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-
-    <!--Custome Css-->
-    <link rel="stylesheet" href="/css/sidenav.css">
-
-</head>
-
-<body >
-<div class="page-wrapper chiller-theme toggled">
+@section('context')
+    <div class="page-wrapper chiller-theme toggled">
     <!--Sidebar-->
     <nav id="sidebar" class="sidebar-wrapper loading">
         <!-- Main Sidebar-->
@@ -188,25 +159,18 @@
                         <i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i>
                     </button>
                     <button class="btn btn-default bg-white btn-sm float-right">
-                            <a class="btn-off" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <a class="btn-off" href="#logoutModal" data-toggle="modal">
                                 <i class="fas fa-power-off"></i>
                             </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
                     </button>
                 </div>
                 <hr class="mb-3 mt-0"/>
-                {{-- <div class="text-center">
-                    <img src="/user/user.png" alt="" width="40%" style="">
-                </div> --}}
                 <div class=" mt-4">
                     <div class="ml-3">
                         <p><img src="/user/user-icon.png" width="18" alt="" class="mr-3"><a href=""  style="color:black"> Profil</a></p>
-                        <p><img src="/user/link.png" width="18" alt="" class="mr-3"><a href=""  style="color:black"> Bagi Lokasi</a></p>
+                        <p><img src="/user/link.png" width="18" alt="" class="mr-3"><a href="#sharelocModal" data-toggle="modal" style="color:black"> Bagi Lokasi</a></p>
                         <p><img src="/user/berkas.png" width="18" alt="" class="mr-3"><a href="" style="color:black"> Kontribusi Anda</a></p>
-                        <p><img src="/user/add.png" width="18" alt="" class="mr-3"><a href=""><a href=""  style="color:black"> Tambahkan Tempat</a></p>
+                        <p><img src="/user/add.png" width="18" alt="" class="mr-3"><a href=""><a href="/user/add_location"  style="color:black"> Tambahkan Tempat</a></p>
                     </div>
                     <hr>
                     <div class="ml-3">
@@ -218,30 +182,73 @@
     </main>
 </div>
 
-    <!-- JQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!--Popper-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <!--Bootstrap-->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+<!--Logout Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Keluar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{-- <div class="modal-body">
+                <p>Do You Realy Want To Log Out ?</p>
+            </div> --}}
+            <div class="modal-footer">
+                <a class="btn btn-danger btn-sm" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        Keluar
+                </a>
 
-    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.66.2/src/L.Control.Locate.min.js"></script>
-    <!--Custome JS-->
-    <script src="/js/sidenav.js"></script>
-    <script src="/js/maps.js"></script>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
+            </div>
+            </div>
+        </div>
+    </div>
 
-    <script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $.ajax({
-        url: "/",
-    })
-    </script>
-</body>
-</html>
+<!--Shareloc Modal -->
+    <div class="modal fade" id="sharelocModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                {{-- <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Lokasi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div> --}}
+                <div class="modal-body">
+                    <div class="card mb-2">
+                        <div class="card-body pt-2 pb-2 pl-3">
+                            <div class="row ">
+                                <div class="col-3">
+                                    <img src="/user/map-marker.png" width="70px"  alt="">
+                                </div>
+                                <div class="col-9">
+                                    <p>Pura Goa Gong</p>
+                                    <p>Jalan Goa Gong no 8 xxx yyy zzz</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-1 pr-1 pt-1">
+                            <i class="fa fa-link"></i>
+                        </div>
+                        <div class="col pl-1">
+                            <input type="text" class="form-control form-control-sm" id="sharelink" placeholder="Link">
+                        </div>
+                        
+                    </div>
+                    <div class="float-right">
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary btn-sm">Bagikan Link</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
