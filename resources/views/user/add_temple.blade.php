@@ -296,12 +296,36 @@
         </div>
         <div class="modal-body">
           <form class="form-horizontal form-label-left">
+            <!-- Form List Gambar-->
+            <div class="card mb-3">
+                Gambar
+            </div>
+            <div class="form-group row">
+                <label for="inputNamePura" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Nama Element<span class="required">*</span></label>
+                <div class="col-sm-9 col-md-9 col-xs-12">
+                    <input type="text" class="form-control " id="inputNamePura" required>
+                </div>
+            </div>
 
-            <div class="ln_solid"></div>
-            <div class="form-group">
-              <div class="col-md-2 col-md-2 float-right">
-                <button id="selected" type="button" class="btn btn-success btn-block" data-dismiss="modal">Simpan</button>
-              </div>
+            <div class="form-group row">
+                <label for="inputNamePura" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Nama Dewa<span class="required">*</span></label>
+                <div class="col-sm-9 col-md-9 col-xs-12">
+                    <input type="text" class="form-control " id="inputNamePura" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="inputNamePura" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Deskripsi<span class="required">*</span></label>
+                <div class="col-sm-9 col-md-9 col-xs-12">
+                    <textarea type="text" class="form-control " id="inputNamePura" required></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="inputNamePura" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Posis Element<span class="required">*</span></label>
+                <div class="col-sm-9 col-md-9 col-xs-12">
+                    <input type="text" class="form-control " id="inputNamePura" required>
+                </div>
             </div>
           </form>                         
         </div>
