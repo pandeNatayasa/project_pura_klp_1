@@ -28,6 +28,9 @@
     <link rel="stylesheet" href="/css/sidenav.css">
     <link rel="stylesheet" href="/css/user.css">
 
+    <!--Dropdzone-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css">
+
 </head>
 
 <body >

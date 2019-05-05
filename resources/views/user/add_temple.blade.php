@@ -14,11 +14,13 @@
         </div>  
         <div class="card-body">
             <div class="container col-md-10">
-                <form>
-                    <!-- Form List Gambar-->
-                    <div class="card mb-5">
-                        <input type="file" id="file-1" name="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1">
-                    </div>
+                <form action="/event-upload" class="dropzone dz-clickable mb-5" id="addImages" enctype="multipart/form-data">
+                  <input type="hidden" name="_token" value="jaTC1J0R7xOyZC3cvWWv6nErBYQdr4aogc3OQkD5">
+                  <input type="hidden" name="gallery_id" value="7">
+                  <div class="dz-default dz-message m-5"><span>Drop/Click here to upload images</span></div>
+                </form>
+                <form enctype="multipart/form-data">
+                    
                     <!-- Form Nama Pura-->
                     <div class="form-group row">
                         <label for="inputNamePura" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Nama Pura<span class="required">*</span></label>
@@ -295,11 +297,12 @@
           </button>
         </div>
         <div class="modal-body">
+          <form action="/event-upload" class="dropzone dz-clickable mb-5" id="addImages" enctype="multipart/form-data">
+            <input type="hidden" name="_token" value="jaTC1J0R7xOyZC3cvWWv6nErBYQdr4aogc3OQkD5">
+            <input type="hidden" name="gallery_id" value="7">
+            <div class="dz-default dz-message m-5"><span>Drop/Click here to upload images</span></div>
+          </form>
           <form class="form-horizontal form-label-left">
-            <!-- Form List Gambar-->
-            <div class="card mb-3">
-                Gambar
-            </div>
             <div class="form-group row">
                 <label for="inputNamePura" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Nama Element<span class="required">*</span></label>
                 <div class="col-sm-9 col-md-9 col-xs-12">
@@ -342,4 +345,5 @@
 
 @section('script')
     <script src="/js/add_temple.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
 @endsection

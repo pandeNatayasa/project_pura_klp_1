@@ -32,6 +32,7 @@ Route::get('/admin/logout','AuthAdmin\LoginController@logout')->name('admin.logo
 Route::get('/', 'UserController@maps');
 Route::get('/user/add_temple', 'UserController@add_temple')->name('add_temple');
 Route::post('/fetch_data','UserController@fetch');
+Route::post('/image-submit','UserController@imageUpload');
 
 // TEMPLE TYPE
 Route::resource('/temple-type','TempleTypeController');

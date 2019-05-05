@@ -63,4 +63,8 @@ class UserController extends Controller
         }
     }
 
+    public function imageUpload(Request $request){
+
+    }
+
 }

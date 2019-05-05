@@ -38,3 +38,7 @@ body{
 /* #detail-pemangku{
     display: none;
 } */
+
+.dropzone{
+    border: 1px dashed #9b9b9b !important;
+}
