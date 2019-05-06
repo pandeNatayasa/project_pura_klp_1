@@ -14,7 +14,10 @@
         </div>  
         <div class="card-body">
             <div class="container col-md-10">
-<<<<<<< HEAD
+              <!-- Form List Gambar-->
+              <form action="/event-upload" class="dropzone dz-clickable mb-5" id="addImages" enctype="multipart/form-data">
+                <div class="dz-default dz-message m-5"><span>Drop/Click here to upload images</span></div>
+              </form>
                 <form class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" accept-charset="utf-8" method="POST" action="{{route('temple.store')}}">
                     {{ csrf_field() }}
                     @if($message =    Session::get('success'))
@@ -28,18 +31,6 @@
                           <p>{{$message}}</p>
                       </div>
                     @endif
-                    <!-- Form List Gambar-->
-                    <div class="card mb-5">
-                        <input type="file" id="file-1" name="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1">
-                    </div>
-=======
-                <form action="/event-upload" class="dropzone dz-clickable mb-5" id="addImages" enctype="multipart/form-data">
-                  <input type="hidden" name="gallery_id" value="7">
-                  <div class="dz-default dz-message m-5"><span>Drop/Click here to upload images</span></div>
-                </form>
-                <form enctype="multipart/form-data">
-                    
->>>>>>> abe6946a87d822b64890fc8aaef383f9834648aa
                     <!-- Form Nama Pura-->
                     <div class="form-group row">
                         <label for="inputNamePura" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Nama Pura<span class="required">*</span></label>
@@ -317,7 +308,6 @@
         </div>
         <div class="modal-body">
           <form action="/event-upload" class="dropzone dz-clickable mb-5" id="addImages" enctype="multipart/form-data">
-            <input type="hidden" name="gallery_id" value="7">
             <div class="dz-default dz-message m-5"><span>Drop/Click here to upload images</span></div>
           </form>
           <form class="form-horizontal form-label-left">
