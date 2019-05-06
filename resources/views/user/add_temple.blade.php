@@ -74,7 +74,7 @@
                             <input type="text" class="form-control" id="inputAlamatPura" required>
                         </div>
                         <div class="col-2 col-sm-1 text-center">
-                            <button data-toggle="modal" data-target="#modal_add_location" class="btn btn-default bg-white p-0"> <img src="/user/maps.png" width="35" alt=""></button>
+                            <button data-toggle="modal" data-target="#modal_add_location" class="btn btn-default bg-white p-0"> <img src="/user_img/maps.png" width="35" alt=""></button>
                         </div>
                     </div>
 
@@ -209,7 +209,7 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div id="element" class="card">
-                                    <img class="card-img-top" src="/user/element/element1.1.jpg" alt="Card image cap">
+                                    <img class="card-img-top" src="/user_img/element/element1.1.jpg" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
                                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
