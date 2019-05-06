@@ -15,7 +15,6 @@
         <div class="card-body">
             <div class="container col-md-10">
                 <form action="/event-upload" class="dropzone dz-clickable mb-5" id="addImages" enctype="multipart/form-data">
-                  <input type="hidden" name="_token" value="jaTC1J0R7xOyZC3cvWWv6nErBYQdr4aogc3OQkD5">
                   <input type="hidden" name="gallery_id" value="7">
                   <div class="dz-default dz-message m-5"><span>Drop/Click here to upload images</span></div>
                 </form>
@@ -298,7 +297,6 @@
         </div>
         <div class="modal-body">
           <form action="/event-upload" class="dropzone dz-clickable mb-5" id="addImages" enctype="multipart/form-data">
-            <input type="hidden" name="_token" value="jaTC1J0R7xOyZC3cvWWv6nErBYQdr4aogc3OQkD5">
             <input type="hidden" name="gallery_id" value="7">
             <div class="dz-default dz-message m-5"><span>Drop/Click here to upload images</span></div>
           </form>

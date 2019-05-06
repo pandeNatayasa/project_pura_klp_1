@@ -43,7 +43,7 @@ $(document).ready(function(){
             var value = $(this).val();
             var dependent = $(this).data('dependent');
 
-            console.log(dependent)
+            console.log(value)
             
             var _token = $('input[name="_token"]').val();
             $.ajax({
