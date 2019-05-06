@@ -97,7 +97,11 @@ class TempleController extends Controller
             'address' => 'required|string',
             'temple_type_id' => 'required|numeric',
             'odalan_type' => 'required|string',
-            'sub_district' => 'required|numeric'
+            'sub_district' => 'required|numeric',
+            'description' => 'required|string',
+            'priest_name' => 'required|string',
+            'address_priest' => 'required|string',
+            'priest_phone' => 'required|string'
         ]);
 
         // Check if validator error then return redirect with message
@@ -126,6 +130,14 @@ class TempleController extends Controller
             $new_odalan->save();
         }
 
+        // Save priest of temple
+        $new_priest = new TemplePriest();
+        $new_priest->priest_name = $request->priest_name;
+        $new_priest->address_priest = $request->address_priest;
+        $new_priest->priest_phone = $request->priest_phone;
+        $new_priest->save();
+
+
         // Save into temple table
         $new = new Temple();
         $new->temple_name = $request->temple_name;
@@ -135,7 +147,7 @@ class TempleController extends Controller
         $new->odalan_type = $request->odalan_type;
         $new->user_id = Auth::id();
         $new->validate_status = '0';
-        $new->temple_priest_id = $request->temple_priest_id;
+        $new->temple_priest_id = $new_priest->id;
         $new->sub_district_id = $request->sub_district;
         $new->save();
 
@@ -144,21 +156,17 @@ class TempleController extends Controller
         $id_max=TempleImage::max('id');
         $id=$id_max +1;
 
-        for ($i=1; $i <=$number_of_image ; $i++) { 
-            if ($request->hasFile('foto_pura_'.$i)) {
-                $filePic=$request->file('foto_pura_'.$i);
-                $extension = $filePic->getClientOriginalExtension();
-                $fileName = 'temple_image_'.$id;
-                $filePic->move('temple_image/',$fileName.'.'.$extension);
+        
+        if ($files=$request->hasFile('file')) {
+            $filePic=$request->file('file');
+            $extension = $filePic->getClientOriginalExtension();
+            $fileName = 'temple_image_'.$id;
+            $filePic->move('temple_image/',$fileName.'.'.$extension);
 
-                $new_image = new TempleImage();
-                $new_image->image_name = 'temple_image/'.$fileName.'.'.$extension;
-                $new_image->temple_id = $new->id;
-                $new_image->save();
-            }else{
-                return redirect()->back()->with('warning','no selected image of temple');
-            }
-            $id++;
+            $new_image = new TempleImage();
+            $new_image->image_name = 'temple_image/'.$fileName.'.'.$extension;
+            $new_image->temple_id = $new->id;
+            $new_image->save();
         }
 
         // Return redirect with message success

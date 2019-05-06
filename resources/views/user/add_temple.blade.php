@@ -14,7 +14,19 @@
         </div>  
         <div class="card-body">
             <div class="container col-md-10">
-                <form>
+                <form class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" accept-charset="utf-8" method="POST" action="{{route('temple.store')}}">
+                    {{ csrf_field() }}
+                    @if($message =    Session::get('success'))
+                      <div class="alert alert-success">
+                          <p>{{$message}}</p>
+                      </div>
+                    @endif
+
+                    @if($message = Session::get('warning'))
+                      <div class="alert alert-warning">
+                          <p>{{$message}}</p>
+                      </div>
+                    @endif
                     <!-- Form List Gambar-->
                     <div class="card mb-5">
                         <input type="file" id="file-1" name="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1">
@@ -23,7 +35,7 @@
                     <div class="form-group row">
                         <label for="inputNamePura" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Nama Pura<span class="required">*</span></label>
                         <div class="col-sm-9 col-md-9 col-xs-12">
-                            <input type="text" class="form-control " id="inputNamePura" required>
+                            <input type="text" class="form-control " id="temple_name" name="temple_name" required>
                         </div>
                     </div>
 
@@ -31,7 +43,7 @@
                     <div class="form-group row">
                         <label for="inputOdalan" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Jenis Pura<span class="required">*</span></label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                            <select class="form-control " required="required" id="temple_type" name="temple_type" >
+                            <select class="form-control " required="required" id="temple_type_id" name="temple_type_id">
                             <option value="" disabled selected>Pilih Jenis Pura</option>
                             @foreach($type as $data)
                               <option value="{{$data->id}}">{{$data->type_name}}</option>
@@ -44,7 +56,7 @@
                     <div class="form-group row">
                         <label for="inputNamePemangku" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Pemangku<span class="required">*</span></label>
                         <div class="col-10 col-sm-8 col-md-8 col-xs-12 pr-0">
-                            <input type="text" class="form-control" id="inputNamePemangku" required>
+                            <input type="text" class="form-control" id="priest_name" name="priest_name" required>
                         </div>
                         <div class="col-2 col-sm-1 text-center">
                             <button id="btn-detail-pemangku" class="btn btn-defaultp-0" type="button"> <i class="fa fa-chevron-up"></i></button>
@@ -56,13 +68,13 @@
                         <span class="col-sm-3 col-md-3"></span>
                         <label for="inputNamePemangku" class="col-sm-2 col-md-2 col-xs-12 col-form-label">Alamat<span class="required">*</span></label>
                         <div class="col-sm-7 col-md-7 col-xs-12 mb-2">
-                            <input type="text" class="form-control" id="inputNamePemangku" required>
+                            <input type="text" class="form-control" id="address_priest" name="address_priest" required>
                         </div>
                         <br/>
                         <span class="col-sm-3 col-md-3"></span>
                         <label for="inputNamePemangku" class="col-sm-2 col-md-2 col-xs-12 col-form-label">No Telp<span class="required">*</span></label>
                         <div class="col-sm-7 col-md-7 col-xs-12">
-                            <input type="text" class="form-control" id="inputNamePemangku" required>
+                            <input type="text" class="form-control" id="priest_phone" name="priest_phone" required>
                         </div>
                     </div>
 
@@ -70,7 +82,7 @@
                     <div class="form-group row">
                         <label for="inputAlamatPura" class="col-sm-3 col-md-3 col-xs-12 col-form-label" >Alamat Pura <span class="required">*</span></label>
                         <div class="col-10 col-sm-8 col-md-8 col-xs-12 pr-0">
-                            <input type="text" class="form-control" id="inputAlamatPura" required>
+                            <input type="text" class="form-control" id="inputAlamatPura" name="address" required>
                         </div>
                         <div class="col-2 col-sm-1 text-center">
                             <button data-toggle="modal" data-target="#modal_add_location" class="btn btn-default bg-white p-0"> <img src="/user/maps.png" width="35" alt=""></button>
@@ -194,7 +206,7 @@
                     <div class="form-group row">
                         <label for="inputDescription" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Deskripsi<span class="required">*</span></label>
                         <div class="col-sm-9 col-md-9 col-xs-12">
-                            <textarea type="text" class="form-control" id="inputDescription"></textarea>
+                            <textarea type="text" class="form-control" id="inputDescription" name="description"></textarea>
                         </div>
                     </div>
 

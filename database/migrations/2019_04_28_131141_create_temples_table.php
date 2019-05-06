@@ -16,6 +16,7 @@ class CreateTemplesTable extends Migration
         Schema::create('temples', function (Blueprint $table) {
             $table->increments('id');
             $table->string('temple_name',255);
+            $table->text('description');
             $table->text('address');
             $table->double('longitude')->nullable();
             $table->double('latitude')->nullable();
