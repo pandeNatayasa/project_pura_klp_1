@@ -694,4 +694,19 @@
     cursor: move;
   }
 
-  
+  /*Wraperclass for the divicon*/
+.map-label {
+  position: absolute;
+  bottom: 0;
+  display: -webkit-box;
+  flex-direction: column;
+  text-align: center;
+}
+/*Wrap the content of the divicon (text) in this class*/
+.map-label-content {
+  order: 1;
+  margin-top:5px;
+  text-align: center;
+  white-space: nowrap;
+  font-family: 'Oswald', sans-serif;
+}
