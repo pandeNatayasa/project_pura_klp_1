@@ -34,7 +34,6 @@
                     </div>
 =======
                 <form action="/event-upload" class="dropzone dz-clickable mb-5" id="addImages" enctype="multipart/form-data">
-                  <input type="hidden" name="_token" value="jaTC1J0R7xOyZC3cvWWv6nErBYQdr4aogc3OQkD5">
                   <input type="hidden" name="gallery_id" value="7">
                   <div class="dz-default dz-message m-5"><span>Drop/Click here to upload images</span></div>
                 </form>
@@ -95,7 +94,7 @@
                             <input type="text" class="form-control" id="inputAlamatPura" name="address" required>
                         </div>
                         <div class="col-2 col-sm-1 text-center">
-                            <button data-toggle="modal" data-target="#modal_add_location" class="btn btn-default bg-white p-0"> <img src="/user/maps.png" width="35" alt=""></button>
+                            <button data-toggle="modal" data-target="#modal_add_location" class="btn btn-default bg-white p-0"> <img src="/user_img/maps.png" width="35" alt=""></button>
                         </div>
                     </div>
 
@@ -230,7 +229,7 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div id="element" class="card">
-                                    <img class="card-img-top" src="/user/element/element1.1.jpg" alt="Card image cap">
+                                    <img class="card-img-top" src="/user_img/element/element1.1.jpg" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
                                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -318,7 +317,6 @@
         </div>
         <div class="modal-body">
           <form action="/event-upload" class="dropzone dz-clickable mb-5" id="addImages" enctype="multipart/form-data">
-            <input type="hidden" name="_token" value="jaTC1J0R7xOyZC3cvWWv6nErBYQdr4aogc3OQkD5">
             <input type="hidden" name="gallery_id" value="7">
             <div class="dz-default dz-message m-5"><span>Drop/Click here to upload images</span></div>
           </form>

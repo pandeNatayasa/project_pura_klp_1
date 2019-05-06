@@ -8,8 +8,7 @@
         <div class="dots-loader"></div>
         <div class="sidebar-content">
         <div class="sidebar-menu">
-            <div>
-                <img src="/user/uluwatu.jpg" alt="" width="100%" height="200" style="">
+            <div id="myPano" class="pano">
             </div>
             <div class="card ml-2 mr-2 mt-3 pt-1">
                 <h5 class="text-center">Pura Goa Gong</h5>
@@ -22,32 +21,32 @@
                 <small>Lorem Ipsum adalah contoh teks atau dummy dalam industri percetakan dan penataan huruf atau typesetting. Lorem Ipsum telah menjadi standar contoh teks sejak tahun 1500an, saat seorang tukang cetak yang tidak dikenal mengambil sebuah kumpulan teks dan mengacaknya untuk menjadi sebuah buku contoh huruf. Ia tidak hanya bertahan selama 5 abad, tapi juga telah beralih ke penataan huruf elektronik, tanpa ada perubahan apapun. Ia mulai dipopulerkan pada tahun 1960 dengan diluncurkannya lembaran-lembaran Letraset yang menggunakan kalimat-kalimat dari Lorem Ipsum, dan seiring munculnya perangkat lunak Desktop Publishing seperti Aldus PageMaker juga memiliki versi Lorem Ipsum.</small>
             </div>
             <div class="container mt-3">
-                <p class="mb-1"><img src="/user/element.png" width="21" alt="" class="mb-1"><span class="mx-1"></span> Element Pura :</p>
+                <p class="mb-1"><img src="/user_img/element.png" width="21" alt="" class="mb-1"><span class="mx-1"></span> Element Pura :</p>
                 <div class="row">
                     <div class="element col-4 mb-2 pr-0">
-                        <img src="/user/element/element1.1.jpg" width="90px" height="50px" alt="Card image">
+                        <img src="/user_img/element/element1.1.jpg" width="90px" height="50px" alt="Card image">
                     </div>
                     <div class="element2 col-4">
-                            <img src="/user/uluwatu.jpg" width="90px" height="50px" alt="Card image">
+                            <img src="/user_img/uluwatu.jpg" width="90px" height="50px" alt="Card image">
                     </div>
                     <div class="col-4">
                         <a href="#">
-                            <img src="/user/uluwatu.jpg" width="90px" height="50px" alt="Card image">
+                            <img src="/user_img/uluwatu.jpg" width="90px" height="50px" alt="Card image">
                         </a>
                     </div>
                     <div class="col-4">
                         <a href="#">
-                            <img src="/user/uluwatu.jpg" width="90px" height="50px" alt="Card image">
+                            <img src="/user_img/uluwatu.jpg" width="90px" height="50px" alt="Card image">
                         </a>
                     </div>
                     <div class="col-4">
                         <a href="#">
-                            <img src="/user/uluwatu.jpg" width="90px" height="50px" alt="Card image">
+                            <img src="/user_img/uluwatu.jpg" width="90px" height="50px" alt="Card image">
                         </a>
                     </div>
                     <div class="col-4">
                         <a href="#">
-                            <img src="/user/uluwatu.jpg" width="90px" height="50px" alt="Card image">
+                            <img src="/user_img/uluwatu.jpg" width="90px" height="50px" alt="Card image">
                         </a>
                     </div>
                 </div>
@@ -62,14 +61,32 @@
                     <i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i>
                 </button>
             </div>
-            <div>
-                <img src="/user/element/element1.1.jpg" alt="" width="100%" height="163" >
+            <div id="carouselElement" class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="/user_img/element/element1.1.jpg" alt="" width="100%" height="163" >
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/user_img/element/element1.1.jpg" alt="" width="100%" height="163" >
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/user_img/element/element1.1.jpg" alt="" width="100%" height="163" >
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselElement" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselElement" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
             <div class="card ml-2 mr-2 mt-3 pt-1">
                 <h5 class="text-center">Element 1</h5>
             </div>
             <div class="container mt-3">
-                <p><img src="/user/god.png" width="12" class="mb-2" alt=""/><span class="mx-1"></span> Dewa Siwa</p>
+                <p><img src="/user_img/god.png" width="12" class="mb-2" alt=""/><span class="mx-1"></span> Dewa Siwa</p>
                 <p><i class="fas fa-calendar-week fa-sm mb-2"></i><span class="mx-1"></span> Sasih Kapitu</p>
                 <p class="mb-0"><i class="fas fa-landmark fa-sm mb-2"></i><span class="mx-1"></span> Deskripsi :</p>
             </div>
@@ -82,13 +99,13 @@
                 </button>
             </div>
             <div>
-                <img src="/user/uluwatu.jpg" alt="" width="100%" height="163" style="">
+                <img src="/user_img/uluwatu.jpg" alt="" width="100%" height="163" style="">
             </div>
             <div class="card ml-2 mr-2 mt-3 pt-1">
                 <h5 class="text-center">Element 2</h5>
             </div>
             <div class="container mt-3">
-                <p><img src="/user/god.png" width="12" class="mb-2" alt=""/><span class="mx-1"></span> Dewa Wisnu</p>
+                <p><img src="/user_img/god.png" width="12" class="mb-2" alt=""/><span class="mx-1"></span> Dewa Wisnu</p>
                 <p><i class="fas fa-calendar-week fa-sm mb-2"></i><span class="mx-1"></span> Sasih Kapitu</p>
                 <p class="mb-0"><i class="fas fa-landmark fa-sm mb-2"></i><span class="mx-1"></span> Deskripsi :</p>
             </div>
@@ -104,7 +121,7 @@
         <!--Login FLoating-->
         <div class="login-floating p-0">
             {{-- @auth --}}
-                <a id="sidebar-nav" href="#" class="p-0"><img src="/user/user.png" width="20px" alt=""></a>
+                <a id="sidebar-nav" href="#" class="p-0"><img src="/user_img/user.png" width="20px" alt=""></a>
             {{-- @else
                 <ul class="row  mr-2 p-0 ">
                     <a href="{{ route('member.login') }}" style="color:black">Login</a><span class="mx-2"></span> | <span class="mx-2"></span>
@@ -167,14 +184,14 @@
                 <hr class="mb-3 mt-0"/>
                 <div class=" mt-4">
                     <div class="ml-3">
-                        <p><img src="/user/user-icon.png" width="18" alt="" class="mr-3"><a href=""  style="color:black"> Profil</a></p>
-                        <p><img src="/user/link.png" width="18" alt="" class="mr-3"><a href="#sharelocModal" data-toggle="modal" style="color:black"> Bagi Lokasi</a></p>
-                        <p><img src="/user/berkas.png" width="18" alt="" class="mr-3"><a href="" style="color:black"> Kontribusi Anda</a></p>
-                        <p><img src="/user/add.png" width="18" alt="" class="mr-3"><a href=""><a href="/user/add_temple"  style="color:black"> Tambahkan Tempat</a></p>
+                        <p><img src="/user_img/user-icon.png" width="18" alt="" class="mr-3"><a href=""  style="color:black"> Profil</a></p>
+                        <p><img src="/user_img/link.png" width="18" alt="" class="mr-3"><a href="#sharelocModal" data-toggle="modal" style="color:black"> Bagi Lokasi</a></p>
+                        <p><img src="/user_img/berkas.png" width="18" alt="" class="mr-3"><a href="" style="color:black"> Kontribusi Anda</a></p>
+                        <p><img src="/user_img/add.png" width="18" alt="" class="mr-3"><a href=""><a href="/user/add_temple"  style="color:black"> Tambahkan Tempat</a></p>
                     </div>
                     <hr>
                     <div class="ml-3">
-                        <p><img src="/user/settings.png" width="18" alt="" class="mr-3"><a href=""><a href=""  style="color:black"> Pengaturan</a></p>    
+                        <p><img src="/user_img/settings.png" width="18" alt="" class="mr-3"><a href=""><a href=""  style="color:black"> Pengaturan</a></p>    
                     </div>
                 </div>
         </div>
@@ -224,7 +241,7 @@
                         <div class="card-body pt-2 pb-2 pl-3">
                             <div class="row ">
                                 <div class="col-3">
-                                    <img src="/user/map-marker.png" width="70px"  alt="">
+                                    <img src="/user_img/map-marker.png" width="70px"  alt="">
                                 </div>
                                 <div class="col-9">
                                     <p>Pura Goa Gong</p>
@@ -251,4 +268,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+<script src="https://cdn.jsdelivr.net/gh/seancoyne/pano/jquery.pano.js"></script>
 @endsection

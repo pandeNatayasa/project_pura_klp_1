@@ -59,4 +59,9 @@ $(document).ready(function(){
         .removeClass('loading')
         .addClass('loaded')
     }, 3000);
+
+    $("#myPano").pano({
+        img: "/user_img/element/panorama.jpg"
+    });
+
 });

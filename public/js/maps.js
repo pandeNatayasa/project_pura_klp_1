@@ -1,14 +1,14 @@
 $(document).ready(function(){
     //Maps Icon
     var icons = L.icon({
-        iconUrl: '/user/temple-icon.png',
+        iconUrl: '/user_img/temple-icon.png',
         iconSize:     [32, 32], // size of the icon
         iconAnchor:   [30, 30], // point of the icon which will correspond to marker's location
         popupAnchor:  [-15, -30] // point from which the popup should open relative to the iconAnchor
     });	
     
     var user = L.icon({
-        iconUrl: '/user/user_loc.png',
+        iconUrl: '/user_img/user_loc.png',
         iconSize:     [42, 32], // size of the icon
         iconAnchor:   [30, 30], // point of the icon which will correspond to marker's location
         popupAnchor:  [-15, -30] // point from which the popup should open relative to the iconAnchor
