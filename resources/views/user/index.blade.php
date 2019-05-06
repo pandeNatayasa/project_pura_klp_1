@@ -8,8 +8,7 @@
         <div class="dots-loader"></div>
         <div class="sidebar-content">
         <div class="sidebar-menu">
-            <div>
-                <img src="/user_img/uluwatu.jpg" alt="" width="100%" height="200" style="">
+            <div id="myPano" class="pano">
             </div>
             <div class="card ml-2 mr-2 mt-3 pt-1">
                 <h5 class="text-center">Pura Goa Gong</h5>
@@ -62,8 +61,26 @@
                     <i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i>
                 </button>
             </div>
-            <div>
-                <img src="/user_img/element/element1.1.jpg" alt="" width="100%" height="163" >
+            <div id="carouselElement" class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="/user_img/element/element1.1.jpg" alt="" width="100%" height="163" >
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/user_img/element/element1.1.jpg" alt="" width="100%" height="163" >
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/user_img/element/element1.1.jpg" alt="" width="100%" height="163" >
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselElement" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselElement" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
             <div class="card ml-2 mr-2 mt-3 pt-1">
                 <h5 class="text-center">Element 1</h5>
@@ -170,7 +187,7 @@
                         <p><img src="/user_img/user-icon.png" width="18" alt="" class="mr-3"><a href=""  style="color:black"> Profil</a></p>
                         <p><img src="/user_img/link.png" width="18" alt="" class="mr-3"><a href="#sharelocModal" data-toggle="modal" style="color:black"> Bagi Lokasi</a></p>
                         <p><img src="/user_img/berkas.png" width="18" alt="" class="mr-3"><a href="" style="color:black"> Kontribusi Anda</a></p>
-                        <p><img src="/user_img/add.png" width="18" alt="" class="mr-3"><a href=""><a href="/user_img/add_temple"  style="color:black"> Tambahkan Tempat</a></p>
+                        <p><img src="/user_img/add.png" width="18" alt="" class="mr-3"><a href=""><a href="/user/add_temple"  style="color:black"> Tambahkan Tempat</a></p>
                     </div>
                     <hr>
                     <div class="ml-3">
@@ -251,4 +268,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+<script src="https://cdn.jsdelivr.net/gh/seancoyne/pano/jquery.pano.js"></script>
 @endsection
