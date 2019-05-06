@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Pura|Member</title>
+    <title>Pura|Admin</title>
 
     <!-- Bootstrap -->
     <link href="{{ asset('public_admin/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -26,7 +26,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Pura</span></a>
+              <a href="{{route('admin.home')}}" class="site_title"><i class="fa fa-paw"></i> <span>Pura</span></a>
             </div>
             <div class="clearfix"></div>
             <!-- menu profile quick info -->
@@ -59,6 +59,14 @@
                       <li class="fa fa-plus-circle @yield('menu_add_sasih')"><a href="#">Tambah Sasih</a></li>
                       <li class="fa fa-list @yield('menu_list_sasih')"><a href="#">Sasih</a></li>
                       <li class="fa fa-edit @yield('menu_update_sasih')"><a href="#">Edit Sasih</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-globe"></i> Location <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li class="fa fa-plus-circle @yield('menu_add_sub_district')"><a href="#">Add Sub-District</a></li>
+                      <li class="fa fa-list @yield('menu_list_sub_district')"><a href="{{route('sub-district.index')}}">List Sub-District</a></li>
+                      <li class="fa fa-list @yield('menu_list_city')"><a href="{{route('city.index')}}">List City</a></li>
+                      <li class="fa fa-list @yield('menu_list_province')"><a href="{{route('province.index')}}">List Province</a></li>
                     </ul>
                   </li>
                 </ul>

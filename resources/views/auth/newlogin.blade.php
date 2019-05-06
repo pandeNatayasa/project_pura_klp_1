@@ -24,7 +24,7 @@
 
     <div id="bg">
     <h1 id="namaatas">Temple Information</h1>
-        <img id="iconic" src="/login/img/pura.svg">
+        <img id="iconic" src="/public_login/img/pura.svg">
     </div>
     <div id="bg-dasar">
     <header>

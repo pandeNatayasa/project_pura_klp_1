@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\City;
+use App\Province;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CityController extends Controller
 {
@@ -14,7 +16,9 @@ class CityController extends Controller
      */
     public function index()
     {
-        //
+        $provinces = Province::all();
+        $cities = City::all();
+        return view('admin.location.list_city',compact('provinces','cities'));
     }
 
     /**

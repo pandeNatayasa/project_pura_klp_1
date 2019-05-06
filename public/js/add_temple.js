@@ -63,6 +63,11 @@ $(document).ready(function(){
     });
 });
 
+//Image Upload
+$(document).ready(function(){
+    $("div#myId").dropzone({ url: "/file/post" });
+})
+
 //Maps
 $(document).ready(function(){
     var mymap = L.map('mymap',{

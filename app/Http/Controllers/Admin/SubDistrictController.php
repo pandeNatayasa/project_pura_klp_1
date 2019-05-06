@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\City;
+use App\Province;
 use App\SubDistrict;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class SubDistrictController extends Controller
 {
@@ -14,7 +17,10 @@ class SubDistrictController extends Controller
      */
     public function index()
     {
-        //
+        $provinces = Province::all();
+        $cities = City::all();
+        $sub_districts = SubDistrict::all();
+        return view('admin.location.list_sub_district',compact('provinces','cities','sub_districts'));
     }
 
     /**
@@ -81,5 +87,39 @@ class SubDistrictController extends Controller
     public function destroy(SubDistrict $subDistrict)
     {
         //
+    }
+
+    public function fetch_city_in_edit(Request $request)
+    {
+        
+        $category = $request->get('category');
+        if ($category=='city') {
+            // Proccess to get            
+            $sub_district_id = $request->get('sub_district_id');
+            $sub_districts = SubDistrict::find($sub_district_id);
+            $city_id = $sub_districts->city_id;
+            $city = City::find($city_id);
+            $province_id = $city->province_id;
+
+            $cities = City::where('province_id','=',$province_id)->get();
+
+            // return $cities;
+
+            $output = '<option value="" disabled>Pilih Kabupaten/Kota</option>';
+
+            foreach ($cities as $data) {
+                if ($data->id == $city_id) {
+                    $output .= '<option value="'.$data->id.'" selected>'.$data->city_name.'</option>';
+                }else{
+                    $output .= '<option value="'.$data->id.'">'.$data->city_name.'</option>';    
+                }
+            }
+
+            echo $output;
+        }else{
+            $output = '<option value="" disabled selected>Pilih Kabupaten/Kota</option>';
+            echo $output;
+        }
+        
     }
 }
