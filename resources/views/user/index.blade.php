@@ -8,7 +8,30 @@
         <div class="dots-loader"></div>
         <div class="sidebar-content">
         <div class="sidebar-menu">
-            <div id="myPano" class="pano">
+            <div id="carouselElement" class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="/user_img/uluwatu.jpg" alt="" width="100%" height="200px" >
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/user_img/uluwatu.jpg" alt="" width="100%" height="200px" >
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/user_img/element/element1.1.jpg" alt="" width="100%" height="200px" >
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselElement" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselElement" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <div class="card panorama-360">
+                {{-- <img id="myImg" src="/user_img/element/panorama.jpg" class="pano" style="height: 50px"> --}}
+                <div id="myPano" class="pano" style="border-radius: 10px"></div>
             </div>
             <div class="card ml-2 mr-2 mt-3 pt-1">
                 <h5 class="text-center">Pura Goa Gong</h5>
@@ -120,14 +143,14 @@
         </a>
         <!--Login FLoating-->
         <div class="login-floating p-0">
-            {{-- @auth --}}
+            @auth
                 <a id="sidebar-nav" href="#" class="p-0"><img src="/user_img/user.png" width="20px" alt=""></a>
-            {{-- @else
+            @else
                 <ul class="row  mr-2 p-0 ">
                     <a href="{{ route('member.login') }}" style="color:black">Login</a><span class="mx-2"></span> | <span class="mx-2"></span>
                     <a href="{{ route('register') }}"  style="color:black">Register</a>
                 </ul>
-            @endauth --}}
+            @endauth
         </div>
         <!--Search FLoating-->
         <div class="card floating-area p-0 ">
@@ -268,6 +291,21 @@
             </div>
         </div>
     </div>
+
+<!-- Panorama Modal -->
+<div id="panoramaModal" class="modal">
+
+    <!-- Modal Content (The Image) -->
+    {{-- <img class="modal-img-content" id="img01"> --}}
+    <div id="myModalPanos" class="pano" ></div>
+
+    <div class="card map-panorama-360 close-img">
+        <div id="map1" style="width:100%;height:100%"></div>
+    </div>
+
+    <!-- Modal Caption (Image Text) -->
+    <div id="caption"></div>
+</div>
 @endsection
 
 @section('script')

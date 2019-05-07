@@ -113,6 +113,13 @@ $(document).ready(function(){
     var marker = L.marker([-8.7105212,115.1814639],{icon: icons, title: 'Pura Goa Gong'}).addTo(map).on('click', markerOnClick);
     markers.addLayer(marker);
 
+
+    //Map Image Zoom
+    var maps = L.map('map1',{
+        zoomControl:false
+    }).setView([-8.5240574,115.2110998],12);	
+    L.tileLayer('https://maps.tilehosting.com/styles/streets/{z}/{x}/{y}.png?key=YrAn6SOXelkLFXHv03o2').addTo(maps);
+
 });	
 
     
