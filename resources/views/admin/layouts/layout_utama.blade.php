@@ -45,25 +45,31 @@
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
-                  <li class="@yield('menu_dashboard')"><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> Dashboard </a></li>
+                  <!-- <li class="@yield('menu_dashboard')"><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> Dashboard </a></li>
                   <li><a><i class="fa fa-dashboard"></i> Pura <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li class="fa fa-plus-circle @yield('menu_add_product')"><a href="{{route('temple.create')}}">Tambah Pura</a></li>
                       <li class="fa fa-list @yield('menu_list_product')"><a href="{{route('temple.index')}}">Daftar Pura</a></li>
                       <li class="fa fa-edit @yield('menu_update_temple')"><a href="#">Edit Pura</a></li>
                     </ul>
-                  </li>
-                  <li class="@yield('menu_pemangku')"><a href="#"><i class="fa fa-users"></i> Pemangku </a></li>
+                  </li> -->
+                  <!-- <li class="@yield('menu_pemangku')"><a href="#"><i class="fa fa-users"></i> Pemangku </a></li> -->
+                  <li class="@yield('menu_temple_type')"><a href="{{url('/admin/temple-type')}}"><i class="fa fa-diamond"></i> Jenis Pura </a></li>
                   <li><a><i class="fa fa-diamond"></i> Sasih <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li class="fa fa-plus-circle @yield('menu_add_sasih')"><a href="#">Tambah Sasih</a></li>
-                      <li class="fa fa-list @yield('menu_list_sasih')"><a href="#">Sasih</a></li>
-                      <li class="fa fa-edit @yield('menu_update_sasih')"><a href="#">Edit Sasih</a></li>
+                      <li class="fa fa-list @yield('menu_list_sasih')"><a href="{{route('sasih.index')}}">Daftar Sasih</a></li>
+                      <li class="fa fa-list @yield('menu_list_rahinan')"><a href="{{route('rahinan.index')}}">Daftar Hari Rahinan</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-diamond"></i> Wuku <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li class="fa fa-list @yield('menu_list_wuku')"><a href="{{route('wuku.index')}}">Daftar Wuku</a></li>
+                      <li class="fa fa-list @yield('menu_list_saptawara')"><a href="{{route('saptawara.index')}}">Daftar Saptawara</a></li>
+                      <li class="fa fa-list @yield('menu_list_pancawara')"><a href="{{route('pancawara.index')}}">Daftar Pancawara</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-globe"></i> Location <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li class="fa fa-plus-circle @yield('menu_add_sub_district')"><a href="#">Add Sub-District</a></li>
                       <li class="fa fa-list @yield('menu_list_sub_district')"><a href="{{route('sub-district.index')}}">List Sub-District</a></li>
                       <li class="fa fa-list @yield('menu_list_city')"><a href="{{route('city.index')}}">List City</a></li>
                       <li class="fa fa-list @yield('menu_list_province')"><a href="{{route('province.index')}}">List Province</a></li>

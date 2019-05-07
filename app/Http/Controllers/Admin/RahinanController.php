@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Rahinan;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class RahinanController extends Controller
 {
@@ -14,7 +16,8 @@ class RahinanController extends Controller
      */
     public function index()
     {
-        //
+        $rahinans = Rahinan::all();
+        return view('admin.sasih.list_rahinan',compact('rahinans'));
     }
 
     /**
@@ -50,7 +53,7 @@ class RahinanController extends Controller
         $new->rahinan_name = $request->rahinan_name;
         $new->save();
 
-        return $new;
+        return redirect()->back()->with('success','Hari Rahinan baru berhasil disimpan');
     }
 
     /**
@@ -82,9 +85,24 @@ class RahinanController extends Controller
      * @param  \App\Rahinan  $rahinan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rahinan $rahinan)
+    public function update(Request $request, $id)
     {
-        //
+        // Validator input
+        $validator = Validator::make($request->all(), [
+          'rahinan_name' => 'required|string|max:200|unique:rahinans'
+        ]);
+
+        // If fails, return error
+        if ($validator->fails()) {
+          return redirect()->back()->with('warning',$validator->errors());
+        }
+
+        // If validtor not fails, then save into database
+        $new = Rahinan::find($id);
+        $new->rahinan_name = $request->rahinan_name;
+        $new->save();
+
+        return redirect()->back()->with('success','Hari Rahinan berhasil diperbaharui');
     }
 
     /**
@@ -93,8 +111,11 @@ class RahinanController extends Controller
      * @param  \App\Rahinan  $rahinan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rahinan $rahinan)
+    public function destroy($id)
     {
-        //
+        $delete = Rahinan::find($id);
+        $delete->delete();
+
+        return redirect()->back()->with('success','Hari Rahinan berhasil dihapus');   
     }
 }

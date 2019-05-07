@@ -21,14 +21,16 @@
                 <form class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" accept-charset="utf-8" method="POST" action="{{route('temple.store')}}">
                     {{ csrf_field() }}
                     @if($message =    Session::get('success'))
-                      <div class="alert alert-success">
-                          <p>{{$message}}</p>
+                      <div class="alert alert-success alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <p>{{$message}}</p>
                       </div>
                     @endif
 
                     @if($message = Session::get('warning'))
-                      <div class="alert alert-warning">
-                          <p>{{$message}}</p>
+                      <div class="alert alert-warning alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <p>{{$message}}</p>
                       </div>
                     @endif
                     <!-- Form Nama Pura-->
@@ -116,7 +118,7 @@
                     <div class="form-group row">
                         <label for="inputOdalan" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Kecamatan <span class="required">*</span></label>
                         <div class="col-md-9 col-sm-8 col-xs-12">
-                            <select class="form-control" required="required" id="subdistrict" name="subdistrict">
+                            <select class="form-control" required="required" id="subdistrict" name="sub_district">
                               <option value="" disabled selected>Pilih Kecamatan</option>
                             </select>
                         </div>
@@ -238,7 +240,8 @@
                         </div>
                         
                     </div>
-                    
+                    <input type="hidden" name="latitude" id="latitude" value="">
+                    <input type="hidden" name="longitude" id="longitude" value="">
                     <!-- Button Submit-->
                     <button type="submit" class="btn btn-primary btn-block">Tambahkan</button>
                 </form>

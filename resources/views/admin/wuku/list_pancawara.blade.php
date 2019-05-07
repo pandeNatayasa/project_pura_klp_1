@@ -5,7 +5,7 @@
    <link rel="stylesheet" type="text/css" href="{{asset('public_admin/vendors/datatables/datatables.min.css')}}">
 @endsection
 
-@section('menu_list_province')
+@section('menu_list_pancawara')
 	current-page
 @endsection
 
@@ -16,9 +16,9 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2>List Province | Administrator <!-- <small>sub title</small> --></h2>
+          <h2>List Pancawara | Administrator <!-- <small>sub title</small> --></h2>
           <ul class="nav navbar-right panel_toolbox">
-            <button class="btn btn-primary" data-toggle="modal"  name="add_new_province" data-target="#modal_add_new_province" data-toggle="tooltip" data-placement="right">Add New Province</button>
+            <button class="btn btn-primary" data-toggle="modal"  name="add_new_pancawara" data-target="#modal_add_new_pancawara" data-toggle="tooltip" data-placement="right">Tambah Pancawara</button>
           </ul>
           <div class="clearfix"></div>
         </div>
@@ -40,28 +40,28 @@
             @endif
             
             <!-- <div class="card-header">
-              <i class="fa fa-table"></i> Data Province</div> -->
+              <i class="fa fa-table"></i> Data pancawara</div> -->
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered table-striped" id="data" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                     	<th>No</th>
-                    	<th>Province</th>
+                    	<th>pancawara</th>
                     	<th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php $no=1;?>
-                    @foreach($provinces as $data)
+                    @foreach($pancawaras as $data)
                   	<tr>
                   		<td>{{$no++}}</td>
-                  		<td>{{$data->province_name}}</td>
+                  		<td>{{$data->pancawara_name}}</td>
                   		<td>
-                        <!-- Edit Province -->
-                  			<button class="btn btn-primary" data-province_id="{{$data->id}}" data-province_name="{{$data->province_name}}" data-toggle="modal" name="edit_province" data-target="#modal_edit_province" data-toggle="tooltip" data-placement="right" title="Edit"><i class="fa fa-edit"></i></button>
-                        <!-- End of Edit Province -->
-                        <button href="" class="btn btn-danger " data-province_id="{{$data->id}}" data-province_name="{{$data->province_name}}" data-toggle="modal"  name="conrifm_delete" data-target="#modal_confirm_delete" data-toggle="tooltip" data-placement="right" title="Hapus"><i class="fa fa-trash"></i></button>
+                        <!-- Edit pancawara -->
+                  			<button class="btn btn-primary" data-pancawara_id="{{$data->id}}" data-pancawara_name="{{$data->pancawara_name}}" data-toggle="modal" name="edit_pancawara" data-target="#modal_edit_pancawara" data-toggle="tooltip" data-placement="right" title="Edit"><i class="fa fa-edit"></i></button>
+                        <!-- End of Edit pancawara -->
+                        <button href="" class="btn btn-danger " data-pancawara_id="{{$data->id}}" data-pancawara_name="{{$data->pancawara_name}}" data-toggle="modal"  name="conrifm_delete" data-target="#modal_confirm_delete" data-toggle="tooltip" data-placement="right" title="Hapus"><i class="fa fa-trash"></i></button>
                           
                   		</td>
                   	</tr>
@@ -76,24 +76,24 @@
     </div>
   </div>
 </div>
-<!-- Modal Add New Province-->
-<div class="modal fade" id="modal_add_new_province" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal Add New pancawara-->
+<div class="modal fade" id="modal_add_new_pancawara" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" >Add New Province</h5>
+        <h5 class="modal-title" >Add New Pancawara</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
       <div class="modal-body">                         
-        <form class="form-horizontal form-label-left" novalidate method="POST" action="{{route('province.store')}}">
+        <form class="form-horizontal form-label-left" novalidate method="POST" action="{{route('pancawara.store')}}">
           {{csrf_field()}}
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">State/Province <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Pancawara <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="province_name" name="province_name" required="required" placeholder="ex: Bali" class="form-control col-md-7 col-xs-12">
+              <input type="text" id="pancawara_name" name="pancawara_name" required="required" placeholder="ex: Bali" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
           <div class="ln_solid"></div>
@@ -108,26 +108,26 @@
     </div>
   </div>
 </div>
-<!-- End of Modal Add New Province -->
-<!-- Modal Edit Province-->
-<div class="modal fade" id="modal_edit_province" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- End of Modal Add New pancawara -->
+<!-- Modal Edit pancawara-->
+<div class="modal fade" id="modal_edit_pancawara" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" >Edit Province</h5>
+        <h5 class="modal-title" >Edit Pancawara</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
       <div class="modal-body">                         
-        <form class="form-horizontal form-label-left" id="form_edit_province" method="POST">
+        <form class="form-horizontal form-label-left" id="form_edit_pancawara" method="POST">
           {{csrf_field()}}
           <input type="hidden" name="_method" value="PUT">
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12">State/Province <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">State/pancawara <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="province_name_edit" name="province_name" required="required" value="" class="form-control col-md-7 col-xs-12">
+              <input type="text" id="pancawara_name_edit" name="pancawara_name" required="required" value="" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
           
@@ -143,13 +143,13 @@
     </div>
   </div>
 </div>
-<!-- End of Modal Edit Province -->
+<!-- End of Modal Edit pancawara -->
 <!-- Modal Confirmation Delete-->
 <div class="modal fade" id="modal_confirm_delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" >Confirmation Delete Province</h5>
+          <h5 class="modal-title" >Confirmation Delete pancawara</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
@@ -166,7 +166,7 @@
                 <button class="btn btn-succes " type="button" data-dismiss="modal">Cancel</button>  
               </div>
               <div class="col-md-2 col-sm-2 col-xs-3">
-                <form method="POST" id="form_delete_province" >
+                <form method="POST" id="form_delete_pancawara" >
                 {{csrf_field()}}
                   <input type="hidden" name="_method" value="DELETE">
                   <button class="btn btn-danger" type="submit">Delete</button>
@@ -192,28 +192,28 @@
         $('#data').DataTable();
       } );
 
-      //Modal Edit Province
-      $('#modal_edit_province').on('show.bs.modal', function (event) {
+      //Modal Edit pancawara
+      $('#modal_edit_pancawara').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
-        var province_name = button.data('province_name') // Extract info from data-* attributes
-        var province_id = button.data('province_id')
+        var pancawara_name = button.data('pancawara_name') // Extract info from data-* attributes
+        var pancawara_id = button.data('pancawara_id')
 
-        console.log(province_name);
+        console.log(pancawara_name);
 
         var modal = $(this)
-        modal.find('.modal-body #province_name_edit').val(province_name)
-        $('#form_edit_province').attr('action', "/admin/province/"+province_id);
+        modal.find('.modal-body #pancawara_name_edit').val(pancawara_name)
+        $('#form_edit_pancawara').attr('action', "/admin/pancawara/"+pancawara_id);
       })
 
-      //Modal Delete Province
+      //Modal Delete pancawara
       $('#modal_confirm_delete').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
-        var province_name = button.data('province_name') // Extract info from data-* attributes
-        var province_id = button.data('province_id')
+        var pancawara_name = button.data('pancawara_name') // Extract info from data-* attributes
+        var pancawara_id = button.data('pancawara_id')
 
         var modal = $(this)
-        modal.find('.modal-body #label_delete').text('Apakah anda yakin ingin menghapus provinsi : '+ province_name)
-        $('#form_delete_province').attr('action', "/admin/province/"+province_id);
+        modal.find('.modal-body #label_delete').text('Apakah anda yakin ingin menghapus provinsi : '+ pancawara_name)
+        $('#form_delete_pancawara').attr('action', "/admin/pancawara/"+pancawara_id);
       })
     </script>
 @endsection

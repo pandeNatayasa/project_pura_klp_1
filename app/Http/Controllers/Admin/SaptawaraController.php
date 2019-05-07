@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Saptawara;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class SaptawaraController extends Controller
 {
@@ -14,7 +16,8 @@ class SaptawaraController extends Controller
      */
     public function index()
     {
-        //
+        $saptawaras = Saptawara::all();
+        return view('admin.wuku.list_saptawara',compact('saptawaras'));
     }
 
     /**
@@ -50,7 +53,7 @@ class SaptawaraController extends Controller
         $new->saptawara_name = $request->saptawara_name;
         $new->save();
 
-        return $new;
+        return redirect()->back()->with('success','Saptawara baru berhasil disimpan');
     }
 
     /**
@@ -82,9 +85,24 @@ class SaptawaraController extends Controller
      * @param  \App\Saptawara  $saptawara
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Saptawara $saptawara)
+    public function update(Request $request, $id)
     {
-        //
+        // Validator input
+        $validator = Validator::make($request->all(), [
+          'saptawara_name' => 'required|string|max:200'
+        ]);
+
+        // If fails, return error
+        if ($validator->fails()) {
+          return redirect()->back()->with('warning',$validator->errors());
+        }
+
+        // If validtor not fails, then save into database
+        $new = Saptawara::find($id);
+        $new->saptawara_name = $request->saptawara_name;
+        $new->save();
+
+        return redirect()->back()->with('success','Saptawara berhasil diperbaharui');
     }
 
     /**
@@ -93,8 +111,11 @@ class SaptawaraController extends Controller
      * @param  \App\Saptawara  $saptawara
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Saptawara $saptawara)
+    public function destroy($id)
     {
-        //
+        $delete = Saptawara::find($id);
+        $delete->delete();
+
+        return redirect()->back()->with('success','Saptawara berhasil dihapus');
     }
 }

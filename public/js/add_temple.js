@@ -42,8 +42,6 @@ $(document).ready(function(){
             
             var value = $(this).val();
             var dependent = $(this).data('dependent');
-
-            console.log(value)
             
             var _token = $('input[name="_token"]').val();
             $.ajax({
@@ -122,12 +120,12 @@ $(document).ready(function(){
     });
 
     mymap.on('click',function(e){
-    if(marker){
-    mymap.removeLayer(marker);
-    }
+        if(marker){
+            mymap.removeLayer(marker);
+        }
 
-
-    marker = L.marker(e.latlng).addTo(mymap); 
-    
+        marker = L.marker(e.latlng).addTo(mymap);
+        document.getElementById("latitude").value = marker.lat; 
+        document.getElementById("longitude").value = marker.lng; 
     });
 });

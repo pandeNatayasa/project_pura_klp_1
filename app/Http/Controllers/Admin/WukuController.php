@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Wuku;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class WukuController extends Controller
 {
@@ -14,7 +16,8 @@ class WukuController extends Controller
      */
     public function index()
     {
-        //
+        $wukus = Wuku::all();
+        return view('admin.wuku.list_wuku',compact('wukus'));
     }
 
     /**
@@ -50,7 +53,7 @@ class WukuController extends Controller
         $new->wuku_name = $request->wuku_name;
         $new->save();
 
-        return $new;
+        return redirect()->back()->with('success','Wuku baru sukses disimpan');
     }
 
     /**
@@ -82,9 +85,24 @@ class WukuController extends Controller
      * @param  \App\Wuku  $wuku
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Wuku $wuku)
+    public function update(Request $request, $id)
     {
-        //
+        // Validator input
+        $validator = Validator::make($request->all(), [
+          'wuku_name' => 'required|string|max:200'
+        ]);
+
+        // If fails, return error
+        if ($validator->fails()) {
+          return redirect()->back()->with('warning',$validator->errors());
+        }
+
+        // If validtor not fails, then save into database
+        $new = Wuku::find($id);
+        $new->wuku_name = $request->wuku_name;
+        $new->save();
+
+        return redirect()->back()->with('success','Wuku sukses diperbaharui');
     }
 
     /**
@@ -93,8 +111,11 @@ class WukuController extends Controller
      * @param  \App\Wuku  $wuku
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Wuku $wuku)
+    public function destroy($id)
     {
-        //
+        $delete = Wuku::find($id);
+        $delete->delete();
+
+        return redirect()->back()->with('success','Wuku sukses dihapus');
     }
 }

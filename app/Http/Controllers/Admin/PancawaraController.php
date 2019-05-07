@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Pancawara;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class PancawaraController extends Controller
 {
@@ -14,7 +16,8 @@ class PancawaraController extends Controller
      */
     public function index()
     {
-        //
+        $pancawaras = Pancawara::all();
+        return view('admin.wuku.list_pancawara',compact('pancawaras'));
     }
 
     /**
@@ -50,7 +53,7 @@ class PancawaraController extends Controller
         $new->pancawara_name = $request->pancawara_name;
         $new->save();
 
-        return $new;
+        return redirect()->back()->with('success','Pancawara baru berhasil disimpan');
     }
 
     /**
@@ -82,9 +85,24 @@ class PancawaraController extends Controller
      * @param  \App\Pancawara  $pancawara
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pancawara $pancawara)
+    public function update(Request $request, $id)
     {
-        //
+        // Validator input
+        $validator = Validator::make($request->all(), [
+          'pancawara_name' => 'required|string|max:200|unique:pancawaras'
+        ]);
+
+        // If fails, return error
+        if ($validator->fails()) {
+          return redirect()->back()->with('warning',$validator->errors());
+        }
+
+        // If validtor not fails, then save into database
+        $new = Pancawara::find($id);
+        $new->pancawara_name = $request->pancawara_name;
+        $new->save();
+
+        return redirect()->back()->with('success','Pancawara berhasil diperbaharui');
     }
 
     /**
@@ -93,8 +111,11 @@ class PancawaraController extends Controller
      * @param  \App\Pancawara  $pancawara
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pancawara $pancawara)
+    public function destroy($id)
     {
-        //
+        $delete = Pancawara::find($id);
+        $delete->delete();
+
+        return redirect()->back()->with('success','Pancawara berhasil dihapus');
     }
 }

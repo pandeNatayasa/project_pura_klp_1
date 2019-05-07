@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\TempleType;
+use App\Sasih;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
-class TempleTypeController extends Controller
+class SasihController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,8 @@ class TempleTypeController extends Controller
      */
     public function index()
     {
-        
+        $sasihs = Sasih::all();
+        return view('admin.sasih.list_sasih',compact('sasihs'));
     }
 
     /**
@@ -38,8 +40,7 @@ class TempleTypeController extends Controller
     {
         // Validator input
         $validator = Validator::make($request->all(), [
-          'type_name' => 'required|string|max:50|unique:temple_types',
-          'type_function' => 'required|string|max:50'
+          'sasih_name' => 'required|string|max:200|unique:sasihs'
         ]);
 
         // If fails, return error
@@ -48,22 +49,20 @@ class TempleTypeController extends Controller
         }
 
         // If validtor not fails, then save into database
-        $new = new TempleType();
-        $new->type_name = $request->type_name;
-        $new->type_function = $request->type_function;
+        $new = new Sasih();
+        $new->sasih_name = $request->sasih_name;
         $new->save();
 
-        return $new;
-        // return view('//this for your view');
+        return redirect()->back()->with('success','Sasih baru berhasil disimpan');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\TempleType  $templeType
+     * @param  \App\Sasih  $sasih
      * @return \Illuminate\Http\Response
      */
-    public function show(TempleType $templeType)
+    public function show(Sasih $sasih)
     {
         //
     }
@@ -71,10 +70,10 @@ class TempleTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\TempleType  $templeType
+     * @param  \App\Sasih  $sasih
      * @return \Illuminate\Http\Response
      */
-    public function edit(TempleType $templeType)
+    public function edit(Sasih $sasih)
     {
         //
     }
@@ -83,22 +82,40 @@ class TempleTypeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\TempleType  $templeType
+     * @param  \App\Sasih  $sasih
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TempleType $templeType)
+    public function update(Request $request, $id)
     {
-        //
+        // Validator input
+        $validator = Validator::make($request->all(), [
+          'sasih_name' => 'required|string|max:200'
+        ]);
+
+        // If fails, return error
+        if ($validator->fails()) {
+          return redirect()->back()->with('warning',$validator->errors());
+        }
+
+        // If validtor not fails, then save into database
+        $new = Sasih::find($id);
+        $new->sasih_name = $request->sasih_name;
+        $new->save();
+
+        return redirect()->back()->with('success','Sasih berhasil diperbaharui');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\TempleType  $templeType
+     * @param  \App\Sasih  $sasih
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TempleType $templeType)
+    public function destroy($id)
     {
-        //
+        $delete = Sasih::find($id);
+        $delete->delete();
+
+        return redirect()->back()->with('success','Sasih berhasil dihapus');
     }
 }

@@ -37,7 +37,26 @@ Route::resource('/admin/city','Admin\CityController');
 // Route Admin => SubDistrict
 Route::resource('/admin/sub-district','Admin\SubDistrictController');
 Route::post('/fetch-city-in-edit','Admin\SubDistrictController@fetch_city_in_edit')->name('fetch_city_in_edit');
+Route::post('/fetch-province-in-edit','Admin\SubDistrictController@fetch_province_in_edit')->name('fetch_province_in_edit');
+Route::post('/fecth-location-in-sub-district','Admin\SubDistrictController@fetch')->name('fetch_location_sub_district');
 
+// Route Admin => Wuku
+Route::resource('/admin/wuku','Admin\WukuController');
+
+// Route Admin => Saptawara
+Route::resource('/admin/saptawara','Admin\SaptawaraController');
+
+// Route Admin => Pancawara
+Route::resource('/admin/pancawara','Admin\PancawaraController');
+
+// Route Admin => Sasih
+Route::resource('/admin/sasih','Admin\SasihController');
+
+// Route Admin => Rahinan
+Route::resource('/admin/rahinan','Admin\RahinanController');
+
+// Route Admin => Temple Type
+Route::resource('/admin/temple-type','Admin\TempleTypeController');
 
 // User
 Route::get('/', 'UserController@maps');
@@ -49,8 +68,8 @@ Route::post('/image-submit','UserController@imageUpload');
 Route::resource('/temple-type','TempleTypeController');
 
 // TEMPLE 
-Route::resource('/temple','Member\TempleController');
-Route::post('/fecth-location','Member\TempleController@fetch')->name('fetch_location');
+Route::resource('/temple','TempleController');
+Route::post('/fecth-location','TempleController@fetch')->name('fetch_location');
 
 // Route::get('/xxx/{username?}', function ($username) {
 //     return 'hai '.$username;
