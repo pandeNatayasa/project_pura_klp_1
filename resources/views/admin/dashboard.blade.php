@@ -39,7 +39,6 @@
                     </ul>
                 </div>
                 
-				
 			</div>
 		</div><!-- /navbar-inner -->
 	</div><!-- /navbar -->
@@ -50,36 +49,31 @@
 		<div class="container">
 			<div class="row">
 			
-				<div class="span9">
+				<div class="span10">
 					<div class="content">
 
 						<div class="btn-controls">
-	
-
 							<div class="btn-box-row row-fluid">
-								<a href="#" class="btn-box big span4">
+								<a href="#" class="btn-box big span3">
 									<i class="icon-plus-sign"></i>
 									<b>Tambah Data Pura</b>
 								</a>
-								<a href="#" class="btn-box big span4">
-									<i class="icon-file"></i>
+								<a href="#" class="btn-box big span3">
+									<i class="icon-sitemap"></i>
 									<b>Lihat Data Pura</b>
 								</a>
-								<a href="#" class="btn-box big span4">
+								<a href="#" class="btn-box big span3">
 									<i class="icon-check"></i>
 									<b>Validasi Data Pura</b>
 								</a>
+								<a href="#" class="btn-box big span3">
+									<i class="icon-file-alt"></i>
+									<b>Master Data Pura</b>
+								</a>
 							</div>
-
-			
 						</div><!--/.btn-controls-->
-
-
-										
-						
-						
 					</div><!--/.content-->
-				</div><!--/.span9-->
+				</div><!--/.span8-->
 			</div>
 		</div><!--/.container-->
 	</div><!--/.wrapper-->
