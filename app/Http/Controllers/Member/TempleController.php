@@ -97,7 +97,7 @@ class TempleController extends Controller
             'address' => 'required|string',
             'temple_type_id' => 'required|numeric',
             'odalan_type' => 'required|string',
-            'sub_district' => 'required|numeric',
+            'subdistrict' => 'required|numeric',
             'description' => 'required|string',
             'priest_name' => 'required|string',
             'address_priest' => 'required|string',
@@ -133,8 +133,8 @@ class TempleController extends Controller
         // Save priest of temple
         $new_priest = new TemplePriest();
         $new_priest->priest_name = $request->priest_name;
-        $new_priest->address_priest = $request->address_priest;
-        $new_priest->priest_phone = $request->priest_phone;
+        $new_priest->address = $request->address_priest;
+        $new_priest->phone = $request->priest_phone;
         $new_priest->save();
 
 
@@ -148,7 +148,7 @@ class TempleController extends Controller
         $new->user_id = Auth::id();
         $new->validate_status = '0';
         $new->temple_priest_id = $new_priest->id;
-        $new->sub_district_id = $request->sub_district;
+        $new->sub_district_id = $request->subdistrict;
         $new->save();
 
         // Save image into folder and link into database

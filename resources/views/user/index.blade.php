@@ -148,7 +148,7 @@
             @else
                 <ul class="row  mr-2 p-0 ">
                     <a href="{{ route('member.login') }}" style="color:black">Login</a><span class="mx-2"></span> | <span class="mx-2"></span>
-                    <a href="{{ route('register') }}"  style="color:black">Register</a>
+                    <a href="{{ route('member.register') }}"  style="color:black">Register</a>
                 </ul>
             @endauth
         </div>
