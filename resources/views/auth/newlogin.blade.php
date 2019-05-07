@@ -78,7 +78,7 @@
                 <button id="btn-login" type="submit" class="btn btn-primary">Submit</button><br>
                 <br>
                 <span id="regis">
-                    <a href="#">Registrasi Disini!</a>
+                    <a href="{{route('member.register')}}">Registrasi Disini!</a>
 
                     </span>
             </form>
