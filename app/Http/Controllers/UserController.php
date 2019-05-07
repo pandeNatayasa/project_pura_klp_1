@@ -26,8 +26,13 @@ class UserController extends Controller
 
         $type = TempleType::all();
         $province = Province::all();
+        $sasihs = Sasih::all();
+        $rahinans = Rahinan::all();
+        $wukus = Wuku::all();
+        $saptawaras = Saptawara::all();
+        $pancawaras = Pancawara::all();
 
-        return view('user.add_temple', compact('type','province'));
+        return view('user.add_temple', compact('type','province','sasihs','rahinans','wukus','saptawaras','pancawaras'));
     }
 
     //Fetch Data Location

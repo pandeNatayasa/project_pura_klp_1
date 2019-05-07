@@ -6,6 +6,7 @@ use App\City;
 use App\Province;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class CityController extends Controller
 {
@@ -39,7 +40,23 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'city_name' => 'required|string|max:200|unique:cities',
+            'province_id' => 'required|numeric'
+        ]);
+
+        // Check if validator fails
+        if ($validator->fails()) {
+            return redirect()->back()->with('warning', $validator->errors());
+        }
+
+        // If validator not fails, then save into database
+        $new =  new City();
+        $new->province_id = $request->province_id;
+        $new->city_name = $request->city_name;
+        $new->save();
+
+        return redirect()->back()->with('success','City saved successfully');
     }
 
     /**
@@ -71,9 +88,25 @@ class CityController extends Controller
      * @param  \App\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, City $city)
+    public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'city_name' => 'required|string|max:200',
+            'province_id' => 'required|numeric'
+        ]);
+
+        // Check if validator fails
+        if ($validator->fails()) {
+            return redirect()->back()->with('warning', $validator->errors());
+        }
+
+        // If validator not fails, then save into database
+        $new =  City::find($id);
+        $new->province_id = $request->province_id;
+        $new->city_name = $request->city_name;
+        $new->save();
+
+        return redirect()->back()->with('success','City updated successfully');
     }
 
     /**
@@ -82,8 +115,11 @@ class CityController extends Controller
      * @param  \App\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function destroy(City $city)
+    public function destroy($id)
     {
-        //
+        $delete = City::find($id);
+        $delete->delete();
+
+        return redirect()->back()->with('success','City deleted successfully');
     }
 }

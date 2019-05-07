@@ -5,7 +5,7 @@
    <link rel="stylesheet" type="text/css" href="{{asset('public_admin/vendors/datatables/datatables.min.css')}}">
 @endsection
 
-@section('menu_list_city')
+@section('menu_list_temple_type')
 	current-page
 @endsection
 
@@ -16,9 +16,9 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2>List City | Administrator <!-- <small>sub title</small> --></h2>
+          <h2>Daftar Jenis Pura | Administrator <!-- <small>sub title</small> --></h2>
           <ul class="nav navbar-right panel_toolbox">
-            <button class="btn btn-primary " data-toggle="modal" name="add_city" data-target="#modal_add_city" data-toggle="tooltip" data-placement="right" title="Add">Add City</button>
+            <button class="btn btn-primary " data-toggle="modal" name="add_temple_type" data-target="#modal_add_temple_type" data-toggle="tooltip" data-placement="right" title="Add">Tambah Jenis Pura</button>
           </ul>
           <div class="clearfix"></div>
         </div>
@@ -46,23 +46,23 @@
                   <thead>
                     <tr>
                     	<th>No</th>
-                    	<th>City/District</th>
-                    	<th>Province</th>
+                    	<th>Jenis Pura</th>
+                      <th>Fungsi/Deskripsi</th>
                     	<th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php $no=1;?>
-                    @foreach($cities as $data)
+                    @foreach($temple_types as $data)
                   	<tr>
                   		<td>{{$no++}}</td>
-                  		<td>{{$data->city_name}}</td>
-                  		<td>{{$data->Province->province_name}}</td>
+                  		<td>{{$data->type_name}}</td>
+                      <td>{{$data->type_function}}</td>
                   		<td>
                         <!-- Edit Province -->
-                  			<button class="btn btn-primary " data-city_id="{{$data->id}}" data-city_name="{{$data->city_name}}" data-province_id="{{$data->province_id}}" data-toggle="modal"  name="edit_city" data-target="#modal_edit_city" data-toggle="tooltip" data-placement="right" title="Edit"><i class="fa fa-edit"></i></button>
+                  			<button class="btn btn-primary " data-temple_type_id="{{$data->id}}" data-temple_type_name="{{$data->type_name}}" data-temple_type_function="{{$data->type_function}}" data-toggle="modal"  name="edit_temple_type" data-target="#modal_edit_temple_type" data-toggle="tooltip" data-placement="right" title="Edit"><i class="fa fa-edit"></i></button>
                         <!-- End of Edit Province -->
-                        <button href="" class="btn btn-danger " data-city_id="{{$data->id}}" data-city_name="{{$data->city_name}}" data-toggle="modal"  name="conrifm_delete" data-target="#modal_confirm_delete" data-toggle="tooltip" data-placement="right" title="Hapus"><i class="fa fa-trash"></i></button>
+                        <button href="" class="btn btn-danger " data-temple_type_id="{{$data->id}}" data-temple_type_name="{{$data->temple_type_name}}" data-toggle="modal"  name="conrifm_delete" data-target="#modal_confirm_delete" data-toggle="tooltip" data-placement="right" title="Hapus"><i class="fa fa-trash"></i></button>
                   		</td>
                   	</tr>
                     @endforeach
@@ -76,44 +76,38 @@
     </div>
   </div>
 </div>
-<!-- Modal to Add New City-->
-<div class="modal fade" id="modal_add_city" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal to Add New temple_type-->
+<div class="modal fade" id="modal_add_temple_type" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" >Add New City/District</h5>
+        <h5 class="modal-title" >Buat Jenis Pura</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
       <div class="modal-body">                         
-        <form class="form-horizontal form-label-left" novalidate method="POST" action="{{route('city.store')}}">
+        <form class="form-horizontal form-label-left" novalidate method="POST" action="{{url('/admin/temple-type')}}">
           {{csrf_field()}}
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Province <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Jenis Pura <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <select class="form-control" id="province_id" name="province_id">
-                <option value="" disabled selected>Pilih Provinsi</option>
-                @foreach($provinces as $data)
-                  <option id="{{$data->id}}" value="{{$data->id}}">{{$data->province_name}}</option> 
-                @endforeach
-              </select>
+              <input type="text" id="temple_type_name" name="type_name" required="required" value="" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">City/District <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Fungsi/Deskripsi <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="city_name" name="city_name" required="required" value="" class="form-control col-md-7 col-xs-12">
+              <textarea id="textarea" required="required" id="type_function" name="type_function" class="form-control col-md-7 col-xs-12" style="height: 150px;"></textarea>
             </div>
           </div>
-          
           <div class="ln_solid"></div>
           <div class="form-group">
             <div class="col-md-4 col-md-offset-8 col-sm-4 col-sm-offset-8">
               <button type="submit" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-              <button id="send" type="submit" class="btn btn-success">Submit</button>
+              <button id="send" type="submit" class="btn btn-success">Simpan</button>
             </div>
           </div>
         </form>
@@ -121,37 +115,35 @@
     </div>
   </div>
 </div>
-<!-- End of Modal to Add City-->
-<!-- Modal City Edited-->
-<div class="modal fade" id="modal_edit_city" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- End of Modal to Add temple_type-->
+<!-- Modal temple_type Edited-->
+<div class="modal fade" id="modal_edit_temple_type" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" >Edit City/District</h5>
+        <h5 class="modal-title" >Update Jenis Pura</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
       <div class="modal-body">                         
-        <form class="form-horizontal form-label-left" id="form_edit_city" novalidate method="POST" >
+        <form class="form-horizontal form-label-left" id="form_edit_temple_type" novalidate method="POST" >
           {{csrf_field()}}
           <input type="hidden" name="_method" value="PUT">
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Province <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Jenis Pura <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <select class="form-control" id="province_in_edit" name="province_id">
-              </select>
+              <input type="text" id="type_name" name="type_name" required="required" value="" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">City/District <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Fungsi/Deskripsi <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="city_name" name="city_name" required="required" value="" class="form-control col-md-7 col-xs-12">
+              <textarea id="type_function" required="required" id="type_function" name="type_function" class="form-control col-md-7 col-xs-12" style="height: 150px;"></textarea>
             </div>
           </div>
-          
           <div class="ln_solid"></div>
           <div class="form-group">
             <div class="col-md-4 col-md-offset-8 col-sm-4 col-sm-offset-8">
@@ -164,13 +156,13 @@
     </div>
   </div>
 </div>
-<!-- End of Modal City Edited -->
+<!-- End of Modal temple_type Edited -->
 <!-- Modal Confirmation Delete-->
   <div class="modal fade" id="modal_confirm_delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" >Confirmation Delete City</h5>
+            <h5 class="modal-title" >Konfirmasi Hapus Jenis Pura</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
@@ -187,10 +179,10 @@
                   <button class="btn btn-succes " type="button" data-dismiss="modal">Cancel</button>  
                 </div>
                 <div class="col-md-2 col-sm-2 col-xs-3">
-                  <form method="POST" id="form_delete_city" >
+                  <form method="POST" id="form_delete_temple_type" >
                   {{csrf_field()}}
                     <input type="hidden" name="_method" value="DELETE">
-                    <button class="btn btn-danger" type="submit">Delete</button>
+                    <button class="btn btn-danger" type="submit">Hapus</button>
                   </form>  
                 </div>
               </div>
@@ -215,42 +207,29 @@
       } );
 
       //Modal Edit Province
-      $('#modal_edit_city').on('show.bs.modal', function (event) {
+      $('#modal_edit_temple_type').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
-        var city_name = button.data('city_name') // Extract info from data-* attributes
-        var province_id = button.data('province_id')
-        var city_id = button.data('city_id')
-
-        var _token = $('input[name="_token"]').val();
-        $.ajax({
-          url:"{{route('fetch_province_in_edit')}}",
-          method:"POST",
-          data:{_token:_token,province_id:province_id},
-          success:function(result)
-          {
-            $('#province_in_edit').html(result);
-          },
-          error:function(e) {
-            console.log(e);
-          }
-        });        
+        var temple_type_name = button.data('temple_type_name') // Extract info from data-* attributes
+        var temple_type_id = button.data('temple_type_id')
+        var temple_type_function = button.data('temple_type_function')
 
         var modal = $(this)
-        modal.find('.modal-body #city_name').val(city_name)
-        $('#form_edit_city').attr('action', "/admin/city/"+city_id);
+        modal.find('.modal-body #type_name').val(temple_type_name)
+        modal.find('.modal-body #type_function').val(temple_type_function)
+        $('#form_edit_temple_type').attr('action', "/admin/temple-type/"+temple_type_id);
       })
 
       //Modal Delete Province
       $('#modal_confirm_delete').on('show.bs.modal', function (event) {
-        console.log('Delete City begin');
+        console.log('Delete temple_type begin');
 
         var button = $(event.relatedTarget) 
-        var city_name = button.data('city_name')
-        var city_id = button.data('city_id')
+        var temple_type_name = button.data('temple_type_name')
+        var temple_type_id = button.data('temple_type_id')
 
         var modal = $(this)
-        modal.find('.modal-body #label_delete').text('Apakah anda yakin ingin menghapus kota : '+ city_name)
-        $('#form_delete_city').attr('action', "/admin/city/"+city_id);
+        modal.find('.modal-body #label_delete').text('Apakah anda yakin ingin menghapus kota : '+ temple_type_name)
+        $('#form_delete_temple_type').attr('action', "/admin/temple-type/"+temple_type_id);
       })
     </script>
 @endsection

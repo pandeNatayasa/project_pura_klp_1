@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Province;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class ProvinceController extends Controller
 {
@@ -37,7 +38,21 @@ class ProvinceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'province_name' => 'required|string|max:200|unique:provinces'
+        ]);
+
+        // Check if validator fails
+        if ($validator->fails()) {
+            return redirect()->back()->with('warning',$validator->errors());
+        }
+
+        // If validator not fail, then save into database
+        $new = new Province();
+        $new->province_name = $request->province_name;
+        $new->save();
+
+        return redirect()->back()->with('success','Province saved successfully');
     }
 
     /**
@@ -69,9 +84,23 @@ class ProvinceController extends Controller
      * @param  \App\Province  $province
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Province $province)
+    public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'province_name' => 'required|string|max:200'
+        ]);
+
+        // Check if validator fails
+        if ($validator->fails()) {
+            return redirect()->back()->with('warning',$validator->errors());
+        }
+
+        // If validator not fail, then save into database
+        $new = Province::find($id);
+        $new->province_name = $request->province_name;
+        $new->save();
+
+        return redirect()->back()->with('success','Province updated successfully');
     }
 
     /**
@@ -80,8 +109,11 @@ class ProvinceController extends Controller
      * @param  \App\Province  $province
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Province $province)
+    public function destroy($id)
     {
-        //
+        $delete = Province::find($id);
+        $delete->delete();
+
+        return redirect()->back()->with('success','Province deleted successfully');
     }
 }

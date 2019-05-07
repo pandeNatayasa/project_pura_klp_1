@@ -27,13 +27,15 @@
           <div class="card mb-3">
             @if($message = Session::get('success'))
               <div class="alert alert-success">
-                  <p>{{$message}}</p>
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <p>{{$message}}</p>
               </div>
             @endif
 
             @if($message = Session::get('warning'))
               <div class="alert alert-warning">
-                  <p>{{$message}}</p>
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <p>{{$message}}</p>
               </div>
             @endif
             <!-- <div class="card-header">
@@ -87,7 +89,7 @@
         </button>
       </div>
       <div class="modal-body">                         
-        <form class="form-horizontal form-label-left" novalidate method="POST" >
+        <form class="form-horizontal form-label-left" novalidate method="POST" action="{{route('sub-district.store')}}">
           {{csrf_field()}}
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Province <span class="required">*</span>
@@ -114,7 +116,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" >Sub-District <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="sub_district" name="sub_district" required="required" value="" class="form-control col-md-7 col-xs-12">
+              <input type="text" id="sub_district_name" name="sub_district_name" required="required" value="" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
           <div class="ln_solid"></div>
@@ -141,18 +143,15 @@
         </button>
       </div>
       <div class="modal-body">                         
-        <form class="form-horizontal form-label-left" novalidate method="POST" >
+        <form class="form-horizontal form-label-left" novalidate method="POST" id="form_edit_sub_district" >
           {{csrf_field()}}
+          <input type="hidden" name="_method" value="PUT">
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Province <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="hidden" name="number_of_province" id="number_of_province" value="{{sizeof($provinces)}}">
-              <select id="province" class="form-control dynamic" id="province" name="province" data-dependent="city">
+              <select class="form-control dynamic_in_edit" id="edit_in_province" name="province" data-dependent="city">
                 <option value="" disabled selected>Pilih Provinsi</option>
-                @foreach($provinces as $data)
-                  <option id="" value="{{$data->id}}">{{$data->province_name}}</option> 
-                @endforeach
               </select>
             </div>
           </div>
@@ -169,7 +168,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" >Sub-District <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="sub_district" name="sub_district" required="required" value="" class="form-control col-md-7 col-xs-12">
+              <input type="text" id="sub_district" name="sub_district_name" required="required" value="" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
           <div class="ln_solid"></div>
@@ -207,9 +206,9 @@
                   <button class="btn btn-succes " type="button" data-dismiss="modal">Cancel</button>  
                 </div>
                 <div class="col-md-2 col-sm-2 col-xs-3">
-                  <form method="POST" enctype="multipart/form-data" >
-                  {{csrf_field()}}
-                    <input type="hidden" id="sub_district_id_delete" name="sub_district_id_delete" value="">
+                  <form method="POST" enctype="multipart/form-data" id="form_delete_sub_district" >
+                    {{csrf_field()}}
+                    <input type="hidden" name="_method" value="DELETE">
                     <button class="btn btn-danger" type="submit">Delete</button>
                   </form>  
                 </div>
@@ -255,6 +254,27 @@
           })  
         }
       });
+
+      $('.dynamic_in_edit').change(function(){
+        if($(this).val() != ''){
+          
+          var value = $(this).val();
+          var dependent = $(this).data('dependent');
+
+          console.log(dependent);
+
+          var _token = $('input[name="_token"]').val();
+          $.ajax({
+            url:"{{route('fetch_location_sub_district')}}",
+            method:"POST",
+            data:{value:value,_token:_token,dependent:dependent},
+            success:function(result)
+            {
+              $('#edit_in_city').html(result);
+            }
+          })  
+        }
+      });
     });
 
     //Modal Edit Kecamatan
@@ -266,39 +286,39 @@
       var province_id = button.data('province_id')
 
       var _token = $('input[name="_token"]').val();
-        $.ajax({
-          url:"{{route('fetch_city_in_edit')}}",
-          method:"POST",
-          data:{_token:_token,sub_district_id:sub_district_id,category:'city'},
-          success:function(result)
-          {
-            $('#edit_in_city').html(result);
-          },
-          error:function(e) {
-            console.log(e);
-          }
-        });
+
+      $.ajax({
+        url:"{{route('fetch_province_in_edit')}}",
+        method:"POST",
+        data:{_token:_token,province_id:province_id},
+        success:function(result)
+        {
+          $('#edit_in_province').html(result);
+        },
+        error:function(e) {
+          console.log(e);
+        }
+      });        
+
+      $.ajax({
+        url:"{{route('fetch_city_in_edit')}}",
+        method:"POST",
+        data:{_token:_token,sub_district_id:sub_district_id,category:'city'},
+        success:function(result)
+        {
+          $('#edit_in_city').html(result);
+        },
+        error:function(e) {
+          console.log(e);
+        }
+      });
+
+      var action = '/admin/sub-district/'+sub_district_id;
 
       var modal = $(this)
       modal.find('.modal-body #sub_district_id').val(sub_district_id)
       modal.find('.modal-body #sub_district').val(sub_district_name)
-
-      // Loop to unselected another provinces
-      var number_of_province = document.getElementById("number_of_province").value;
-      console.log(number_of_province);
-
-      var i;
-      // for (i in province_array) { 
-
-        
-
-        // if (province_array[i]['id']==province_id) {
-        //   modal.find('.modal-body #province #'+province_id).attr('selected',true)    
-        // }else{
-        //   modal.find('.modal-body #province #'+province_array[i]['id']).attr('selected',false)    
-        // }  
-      // }
-      
+      $('#form_edit_sub_district').attr('action', action);
     })
 
     //Modal Delete Kecamatan
@@ -311,7 +331,7 @@
 
       var modal = $(this)
       modal.find('.modal-body #label_delete').text('Apakah anda yakin ingin menghapus Kecamatan : '+ sub_district_name)
-      modal.find('.modal-footer #sub_district_id_delete').val(sub_district_id)
+      $('#form_delete_sub_district').attr('action', "/admin/sub-district/"+sub_district_id);
     })
   </script>
 @endsection
