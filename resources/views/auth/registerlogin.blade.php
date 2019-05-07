@@ -23,7 +23,7 @@
 <body>
     <div id="bg" style=".col-4"></div>
     <header>
-        <h2>Back To Login</h2>
+        <h3>Back To Login</h3>
     </header>
     <main>
         <div id="main-gambar" class="row">
@@ -38,10 +38,10 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="control-label">Name</label>
+                            <label for="name" class="control-label">Nama</label>
 
                             <div >
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="name" type="text" class="form-control" placeholder="Masukkan Nama" name="name" value="{{ old('name') }}" required autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -52,10 +52,10 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" >E-Mail Address</label>
+                            <label for="email" >Alamat E-Mail</label>
 
                             <div >
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email" class="form-control" placeholder="Masukkan Alamat Email" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -66,10 +66,10 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="control-label">Password</label>
+                            <label for="password" class="control-label">Kata Sandi</label>
 
                             <div >
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password" type="password" class="form-control" placeholder="Masukkan Kata Sandi" name="password" required>
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -80,13 +80,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm" class=" control-label">Confirm Password</label>
+                            <label for="password-confirm" class=" control-label">Konfrimasi Kata Sandi</label>
 
                             <div >
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm" type="password" class="form-control" placeholder="Masukkan Ulang Kata Sandi" name="password_confirmation" required>
                             </div>
                         </div>
-                    <button id="btn-login" type="submit" class="btn btn-primary">Register</button>
+                    <button id="btn-login" type="submit" class="btn btn-primary">Daftar Akun</button>
                 </form>
             </div>
         </div>
