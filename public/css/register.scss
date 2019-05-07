@@ -1,0 +1,80 @@
+$colors :(
+    dasar:rgb(255, 255, 255),
+    btnbiru:#2A90FF,
+    biruterang:lighten(#2A90FF, 10%)
+);
+
+@function color($color-name){
+    @return map-get($colors, $color-name );
+}
+
+body{
+    margin: 0;
+    #bg{
+        width: 100%;
+        height: 100%;
+        background-color:color(btnbiru);
+        position: absolute;
+        z-index: 0;
+        clip-path: circle(50% at 18% 48%);
+    }
+
+    header{
+        h2{
+            color: #fff;
+            z-index: 2;
+            position: fixed;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+    }
+    main{
+        #main-gambar{
+            #gambar{
+                right: -10px;
+        // margin-left: 40px;
+         width: 600px;
+         height: 600;
+         margin-top: 70px;
+            // margin-top: 107px;
+        position: fixed;
+            }
+        }
+        #main-login{
+            display: inline;
+            position: fixed;
+            margin-top: 150px;
+            margin-left: 150px;
+
+           
+            #form-login{
+                width: 300px;
+                height: 500px;
+
+                label{
+                    color :#fff;
+                }
+
+                #btn-login{
+                    background-color: color(btnbiru);
+                    border: 1px solid #fff;
+                    margin-top: 20px;
+                    width: 300px;
+                    transition: transform 0.15s cubic-bezier(0.02, 0.01, 0.47, 1), opacity 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+                    &:hover{
+                        background-color: color(biruterang);
+                        -webkit-animation: mymove;
+                        animation: mymove 5s infinite;
+                    }
+                    @-webkit-keyframes mymove {
+                        50% {border-radius: 150px;}
+                    }
+    
+                    @keyframes mymove {
+                        50% {border-radius: 150px;}
+                     }
+                }
+            }
+        }
+    }
+}

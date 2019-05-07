@@ -41,7 +41,14 @@ body header #nav-body {
 }
 
 body header #nav-body #tulisansamping {
+  font-display: inline-block;
+  text-decoration: none;
+  font-weight: bold;
   color: #fff;
+}
+
+body header #nav-body #tulisansamping:hover {
+  color: #002f62;
 }
 
 main {
@@ -102,7 +109,7 @@ main #card #card1 a {
 main #card #card2 {
   -ms-grid-columns: 60px 60px;
       grid-template-columns: 60px 60px;
-  background: #2A90FF;
+  background: #5dabff;
   border-radius: 2px;
   display: inline-block;
   height: 35px;
@@ -114,10 +121,6 @@ main #card #card2 {
   border-radius: 0px 15px 15px 0px;
   margin-top: 10%;
   margin-right: 10%;
-}
-
-.active{
-  background: #5dabff !important;
 }
 
 main #card #card2 a {

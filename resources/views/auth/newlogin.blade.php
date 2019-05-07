@@ -32,19 +32,19 @@
             <span class="navbar-brand mb-0 h1">Temple Information</span>
             <ul class="nav justify-content-end">
             <li class="nav-item">
-                <a id="tulisansamping"class="nav-link active" href="/">Back To Map</a>
+                <a id="tulisansamping"class="nav" href="/">Back To Map</a>
             </li>
         </ul>
         </nav>
     </header>
     <main>
         <section id="card">
-            <section id="card1" class="card-active active">
+            <!-- <section id="card1">
                 <a href="#">Login</a>
             </section>
             <section id="card2" class="card-active">
                 <a href="#">Register</a>
-            </section>
+            </section>-->
             <div id="ph5">
             <h3>Login</h3>
             </div>
@@ -78,7 +78,7 @@
                 <button id="btn-login" type="submit" class="btn btn-primary">Submit</button><br>
                 <br>
                 <span id="regis">
-                    <a href="#">Registrasi Disini!</a>
+                    <a href="{{route('member.register')}}">Registrasi Disini!</a>
 
                     </span>
             </form>
