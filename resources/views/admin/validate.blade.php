@@ -84,7 +84,6 @@
     <!-- </div> -->
 
   <!-- Modal Confirmation Delete-->
-  <!--
   <div class="modal fade" id="modal_confirm_delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -121,10 +120,6 @@
     </div>
   </div>
   <!-- End Of Modal Confirmation Delete-->
-  <!--
-  @endsection
-
-  @section('add_js')
   <script type="text/javascript" charset="utf8" src="{{asset('admin/vendors/datatables/datatables.min.js')}}"></script>
 
       <script type="text/javascript">
@@ -147,8 +142,6 @@
 
 
       </script>
-  -->
-      <!-- 
       <script src="{{asset('public_admin/vendors/jquery/dist/jquery.min.js')}}"></script>
       
       <!-- Bootstrap -->

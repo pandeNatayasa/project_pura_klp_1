@@ -62,7 +62,7 @@
 									<i class="icon-sitemap"></i>
 									<b>Lihat Data Pura</b>
 								</a>
-								<a href="#" class="btn-box big span3">
+								<a href="/admin/validasi" class="btn-box big span3">
 									<i class="icon-check"></i>
 									<b>Validasi Data Pura</b>
 								</a>

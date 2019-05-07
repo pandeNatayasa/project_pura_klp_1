@@ -68,8 +68,8 @@ class UserController extends Controller
         }
     }
 
-    public function imageUpload(Request $request){
-
+    public function loadMarker(Request $request){
+        
     }
 
 }
