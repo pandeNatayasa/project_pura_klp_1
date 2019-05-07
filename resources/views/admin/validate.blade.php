@@ -10,12 +10,12 @@
     <title>Validasi</title>
 
     <!-- Bootstrap -->
-    <link type="text/css" href="public_admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="/public_admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!--Font Awesome -->
-    <link type="text/css" href="public_admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link type="text/css" href="public_admin/vendors/datatables/datatables.min.css" rel="stylesheet">
+    <link type="text/css" href="/public_admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link type="text/css" href="/public_admin/vendors/datatables/datatables.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
-    <link type="text/css" href="public_admin/build/css/custom.css" rel="stylesheet">
+    <link type="text/css" href="/public_admin/build/css/custom.css" rel="stylesheet">
   </head>
 <body>  
   <div class="top_nav">
@@ -24,7 +24,7 @@
         <a class="brand" href="/">Validasi Data Pura </a>
         <ul class="nav navbar-nav navbar-right">
           <li class="">
-            <a href="javascript:;" class="user-profile" aria-expanded="false">
+            <a href="/admin/dashboard" class="user-profile" aria-expanded="false">
               Back To Dashboard
             </a>
           
@@ -142,17 +142,17 @@
 
 
       </script>
-      <script src="{{asset('public_admin/vendors/jquery/dist/jquery.min.js')}}"></script>
+      {{-- <script src="{{asset('/public_admin/vendors/jquery/dist/jquery.min.js')}}"></script> --}}
       
       <!-- Bootstrap -->
-      <script src="{{asset('public_admin/vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+      {{-- <script src="{{asset('/public_admin/vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script> --}}
         
-      <!-- Custom Theme Scripts 
-      <script src="{{asset('public_admin/build/js/custom.js')}}"></script>-->
+      <!-- Custom Theme Scripts -->
+      {{-- <script src="{{asset('/public_admin/build/js/custom.js')}}"></script> --}}
       
-      <script src="public_admin/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
-	    <script src="public_admin/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-	    <script src="public_admin/build/js/custom.js" type="text/javascript"></script>
+      <script src="/public_admin/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
+	    <script src="/public_admin/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+	    <script src="/public_admin/build/js/custom.js" type="text/javascript"></script>
 
 </body>
 
