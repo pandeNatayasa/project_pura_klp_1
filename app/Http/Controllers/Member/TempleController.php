@@ -15,6 +15,11 @@ use App\Sasih;
 use App\Wuku;
 use App\Saptawara;
 use App\Pancawara;
+use Illuminate\Support\Facades\Validator;
+use Auth;
+use App\TempleImage;
+use App\OdalanSasih;
+use App\OdalanWuku;
 
 class TempleController extends Controller
 {
@@ -51,10 +56,10 @@ class TempleController extends Controller
         $value = $request->get('value');
         $dependent = $request->get('dependent');
 
-        if ($dependent=='kota') {
+        if ($dependent=='city') {
             $data_kota = City::all()->where('province_id','=',$value);
 
-            $output = '<option value="" disabled selected>Pilih Kabupaten/'.ucfirst($dependent).'</option>';
+            $output = '<option value="" disabled selected>Pilih Kabupaten/Kota</option>';
 
             foreach ($data_kota as $data) {
                 $output .= '<option value="'.$data->id.'">'.$data->city_name.'</option>';
@@ -62,10 +67,10 @@ class TempleController extends Controller
 
             echo $output;
 
-        }elseif ($dependent=='kecamatan') {
+        }elseif ($dependent=='sub_district') {
             $data_kecamatan = SubDistrict::all()->where('city_id','=',$value);
 
-            $output = '<option value="" disabled selected>Pilih '.ucfirst($dependent).'</option>';
+            $output = '<option value="" disabled selected>Pilih Kecamatan</option>';
 
             foreach ($data_kecamatan as $data) {
                 $output .= '<option value="'.$data->id.'">'.$data->sub_district_name.'</option>';
@@ -86,7 +91,86 @@ class TempleController extends Controller
      */
     public function store(Request $request)
     {
+        // Validator input data pura oleh member
+        $validator = Validator::make($request->all(), [
+            'temple_name' => 'required|string|max:255',
+            'address' => 'required|string',
+            'temple_type_id' => 'required|numeric',
+            'odalan_type' => 'required|string',
+            'sub_district' => 'required|numeric',
+            'description' => 'required|string',
+            'priest_name' => 'required|string',
+            'address_priest' => 'required|string',
+            'priest_phone' => 'required|string'
+        ]);
+
+        // Check if validator error then return redirect with message
+        if ($validator->fails()) {
+            return redirect()->back()->with('warning',$validator->errors());
+        }
+
+        // If validator not fails, then save into database
+
+        // Save odalan into database
+        if ($request->odalan_type == "sasih") {
+            // If odalan_type is sasih
+            // Then save into odalan_sasih table
+            $new_odalan = new OdalanSasih();
+            $new_odalan->sasih_id = $request->sasih;
+            $new_odalan->rahinan_id = $request->rahinan;
+            $new_odalan->save();
+
+        }elseif ($request->odalan_type == "wuku") {
+            // If odalan_type id wuku,
+            // Then save into odalan_wuku_table
+            $new_odalan = new OdalanWuku();
+            $new_odalan->saptawara_id = $request->saptawara;
+            $new_odalan->pancawara_id = $request->pancawara;
+            $new_odalan->wuku_id = $request->wuku;
+            $new_odalan->save();
+        }
+
+        // Save priest of temple
+        $new_priest = new TemplePriest();
+        $new_priest->priest_name = $request->priest_name;
+        $new_priest->address_priest = $request->address_priest;
+        $new_priest->priest_phone = $request->priest_phone;
+        $new_priest->save();
+
+
+        // Save into temple table
+        $new = new Temple();
+        $new->temple_name = $request->temple_name;
+        $new->address = $request->address;
+        $new->temple_type_id = $request->temple_type_id;
+        $new->odalan_id = $new_odalan->id;
+        $new->odalan_type = $request->odalan_type;
+        $new->user_id = Auth::id();
+        $new->validate_status = '0';
+        $new->temple_priest_id = $new_priest->id;
+        $new->sub_district_id = $request->sub_district;
+        $new->save();
+
+        // Save image into folder and link into database
+        $number_of_image = $request->total_semua_foto;
+        $id_max=TempleImage::max('id');
+        $id=$id_max +1;
+
         
+        if ($files=$request->hasFile('file')) {
+            $filePic=$request->file('file');
+            $extension = $filePic->getClientOriginalExtension();
+            $fileName = 'temple_image_'.$id;
+            $filePic->move('temple_image/',$fileName.'.'.$extension);
+
+            $new_image = new TempleImage();
+            $new_image->image_name = 'temple_image/'.$fileName.'.'.$extension;
+            $new_image->temple_id = $new->id;
+            $new_image->save();
+        }
+
+        // Return redirect with message success
+        return redirect()->back()->with('success','New Temple information saved successfully');
     }
 
     /**

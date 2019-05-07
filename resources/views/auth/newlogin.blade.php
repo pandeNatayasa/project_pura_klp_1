@@ -24,7 +24,7 @@
 
     <div id="bg">
     <h1 id="namaatas">Temple Information</h1>
-        <img id="iconic" src="/login/img/pura.svg">
+        <img id="iconic" src="/public_login/img/pura.svg">
     </div>
     <div id="bg-dasar">
     <header>
@@ -32,7 +32,7 @@
             <span class="navbar-brand mb-0 h1">Temple Information</span>
             <ul class="nav justify-content-end">
             <li class="nav-item">
-                <a id="tulisansamping"class="nav-link active" href="#">Back To Map</a>
+                <a id="tulisansamping"class="nav-link active" href="/">Back To Map</a>
             </li>
         </ul>
         </nav>
@@ -44,7 +44,7 @@
             </section>
             <section id="card2" class="card-active">
                 <a href="#">Register</a>
-            </section> -->
+            </section>-->
             <div id="ph5">
             <h3>Login</h3>
             </div>

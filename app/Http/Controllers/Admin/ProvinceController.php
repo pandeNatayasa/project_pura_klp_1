@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Province;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProvinceController extends Controller
 {
@@ -14,7 +15,8 @@ class ProvinceController extends Controller
      */
     public function index()
     {
-        //
+        $provinces = Province::all();
+        return view('admin.location.list_province',compact('provinces'));
     }
 
     /**

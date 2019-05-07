@@ -686,4 +686,27 @@
     pointer-events: none;
     transform: scale(0);
   }
-  
+
+  .pano {
+    width: 100%;
+    height: 200px;
+    margin: 0 auto;
+    cursor: move;
+  }
+
+  /*Wraperclass for the divicon*/
+.map-label {
+  position: absolute;
+  bottom: 0;
+  display: -webkit-box;
+  flex-direction: column;
+  text-align: center;
+}
+/*Wrap the content of the divicon (text) in this class*/
+.map-label-content {
+  order: 1;
+  margin-top:5px;
+  text-align: center;
+  white-space: nowrap;
+  font-family: 'Oswald', sans-serif;
+}
