@@ -27,14 +27,14 @@
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
               <div class="site_title">
-                <a href="/admin/dashboard"><i style="color: white;" class="fa fa-arrow-left"></i></a><a href="{{route('admin.home')}}" style="color: white;" > <span>Pura</span></a>
+                <a href="{{ route('admin.home') }}"><i style="color: white;" class="fa fa-arrow-left"></i></a><a href="{{ route('admin.master-data') }}" style="color: white;" > <span>Pura</span></a>
               </div>
             </div>
             <div class="clearfix"></div>
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="#" alt="..." class="img-circle profile_img">
+                <img src="{{ asset('user_img/user.png') }}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Selamat Datang,</span>
@@ -114,7 +114,7 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="{{route('member.logout')}}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="{{ route('admin.logout') }}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
               </ul>

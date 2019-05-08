@@ -21,10 +21,10 @@
   <div class="top_nav">
     <div class="nav_menu">
       <nav>
-        <a class="brand" href="/">Validasi Data Pura </a>
+        <a class="brand" href="{{ route('show_list_temple_validate') }}">Validasi Data Pura </a>
         <ul class="nav navbar-nav navbar-right">
           <li class="">
-            <a href="/admin/dashboard" class="user-profile" aria-expanded="false">
+            <a href="{{ route('admin.home') }}" class="user-profile" aria-expanded="false">
               Back To Dashboard
             </a>
           
@@ -57,9 +57,10 @@
                       </tr>
                     </thead>
                     <tbody>
+                      @foreach($temples as $data)
                         <tr>
                           <td></td>
-                          <td></td>
+                          <td>{{$data->temple_name}}</td>
                           <td></td>
                           <td><img style="height: 300px;" src=""></td>
                           <td></td>
@@ -71,6 +72,7 @@
                           </td>
                           <td></td>
                         </tr>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>

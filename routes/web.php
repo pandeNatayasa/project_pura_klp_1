@@ -25,7 +25,8 @@ Route::get('/member/logout','Auth\LoginController@logout')->name('member.logout'
 
 // Route Admin =>Registration
 Route::get('/admin/login','AuthAdmin\LoginController@showLoginForm')->name('admin.login');
-Route::get('/admin/home', 'Admin\AdminController@index')->name('admin.home');
+
+Route::get('/admin/master-data', 'Admin\AdminController@index')->name('admin.master-data');
 Route::post('/admin/login','AuthAdmin\LoginController@login')->name('admin.login.submit');
 Route::get('/admin/logout','AuthAdmin\LoginController@logout')->name('admin.logout');
 
@@ -68,7 +69,7 @@ Route::post('/dropzone','UserController@dropzone')->name('dropzone');
 Route::get('/user/profile','UserController@profile')->name('user.profile');
 
 // TEMPLE TYPE
-Route::resource('/temple-type','TempleTypeController');
+Route::resource('/temple-type','Admin\TempleTypeController');
 
 // TEMPLE 
 Route::resource('/temple','TempleController');
@@ -78,12 +79,9 @@ Route::post('/fecth-location','TempleController@fetch')->name('fetch_location');
 //     return 'hai '.$username;
 // });
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-});
 
-Route::get('/admin/validasi', function () {
-    return view('admin.validate');
-});
+// Route Admin => Dashboard
+Route::get('/admin/dashboard', 'Admin\DashboardController@index')->name('admin.home');
+Route::get('/admin/validate', 'Admin\DashboardController@show_list_temple_validate')->name('show_list_temple_validate');
 
 
