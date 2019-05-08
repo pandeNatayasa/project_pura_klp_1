@@ -65,6 +65,7 @@ Route::get('/user/add_temple', 'UserController@add_temple')->name('add_temple');
 Route::post('/fetch_data','UserController@fetch')->name('fetch_data');
 Route::get('/loadMarker','UserController@loadMarker');
 Route::post('/dropzone','UserController@dropzone')->name('dropzone');
+Route::get('/user/profile','UserController@profile')->name('user.profile');
 
 // TEMPLE TYPE
 Route::resource('/temple-type','TempleTypeController');
