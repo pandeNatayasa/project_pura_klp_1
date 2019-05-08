@@ -1,5 +1,11 @@
 @extends('layouts.user')
 
+@section('css')
+  <!--Dropdzone-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css">
+  <link rel="stylesheet" href="/css/user.css">
+@endsection
+
 @section('context')
 <div id="addlocation" class="container mt-5 mb-5">
     <div class="card">
@@ -15,7 +21,8 @@
         <div class="card-body">
             <div class="container col-md-10">
               <!-- Form List Gambar-->
-              <form action="/event-upload" class="dropzone dz-clickable mb-5" id="addImages" enctype="multipart/form-data">
+            <form action="{{route('temple.store')}}" method="POST" class="dropzone dz-clickable mb-5" id="addImages" enctype="multipart/form-data">
+                {{csrf_field()}}
                 <div class="dz-default dz-message m-5"><span>Drop/Click here to upload images</span></div>
               </form>
                 <form class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" accept-charset="utf-8" method="POST" action="{{route('temple.store')}}">
@@ -243,7 +250,7 @@
                     <input type="hidden" name="latitude" id="latitude" value="">
                     <input type="hidden" name="longitude" id="longitude" value="">
                     <!-- Button Submit-->
-                    <button type="submit" class="btn btn-primary btn-block">Tambahkan</button>
+                    <button id="addTemple" type="submit" class="btn btn-primary btn-block">Tambahkan</button>
                 </form>
             </div>
             

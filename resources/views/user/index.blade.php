@@ -1,9 +1,22 @@
 @extends('layouts.user')
 
+@section('css')
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    <script src="https://leaflet.github.io/Leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
+
+    <!--Custome Css-->
+    <link rel="stylesheet" href="/css/sidenav.css">
+@endsection
+
 @section('context')
     <div class="page-wrapper chiller-theme toggled">
     <!--Sidebar-->
-    <nav id="sidebar" class="sidebar-wrapper loading">
+    @foreach($marker as $data)
+    <nav id="sidebar{{$data->id}}" class="sidebar-wrapper loading">
         <!-- Main Sidebar-->
         <div class="dots-loader"></div>
         <div class="sidebar-content">
@@ -31,14 +44,14 @@
             </div>
             <div class="card panorama-360">
                 {{-- <img id="myImg" src="/user_img/element/panorama.jpg" class="pano" style="height: 50px"> --}}
-                <div id="myPano" class="pano" style="border-radius: 10px"></div>
+                <div id="myPano{{$data->id}}" class="pano" style="border-radius: 10px"></div>
             </div>
             <div class="card ml-2 mr-2 mt-3 pt-1">
-                <h5 class="text-center">Pura Goa Gong</h5>
+                <h5 class="text-center">{{$data->temple_name}}</h5>
             </div>
             <div class="container mt-3">
-                <p><i class="fas fa-map-marker-alt fa-sm mb-2"></i><span class="mx-1"></span> Jln Goa Gong no xx, Goa Gong Bukit Jimbaran, Badung, Kuta Selatan</p>
-                <p><i class="fas fa-user fa-sm mb-2"></i><span class="mx-1"></span> Jero Mangku Adit</p>
+                <p><i class="fas fa-map-marker-alt fa-sm mb-2"></i><span class="mx-1"></span> {{$data->address}}</p>
+                <p><i class="fas fa-user fa-sm mb-2"></i><span class="mx-1"></span> {{$data->priest_temple->priest_name}}</p>
                 <p><i class="fas fa-calendar-week fa-sm mb-2"></i><span class="mx-1"></span> Sasih Kapitu</p>
                 <p class="mb-0"><i class="fas fa-landmark fa-sm mb-2"></i><span class="mx-1"></span> Sejarah :</p>
                 <small>Lorem Ipsum adalah contoh teks atau dummy dalam industri percetakan dan penataan huruf atau typesetting. Lorem Ipsum telah menjadi standar contoh teks sejak tahun 1500an, saat seorang tukang cetak yang tidak dikenal mengambil sebuah kumpulan teks dan mengacaknya untuk menjadi sebuah buku contoh huruf. Ia tidak hanya bertahan selama 5 abad, tapi juga telah beralih ke penataan huruf elektronik, tanpa ada perubahan apapun. Ia mulai dipopulerkan pada tahun 1960 dengan diluncurkannya lembaran-lembaran Letraset yang menggunakan kalimat-kalimat dari Lorem Ipsum, dan seiring munculnya perangkat lunak Desktop Publishing seperti Aldus PageMaker juga memiliki versi Lorem Ipsum.</small>
@@ -134,6 +147,7 @@
             </div>
         </div>
     </nav>
+    @endforeach
 
     <!-- Main Content -->
     <main class="page-content p-0" style="height:100%">
@@ -143,14 +157,14 @@
         </a>
         <!--Login FLoating-->
         <div class="login-floating p-0">
-            @auth
+            {{-- @auth --}}
                 <a id="sidebar-nav" href="#" class="p-0"><img src="/user_img/user.png" width="20px" alt=""></a>
-            @else
+            {{-- @else
                 <ul class="row  mr-2 p-0 ">
                     <a href="{{ route('member.login') }}" style="color:black">Login</a><span class="mx-2"></span> | <span class="mx-2"></span>
                     <a href="{{ route('member.register') }}"  style="color:black">Register</a>
                 </ul>
-            @endauth
+            @endauth --}}
         </div>
         <!--Search FLoating-->
         <div class="card floating-area p-0 ">
@@ -293,21 +307,28 @@
     </div>
 
 <!-- Panorama Modal -->
+@foreach($marker as $data)
 <div id="panoramaModal" class="modal">
 
     <!-- Modal Content (The Image) -->
     {{-- <img class="modal-img-content" id="img01"> --}}
     <div id="myModalPanos" class="pano" ></div>
 
-    <div class="card map-panorama-360 close-img">
+    <div class="card map-panorama-360 close-img{{$data->id}}">
         <div id="map1" style="width:100%;height:100%"></div>
     </div>
 
     <!-- Modal Caption (Image Text) -->
     <div id="caption"></div>
 </div>
+@endforeach
 @endsection
 
 @section('script')
-<script src="https://cdn.jsdelivr.net/gh/seancoyne/pano/jquery.pano.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/seancoyne/pano/jquery.pano.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.66.2/src/L.Control.Locate.min.js"></script>
+    <!--Custome JS-->
+    <script src="/js/sidenav.js"></script>
+    <script src="/js/maps.js"></script>
 @endsection

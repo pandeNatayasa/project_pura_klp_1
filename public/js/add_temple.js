@@ -128,4 +128,5 @@ $(document).ready(function(){
         document.getElementById("latitude").value = marker.lat; 
         document.getElementById("longitude").value = marker.lng; 
     });
+
 });

@@ -54,35 +54,10 @@ $(document).ready(function(){
         $(this).addClass('active');
     });
 
-    setTimeout(function() {
-    $('#sidebar')
-        .removeClass('loading')
-        .addClass('loaded')
-    }, 3000);
-
-    $("#myPano").pano({
-        img: "/user_img/element/panorama.jpg",
-    });
-
-    // Get the modal
-    var modal = document.getElementById('panoramaModal');
-    
-    // Get the image and insert it inside the modal - use its "alt" text as a caption
-    $('#myPano').click(function(){
-      modal.style.display = "block";
-      var imagin = this.style.backgroundImage.replace('url("','').replace('")','');
-      $("#myModalPanos").pano({
-            img: imagin,
-    });
-      console.log(imagin)
-    })
-    
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close-img")[0];
-    
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() { 
-      modal.style.display = "none";
-    }
+    // setTimeout(function() {
+    // $('#sidebar')
+    //     .removeClass('loading')
+    //     .addClass('loaded')
+    // }, 3000);
 
 });

@@ -12,13 +12,17 @@ use App\Sasih;
 use App\Wuku;
 use App\Saptawara;
 use App\Pancawara;
+use App\Temple;
+use App\TempleImage;
 
 class UserController extends Controller
 {
 
     //Maps Template
     public function maps(){
-        return view('user.index');
+        $marker = Temple::with('priest_temple')->get();
+        
+        return view('user.index', compact('marker'));
     }
 
     //Add Temple Template
@@ -69,7 +73,29 @@ class UserController extends Controller
     }
 
     public function loadMarker(Request $request){
-        
+        $marker = Temple::all();
+
+        return $marker;
     }
 
+    // public function dropzone(Request $request){
+    //     $file = $request->file('file');
+        
+    //     if($file){
+    //         TempleImage::create([
+    //                 $imageName = $file->getClientOriginalName(),
+    //                 $file->move('img',$imageName),
+
+    //                 $imagePath =  "img/$imageName",
+    //                 'image_name' => $imagePath
+    //         ]);
+    //     }
+        
+
+    //     TempleImage::create([
+    //         'image_name' => $imagePath
+    //     ]);
+
+    //     return $imagePath;
+    // }
 }
