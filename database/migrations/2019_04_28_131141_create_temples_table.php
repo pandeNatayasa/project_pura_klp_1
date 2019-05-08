@@ -25,7 +25,7 @@ class CreateTemplesTable extends Migration
             $table->enum('odalan_type',['wuku','sasih']);
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('admin_id')->nullable();
-            $table->enum('validate_status',['0','1']);
+            $table->enum('validate_status',['0','1','2']); // 0=not validate, 1=validate, 2=reject
             $table->datetime('date_validate')->nullable();
             $table->unsignedInteger('temple_priest_id')->nullable();
             $table->unsignedInteger('sub_district_id');
