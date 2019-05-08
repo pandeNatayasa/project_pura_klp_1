@@ -18,6 +18,7 @@
 Auth::routes();
 Route::get('/member/login', 'Auth\LoginController@showLoginForm2')->name('member.login');
 Route::get('/member/register', 'Auth\RegisterController@showRegisterForm2')->name('member.register');
+Route::get('/member/activation/{token}','Auth\RegisterController@userActivation');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/member/logout','Auth\LoginController@logout')->name('member.logout');
