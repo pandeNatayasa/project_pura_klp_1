@@ -120,6 +120,8 @@ $(document).ready(function(){
     }).setView([-8.5240574,115.2110998],12);	
     L.tileLayer('https://maps.tilehosting.com/styles/streets/{z}/{x}/{y}.png?key=YrAn6SOXelkLFXHv03o2').addTo(maps);
 
+    maps.locate({setView: true, maxZoom: 20});
+
 });	
 
     

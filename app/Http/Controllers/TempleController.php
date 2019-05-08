@@ -150,9 +150,6 @@ class TempleController extends Controller
         $new->validate_status = '0';
         $new->temple_priest_id = $new_priest->id;
         $new->sub_district_id = $request->sub_district;
-        $new->description = $request->description;
-        $new->longitude = $request->longitude;
-        $new->latitude = $request->latitude;
         $new->save();
 
         // Save image into folder and link into database

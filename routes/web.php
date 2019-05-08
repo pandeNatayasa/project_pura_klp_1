@@ -80,4 +80,8 @@ Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 });
 
+Route::get('/admin/validasi', function () {
+    return view('admin.validate');
+});
+
 

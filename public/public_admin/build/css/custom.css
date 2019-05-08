@@ -201,7 +201,7 @@ html , body{
 }
 .nav-sm .nav.child_menu li.active,
 .nav-sm .nav.side-menu li.active-sm {
-    border-right: 5px solid #1ABB9C 
+    border-right: 5px solid #1ABB9C
 }
 .nav-sm ul.nav.child_menu ul,
 .nav-sm .nav.side-menu li.active-sm ul ul {
@@ -326,12 +326,13 @@ html , body{
 }
 .nav_menu {
     float: left;
-    background: #EDEDED;
+    background: #fff;
     border-bottom: 1px solid #D9DEE4;
     margin-bottom: 10px;
     width: 100%;
     position: relative
 }
+
 @media (min-width: 480px) {
     .nav_menu {
         position: static
@@ -478,8 +479,18 @@ body .container.body .right_col {
     width: 100%;
     padding: 0
 }
+nav .brand {
+	color: #000;
+	font-weight: bold;
+    font-size: 20px;
+    border-top: 1cm;
+    margin-right: 20px;
+    padding: 50px;
+    line-height: 70px
+    
+}
 .navbar-nav>li>a,
-.navbar-brand,
+/* .navbar-brand, */
 .navbar-nav>li>a {
     color: #fff !important
 }
@@ -488,11 +499,12 @@ body .container.body .right_col {
 .top_nav .nav .open>a,
 .top_nav .nav .open>a:focus,
 .top_nav .nav .open>a:hover {
-    background: #D9DEE4
+    background: #fff
+
 }
 body {
     color: #73879C;
-    background: #2A3F54;
+    background:#DFE9F6;
     font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
     font-size: 13px;
     font-weight: 400;
@@ -743,35 +755,28 @@ a:focus {
     background-color: rgba(255, 255, 255, 0.06)
 }
 .nav.child_menu li {
-
-    /*has edited*/
-    padding-left: 40px
+    padding-left: 36px
 }
 .nav-md ul.nav.child_menu li:before {
-    /*has edited*/
-
-    /*background: #425668;*/
+    background: #425668;
     bottom: auto;
-    /*content: "";*/
-    /*height: auto;*/
+    content: "";
+    height: 8px;
     left: 23px;
-    /*padding: 5px;*/
-
-    margin-top: 8px;
-    margin-bottom: 8px;
+    margin-top: 15px;
     position: absolute;
     right: auto;
-    /*width: ;*/
-    /*z-index: 1;*/
-    /*border-radius: 50%*/
+    width: 8px;
+    z-index: 1;
+    border-radius: 50%
 }
 .nav-md ul.nav.child_menu li:after {
-    /*border-left: 1px solid #425668;
+    border-left: 1px solid #425668;
     bottom: 0;
     content: "";
     left: 27px;
     position: absolute;
-    top: 0*/
+    top: 0
 }
 .nav-md ul.nav.child_menu li:last-child::after {
   bottom: 50%;
@@ -812,12 +817,12 @@ a:focus {
     background: linear-gradient(#334556, #2C4257), #2A3F54;
     box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0
 }
-.navbar-brand,
+/* .navbar-brand, */
 .navbar-nav>li>a {
     font-weight: 500;
     color: #ECF0F1 !important;
-    margin-left: 0 !important;
-    line-height: 32px
+    margin-left: 50px !important;
+    line-height: 50px
 }
 .site_title {
     text-overflow: ellipsis;
@@ -889,7 +894,7 @@ a:focus {
 .nav.child_menu>li>a {
     color: rgba(255, 255, 255, 0.75);
     font-size: 12px;
-    padding: 12px
+    padding: 9px
 }
 .panel_toolbox {
     float: right;
@@ -1291,11 +1296,11 @@ table.countries_list td {
     line-height: 30px;
     border-top: 1px solid #eeeeee
 }
-/*.dataTables_paginate a {
+.dataTables_paginate a {
     padding: 6px 9px !important;
     background: #ddd !important;
     border-color: #ddd !important
-}*/
+}
 .paging_full_numbers a.paginate_active {
     background-color: rgba(38, 185, 154, 0.59) !important;
     border-color: rgba(38, 185, 154, 0.59) !important
@@ -1326,7 +1331,7 @@ table.jambo_table tbody tr.selected td {
     border-top: 1px solid rgba(38, 185, 154, 0.4);
     border-bottom: 1px solid rgba(38, 185, 154, 0.4)
 }
-/*.dataTables_paginate a {
+.dataTables_paginate a {
     background: #ff0000
 }
 .dataTables_wrapper {
@@ -1435,7 +1440,7 @@ td.details {
 }
 .example_alt_pagination div.dataTables_info {
     width: 40%
-}*/
+}
 .paging_full_numbers {
     width: 400px;
     height: 22px;
@@ -1767,8 +1772,9 @@ span.right {
     padding: 0
 }
 a.user-profile {
-    color: #5E6974 !important
+    color: #000 !important
 }
+
 .user-profile img {
     width: 29px;
     height: 29px;
@@ -1851,11 +1857,9 @@ h4.graph_title {
     margin-right: 10px
 }
 .main_menu .fa {
-
-    /*has edited*/
-    /*width: 26px;*/
+    width: 26px;
     opacity: .99;
-    /*display: block;*/
+    display: inline-block;
     font-family: FontAwesome;
     font-style: normal;
     font-weight: normal;
@@ -4183,7 +4187,7 @@ ul.notifications {
     line-height: 11px;
     margin-top: 4px;
 }
-/*@media (max-width: 460px) {
+@media (max-width: 460px) {
     .dataTables_wrapper .col-sm-6 {
         width: 100%;
         margin-bottom: 5px;
@@ -4196,7 +4200,7 @@ ul.notifications {
 
 @media (max-width: 767px) {
    .dataTables_length { float:none; }
-}*/
+}
 
 
 
@@ -4252,9 +4256,9 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
 			
 .daterangepicker.xdisplay { width:228px; }
 
-/*.dataTables_wrapper > .row{
-  overflow:auto !important; /*prevent datatables overflowing its container
-}*/
+.dataTables_wrapper > .row{
+  overflow:auto !important; /*prevent datatables overflowing its container*/
+}
 
 /** bootstrap-datetimepicker **/
 .input-group.date .input-group-addon{

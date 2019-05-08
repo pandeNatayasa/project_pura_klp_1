@@ -26,13 +26,13 @@ class UserController extends Controller
 
         $type = TempleType::all();
         $province = Province::all();
-        $sasihs = Sasih::all();
-        $rahinans = Rahinan::all();
-        $wukus = Wuku::all();
-        $saptawaras = Saptawara::all();
-        $pancawaras = Pancawara::all();
+        $rahinan = Rahinan::all();
+        $sasih = Sasih::all();
+        $wuku = Wuku::all();
+        $saptawara = Saptawara::all();
+        $pancawara = Pancawara::all();
 
-        return view('user.add_temple', compact('type','province','sasihs','rahinans','wukus','saptawaras','pancawaras'));
+        return view('user.add_temple', compact('type','province','rahinan','sasih','wuku','saptawara','pancawara'));
     }
 
     //Fetch Data Location
@@ -68,8 +68,8 @@ class UserController extends Controller
         }
     }
 
-    public function imageUpload(Request $request){
-
+    public function loadMarker(Request $request){
+        
     }
 
 }
