@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Temple extends Model
 {
-    //
+    public function priest_temple(){
+        return $this->belongsTo('App\TemplePriest','temple_priest_id');
+    }
 }

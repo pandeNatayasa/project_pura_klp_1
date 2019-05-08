@@ -62,7 +62,7 @@ Route::resource('/admin/temple-type','Admin\TempleTypeController');
 Route::get('/', 'UserController@maps');
 Route::get('/user/add_temple', 'UserController@add_temple')->name('add_temple');
 Route::post('/fetch_data','UserController@fetch')->name('fetch_data');
-Route::post('/image-submit','UserController@imageUpload');
+Route::get('/loadMarker','UserController@loadMarker');
 
 // TEMPLE TYPE
 Route::resource('/temple-type','TempleTypeController');

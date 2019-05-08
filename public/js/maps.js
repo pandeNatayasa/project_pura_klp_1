@@ -1,9 +1,5 @@
 $(document).ready(function(){
     //Maps Icon
-    var icons = L.divIcon({
-        iconSize:null,
-        html:'<div class="map-label"><img src="/user_img/temple-icon.png" width="30px"></img><div class="map-label-content">'+'Pura Goa Gong'+'</div></div>'
-    });
     // var icons = L.icon({
     //     iconUrl: '/user_img/temple-icon.png',
     //     iconSize:     [32, 32], // size of the icon
@@ -92,15 +88,6 @@ $(document).ready(function(){
     }
     
     map.on('locationerror', onLocationError);
-
-    //Maps Marker
-    function markerOnClick(e) {
-        $('.sidebar-wrapper').animate({
-            width: "360px"
-        });;;
-        map.setView(e.latlng,map.getZoom());
-        console.log(e.latlng);
-    }
     
     map.on('click', function(){
         $('.sidebar-wrapper').animate({
@@ -109,9 +96,40 @@ $(document).ready(function(){
         $('#myElement').hide();
         $('#myElement2').hide();
     })
-    var marker = L.marker([-8.708337,115.185124],{icon: icons, title: 'Pura Goa Gong',alt:'Pura Goa Gong'}).addTo(map).on('click', markerOnClick);
-    var marker = L.marker([-8.7105212,115.1814639],{icon: icons, title: 'Pura Goa Gong'}).addTo(map).on('click', markerOnClick);
-    markers.addLayer(marker);
+    // var marker = L.marker([-8.708337,115.185124],{icon: icons, title: 'Pura Goa Gong',alt:'Pura Goa Gong'}).addTo(map).on('click', markerOnClick);
+    // var marker = L.marker([-8.7105212,115.1814639],{icon: icons, title: 'Pura Goa Gong'}).addTo(map).on('click', markerOnClick);
+    // markers.addLayer(marker);
+
+    //Load Marker From Database
+    $.ajax({
+        url: "/loadMarker",
+        type: "get",
+        dataType: 'json',
+        success: function (response){
+            $.each(response, function(i,item){
+
+                //Maps Marker
+                function markerOnClick(e) {
+                    $('#sidebar'+response[i].id).animate({
+                        width: "360px"
+                    });;;
+                    map.setView([response[i].longitude,response[i].latitude],map.getZoom());
+                }
+
+                var icons = L.divIcon({
+                    iconSize:null,
+                    html:'<div class="map-label"><img src="/user_img/temple-icon.png" width="30px"></img><div class="map-label-content">'+response[i].temple_name+'</div></div>'
+                });
+                marker = L.marker([response[i].longitude,response[i].latitude],{icon: icons}).on('click', markerOnClick)
+                markers.addLayer(marker);
+                // console.log(response[i].id)
+            });
+        },
+        error: function(e){
+            console.log("error"+ e)
+        }
+    });
+    map.addLayer(markers);	
 
 
     //Map Image Zoom

@@ -612,7 +612,7 @@
     text-decoration: none;
   }
   
-  .loading * {
+  /* .loading * {
     display: none;
   }
   
@@ -685,7 +685,7 @@
     z-index: -1;
     pointer-events: none;
     transform: scale(0);
-  }
+  } */
 
   .pano {
     width: 100%;

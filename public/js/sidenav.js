@@ -54,13 +54,13 @@ $(document).ready(function(){
         $(this).addClass('active');
     });
 
-    setTimeout(function() {
-    $('#sidebar')
-        .removeClass('loading')
-        .addClass('loaded')
-    }, 3000);
+    // setTimeout(function() {
+    // $('#sidebar')
+    //     .removeClass('loading')
+    //     .addClass('loaded')
+    // }, 3000);
 
-    $("#myPano").pano({
+    $("#myPano1").pano({
         img: "/user_img/element/panorama.jpg",
     });
 
@@ -68,7 +68,7 @@ $(document).ready(function(){
     var modal = document.getElementById('panoramaModal');
     
     // Get the image and insert it inside the modal - use its "alt" text as a caption
-    $('#myPano').click(function(){
+    $('#myPano1').click(function(){
       modal.style.display = "block";
       var imagin = this.style.backgroundImage.replace('url("','').replace('")','');
       $("#myModalPanos").pano({
