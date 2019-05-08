@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use DB;
+use Mail;
+use Illuminate\Http\Request;
+
 class RegisterController extends Controller
 {
     /*
@@ -67,6 +71,42 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function register(Request $request){
+        $input = $request->all();
+        $validator = $this->validator($input);
+
+        if($validator->passes()){
+            $user = $this->create($input)->toArray();
+            $user['link'] = str_random(30);
+
+
+            DB::table('users_activations')->insert(['id_user'=>$user['id'], 'token'=>$user['link']]);
+            Mail::send('mail.activation', $user, function($message) use($user){
+                $message->to($user['email']);
+                $message->subject('project-pura.inovation-invention.com - Activation Code');
+            });
+            return redirect()->to('member/login')->with('success',"We sent activation code, please check your email");
+        }
+        return back()->with('Error',$validator->errors());
+    } 
+
+    public function userActivation($token){
+        $check = DB::table('users_activations')->where('token',$token)->first();
+        if(!is_null($check)){
+
+            $user=User::find($check->id_user);
+
+            if($user->is_activated==1){
+                return redirect()->to('member/login')->with('success',"User are already actived");    
+            }
+
+            $user->update(['is_activated' => 1]);
+            DB::table('users_activations')->where('token',$token)->delete();
+            return redirect()->to('member/login')->with('success',"user active successfully");            
+        }
+        return redirect()->to('member/login')->with('warning',"your token is invalid");
     }
 
     public function showRegisterForm2(){

@@ -17,7 +17,7 @@
     @yield('add_css')
 
     <!-- Custom Theme Style -->
-    <link href="{{asset('public_admin/build/css/custom.css')}}" rel="stylesheet">
+    <link href="{{asset('public_admin/build/css/custom_version2.css')}}" rel="stylesheet">
   </head>
 
   <body class="nav-md">
@@ -26,7 +26,9 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="{{route('admin.home')}}" class="site_title"><i class="fa fa-paw"></i> <span>Pura</span></a>
+              <div class="site_title">
+                <a href="/admin/dashboard"><i style="color: white;" class="fa fa-arrow-left"></i></a><a href="{{route('admin.home')}}" style="color: white;" > <span>Pura</span></a>
+              </div>
             </div>
             <div class="clearfix"></div>
             <!-- menu profile quick info -->

@@ -66,7 +66,7 @@
 									<i class="icon-check"></i>
 									<b>Validasi Data Pura</b>
 								</a>
-								<a href="#" class="btn-box big span3">
+								<a href="{{ route('admin.home') }}" class="btn-box big span3">
 									<i class="icon-file-alt"></i>
 									<b>Master Data Pura</b>
 								</a>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -47,5 +48,10 @@ class LoginController extends Controller
         Auth::guard('web')->logout();
 
         return redirect('/');
+    }
+
+    public function credentials(Request $request){
+        $request['is_activated']=1;
+        return $request->only('email','password','is_activated');
     }
 }
