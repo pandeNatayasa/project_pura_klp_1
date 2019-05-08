@@ -1,5 +1,17 @@
 @extends('layouts.user')
 
+@section('css')
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    <script src="https://leaflet.github.io/Leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
+
+    <!--Custome Css-->
+    <link rel="stylesheet" href="/css/sidenav.css">
+@endsection
+
 @section('context')
     <div class="page-wrapper chiller-theme toggled">
     <!--Sidebar-->
@@ -145,14 +157,14 @@
         </a>
         <!--Login FLoating-->
         <div class="login-floating p-0">
-            @auth
+            {{-- @auth --}}
                 <a id="sidebar-nav" href="#" class="p-0"><img src="/user_img/user.png" width="20px" alt=""></a>
-            @else
+            {{-- @else
                 <ul class="row  mr-2 p-0 ">
                     <a href="{{ route('member.login') }}" style="color:black">Login</a><span class="mx-2"></span> | <span class="mx-2"></span>
                     <a href="{{ route('member.register') }}"  style="color:black">Register</a>
                 </ul>
-            @endauth
+            @endauth --}}
         </div>
         <!--Search FLoating-->
         <div class="card floating-area p-0 ">
@@ -295,21 +307,28 @@
     </div>
 
 <!-- Panorama Modal -->
+@foreach($marker as $data)
 <div id="panoramaModal" class="modal">
 
     <!-- Modal Content (The Image) -->
     {{-- <img class="modal-img-content" id="img01"> --}}
     <div id="myModalPanos" class="pano" ></div>
 
-    <div class="card map-panorama-360 close-img">
+    <div class="card map-panorama-360 close-img{{$data->id}}">
         <div id="map1" style="width:100%;height:100%"></div>
     </div>
 
     <!-- Modal Caption (Image Text) -->
     <div id="caption"></div>
 </div>
+@endforeach
 @endsection
 
 @section('script')
-<script src="https://cdn.jsdelivr.net/gh/seancoyne/pano/jquery.pano.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/seancoyne/pano/jquery.pano.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.66.2/src/L.Control.Locate.min.js"></script>
+    <!--Custome JS-->
+    <script src="/js/sidenav.js"></script>
+    <script src="/js/maps.js"></script>
 @endsection

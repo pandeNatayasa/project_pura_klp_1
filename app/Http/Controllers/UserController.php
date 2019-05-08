@@ -13,6 +13,7 @@ use App\Wuku;
 use App\Saptawara;
 use App\Pancawara;
 use App\Temple;
+use App\TempleImage;
 
 class UserController extends Controller
 {
@@ -77,4 +78,24 @@ class UserController extends Controller
         return $marker;
     }
 
+    // public function dropzone(Request $request){
+    //     $file = $request->file('file');
+        
+    //     if($file){
+    //         TempleImage::create([
+    //                 $imageName = $file->getClientOriginalName(),
+    //                 $file->move('img',$imageName),
+
+    //                 $imagePath =  "img/$imageName",
+    //                 'image_name' => $imagePath
+    //         ]);
+    //     }
+        
+
+    //     TempleImage::create([
+    //         'image_name' => $imagePath
+    //     ]);
+
+    //     return $imagePath;
+    // }
 }

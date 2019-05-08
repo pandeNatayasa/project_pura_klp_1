@@ -60,29 +60,4 @@ $(document).ready(function(){
     //     .addClass('loaded')
     // }, 3000);
 
-    $("#myPano1").pano({
-        img: "/user_img/element/panorama.jpg",
-    });
-
-    // Get the modal
-    var modal = document.getElementById('panoramaModal');
-    
-    // Get the image and insert it inside the modal - use its "alt" text as a caption
-    $('#myPano1').click(function(){
-      modal.style.display = "block";
-      var imagin = this.style.backgroundImage.replace('url("','').replace('")','');
-      $("#myModalPanos").pano({
-            img: imagin,
-    });
-      console.log(imagin)
-    })
-    
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close-img")[0];
-    
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() { 
-      modal.style.display = "none";
-    }
-
 });

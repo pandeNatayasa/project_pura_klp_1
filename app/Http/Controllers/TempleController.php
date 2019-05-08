@@ -146,11 +146,28 @@ class TempleController extends Controller
         $new->temple_type_id = $request->temple_type_id;
         $new->odalan_id = $new_odalan->id;
         $new->odalan_type = $request->odalan_type;
-        $new->user_id = Auth::id();
+        $new->user_id = '1';
         $new->validate_status = '0';
         $new->temple_priest_id = $new_priest->id;
         $new->sub_district_id = $request->sub_district;
         $new->save();
+
+        $temple_id = $new->id;
+
+        $file = $request->file('file');
+        
+        if($file){
+            TempleImage::create([
+                    $imageName = $file->getClientOriginalName(),
+                    $file->move('img',$imageName),
+
+                    $imagePath =  "img/$imageName",
+                    'image_name' => $imagePath,
+                    'temple_id' => $temple_id
+            ]);
+        }
+
+        return "done";
 
         // Save image into folder and link into database
         // $number_of_image = $request->total_semua_foto;

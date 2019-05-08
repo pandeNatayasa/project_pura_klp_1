@@ -108,6 +108,28 @@ $(document).ready(function(){
         success: function (response){
             $.each(response, function(i,item){
 
+                //Panorama 360
+                $("#myPano"+response[i].id).pano({
+                    img: "/user_img/element/panorama.jpg",
+                });
+            
+                var modal = document.getElementById('panoramaModal');
+                
+                $('#myPano'+response[i].id).click(function(){
+                  modal.style.display = "block";
+                  var imagin = this.style.backgroundImage.replace('url("','').replace('")','');
+                  $("#myModalPanos").pano({
+                        img: imagin,
+                });
+                  console.log(imagin)
+                })
+
+                var span = document.getElementsByClassName("close-img"+response[i].id)[0];
+                
+                span.onclick = function() { 
+                    modal.style.display = "none";
+                }
+
                 //Maps Marker
                 function markerOnClick(e) {
                     $('#sidebar'+response[i].id).animate({
