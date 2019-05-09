@@ -24,11 +24,11 @@
         </div>  
         <div class="card-body">
             <div class="container col-md-10">
-              <!-- Form List Gambar-->
-            <form action="{{route('temple.store')}}" method="POST" class="dropzone dz-clickable mb-5" id="addImages" enctype="multipart/form-data">
-                {{csrf_field()}}
-                <div class="dz-default dz-message m-5"><span>Drop/Click here to upload images</span></div>
-              </form>
+                <!-- Form List Gambar-->
+                <form action="{{route('temple.store')}}" method="POST" class="dropzone dz-clickable mb-5" id="addImages" enctype="multipart/form-data">
+                  {{csrf_field()}}
+                  <div class="dz-default dz-message m-5"><span>Drop/Click here to upload images</span></div>
+                </form>
                 <form class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" accept-charset="utf-8" method="POST" action="{{route('temple.store')}}">
                     {{ csrf_field() }}
                     @if($message =    Session::get('success'))
@@ -368,4 +368,29 @@
 @section('script')
     <script src="/js/add_temple.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+    <script>
+     Dropzone.options.addImages = {
+        autoProcessQueue: false,
+        url: '{{route("temple.store")}}',
+        init: function () {
+
+            var myDropzone = this;
+
+            // Update selector to match your button
+            $("#uploadButton").click(function (e) {
+                e.preventDefault();
+                myDropzone.processQueue();
+            });
+
+            this.on('sending', function(file, xhr, formData) {
+                // Append all form inputs to the formData Dropzone will POST
+                var data = $('#addImages').serializeArray();
+                $.each(data, function(key, el) {
+                    // formData.append(el.name, el.value);
+                    console.log(el)
+                });
+            });
+        }
+    }
+    </script>
 @endsection

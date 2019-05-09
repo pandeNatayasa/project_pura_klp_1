@@ -20,31 +20,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
 
     <script>
-    $(document).ready(function(){
-        Dropzone.options.addImages = false;
+    
         Dropzone.options.addImages = {
         autoProcessQueue: false,
-        // url: '{{route("dropzone")}}',
-        // init: function () {
+        url: '{{route("dropzone")}}',
+        init: function () {
 
-        //     var myDropzone = this;
+            var myDropzone = this;
 
-        //     // Update selector to match your button
-        //     $("#uploadButton").click(function (e) {
-        //         e.preventDefault();
-        //         myDropzone.processQueue();
-        //     });
+            // Update selector to match your button
+            $("#uploadButton").click(function (e) {
+                e.preventDefault();
+                myDropzone.processQueue();
+            });
 
-        //     this.on('sending', function(file, xhr, formData) {
-        //         // Append all form inputs to the formData Dropzone will POST
-        //         var data = $('#addImages').serializeArray();
-        //         $.each(data, function(key, el) {
-        //             // formData.append(el.name, el.value);
-        //             console.log(el)
-        //         });
-        //     });
-        // }
+            this.on('sending', function(file, xhr, formData) {
+                // Append all form inputs to the formData Dropzone will POST
+                var data = $('#addImages').serializeArray();
+                $.each(data, function(key, el) {
+                    // formData.append(el.name, el.value);
+                    console.log(el)
+                });
+            });
+        }
     }
-    });
     </script>
 @endsection
