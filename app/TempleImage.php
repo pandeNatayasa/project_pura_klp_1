@@ -10,7 +10,7 @@ class TempleImage extends Model
         'image_name', 'image_position'
     ];
 
-    // public function temple(){
-    //     return $this->hasMany('App\Temple','temple_id');
-    // }
+    public function Temple(){
+        return $this->belongsTo('App\Temple','temple_id');
+    }
 }

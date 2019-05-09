@@ -17,6 +17,10 @@ use App\TempleImage;
 
 class UserController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     //Maps Template
     public function maps(){
