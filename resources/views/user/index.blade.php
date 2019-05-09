@@ -47,8 +47,9 @@
                 {{-- <img id="myImg" src="/user_img/element/panorama.jpg" class="pano" style="height: 50px"> --}}
                 <div id="myPano{{$data->id}}" class="pano" style="border-radius: 10px"></div>
             </div>
-            <div class="card ml-2 mr-2 mt-3 pt-1">
-                <h5 class="text-center">{{$data->temple_name}}</h5>
+            <div class="card ml-2 mr-2 mt-3 pb-2 pt-1">
+                <h5 class="text-center m-0">{{$data->temple_name}}</h5>
+                <small class="text-center">{{$data->TempleType->type_name}}</small>
             </div>
             <div class="container mt-3">
                 <p><i class="fas fa-map-marker-alt fa-sm mb-2"></i><span class="mx-1"></span> {{$data->address}}</p>

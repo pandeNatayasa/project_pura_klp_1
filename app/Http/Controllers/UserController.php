@@ -24,8 +24,9 @@ class UserController extends Controller
 
     //Maps Template
     public function maps(){
-        $marker = Temple::all();
+        $marker = Temple::with('TempleType')->get();
         
+        // return $marker;
         return view('user.index', compact('marker'));
     }
 
