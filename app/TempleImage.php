@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TempleImage extends Model
 {
     protected $fillable = [
-        'image_name', 'image_position'
+        'image_name', 'temple_id'
     ];
 
     public function Temple(){

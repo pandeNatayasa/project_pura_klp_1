@@ -43,6 +43,11 @@ class UserController extends Controller
         return view('user.add_temple', compact('type','province','rahinan','sasih','wuku','saptawara','pancawara'));
     }
 
+    public function profile(){
+        
+        return view('user.profile');
+    }
+
     //Fetch Data Location
     public function fetch(Request $request)
     {
@@ -82,24 +87,21 @@ class UserController extends Controller
         return $marker;
     }
 
-    // public function dropzone(Request $request){
-    //     $file = $request->file('file');
+    public function dropzone(Request $request){
+        $temple_id = Temple::max('id');
+        $file = $request->file('file');
         
-    //     if($file){
-    //         TempleImage::create([
-    //                 $imageName = $file->getClientOriginalName(),
-    //                 $file->move('img',$imageName),
+        if($file){
+            TempleImage::create([
+                    $imageName = $file->getClientOriginalName(),
+                    $file->move('img',$imageName),
 
-    //                 $imagePath =  "img/$imageName",
-    //                 'image_name' => $imagePath
-    //         ]);
-    //     }
-        
+                    $imagePath =  "img/$imageName",
+                    'image_name' => $imagePath,
+                    'temple_id' => $temple_id
+            ]);
+        }
 
-    //     TempleImage::create([
-    //         'image_name' => $imagePath
-    //     ]);
-
-    //     return $imagePath;
-    // }
+        return $imagePath;
+    }
 }

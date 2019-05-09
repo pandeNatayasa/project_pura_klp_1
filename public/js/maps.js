@@ -88,14 +88,7 @@ $(document).ready(function(){
     }
     
     map.on('locationerror', onLocationError);
-    
-    map.on('click', function(){
-        $('.sidebar-wrapper').animate({
-            width: "0"
-        });;
-        $('#myElement').hide();
-        $('#myElement2').hide();
-    })
+
     // var marker = L.marker([-8.708337,115.185124],{icon: icons, title: 'Pura Goa Gong',alt:'Pura Goa Gong'}).addTo(map).on('click', markerOnClick);
     // var marker = L.marker([-8.7105212,115.1814639],{icon: icons, title: 'Pura Goa Gong'}).addTo(map).on('click', markerOnClick);
     // markers.addLayer(marker);
@@ -116,12 +109,12 @@ $(document).ready(function(){
                 var modal = document.getElementById('panoramaModal');
                 
                 $('#myPano'+response[i].id).click(function(){
-                  modal.style.display = "block";
-                  var imagin = this.style.backgroundImage.replace('url("','').replace('")','');
-                  $("#myModalPanos").pano({
+                    modal.style.display = "block";
+                    var imagin = this.style.backgroundImage.replace('url("','').replace('")','');
+                    $("#myModalPanos").pano({
                         img: imagin,
                 });
-                  console.log(imagin)
+                    console.log(imagin)
                 })
 
                 var span = document.getElementsByClassName("close-img"+response[i].id)[0];
@@ -131,20 +124,28 @@ $(document).ready(function(){
                 }
 
                 //Maps Marker
+                map.on('click', function(){
+                    $('#sidebar-content'+response[i].id).animate({
+                        width: "0"
+                    });;
+                    $('#myElement').hide();
+                    $('#myElement2').hide();
+                })
+
                 function markerOnClick(e) {
-                    $('#sidebar'+response[i].id).animate({
+                    $('#sidebar-content'+response[i].id).animate({
                         width: "360px"
                     });;;
-                    map.setView([response[i].longitude,response[i].latitude],map.getZoom());
+                    map.setView([response[i].latitude, response[i].longitude],map.getZoom());
                 }
 
                 var icons = L.divIcon({
                     iconSize:null,
                     html:'<div class="map-label"><img src="/user_img/temple-icon.png" width="30px"></img><div class="map-label-content">'+response[i].temple_name+'</div></div>'
                 });
-                marker = L.marker([response[i].longitude,response[i].latitude],{icon: icons}).on('click', markerOnClick)
+                marker = L.marker([response[i].latitude, response[i].longitude],{icon: icons}).on('click', markerOnClick)
                 markers.addLayer(marker);
-                // console.log(response[i].id)
+                console.log(response)
             });
         },
         error: function(e){

@@ -117,7 +117,6 @@
     top: 0;
     left: -300px;
     z-index: 3;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   
   .sidebar-wrapper ul {
@@ -133,10 +132,12 @@
   /*----------------sidebar-content----------------*/
   
   .sidebar-content {
-    max-height: calc(100% - 10px);
-    height: calc(100% - 10px);
+    height: 100%;
     overflow-y: auto;
-    position: relative;
+    position: absolute;
+    background: #ffffff;
+    z-index: 999;
+
   }
 
   /* .sidebar-content:hover{
@@ -418,7 +419,7 @@
   /*-----------------------------chiller-theme-------------------------------------------------*/
   
   .chiller-theme .sidebar-wrapper {
-      background: #ffffff;
+      /* background: #ffffff; */
       /* border-right: 0.1rem solid #1e2229; */
   }
   
@@ -612,7 +613,7 @@
     text-decoration: none;
   }
   
-  /* .loading * {
+  .loading * {
     display: none;
   }
   
@@ -622,7 +623,7 @@
     overflow: hidden;
     position: absolute;
     left: 50%;
-    top: 30%;
+    top: 20%;
     margin-left: -4px;
     margin-top: -4px;
     text-indent: -9999px;
@@ -685,7 +686,7 @@
     z-index: -1;
     pointer-events: none;
     transform: scale(0);
-  } */
+  }
 
   .pano {
     width: 100%;
