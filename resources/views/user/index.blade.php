@@ -17,6 +17,7 @@
     <!--Sidebar-->
     <nav id="sidebar" class="sidebar-wrapper bg-white loading">
         @foreach($marker as $data)
+        @if($data->count('id') != null)
         <!-- Main Sidebar-->
         <div class="dots-loader"></div>
         <div id="sidebar-content{{$data->id}}" class="sidebar-content" >
@@ -146,6 +147,7 @@
                 <p class="mb-0"><i class="fas fa-landmark fa-sm mb-2"></i><span class="mx-1"></span> Deskripsi :</p>
             </div>
         </div>
+        @endif
         @endforeach
     </nav>
 

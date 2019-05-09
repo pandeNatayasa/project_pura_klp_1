@@ -88,7 +88,14 @@ class UserController extends Controller
     }
 
     public function dropzone(Request $request){
-        $temple_id = Temple::max('id');
+        $temple = new Temple;
+        $temple->temple_name = $request->name;
+        $temple->user_id = '1';
+        $temple->temple_type_id = '1';
+        $temple->sub_district_id = '1';
+        $temple->save();
+
+        $temple_id = $temple->id;
         $file = $request->file('file');
         
         if($file){
@@ -102,6 +109,6 @@ class UserController extends Controller
             ]);
         }
 
-        return $imagePath;
+        return ;
     }
 }
