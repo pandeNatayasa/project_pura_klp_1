@@ -41,13 +41,12 @@ class TempleController extends Controller
     {
         $province = Province::all();
         $temple_type = TempleType::all();
-        $temple_priest = TemplePriest::all();
         $rahinan = Rahinan::all();
         $sasih = Sasih::all();
         $wuku = Wuku::all();
         $saptawara = Saptawara::all();
         $pancawara = Pancawara::all();
-        return view('member.temple.add_temple',compact('province','temple_type','temple_priest','rahinan','sasih','wuku','saptawara','pancawara'));
+        return view('member.temple.add_temple',compact('province','temple_type','rahinan','sasih','wuku','saptawara','pancawara'));
     }
 
     public function fetch(Request $request)
@@ -131,14 +130,6 @@ class TempleController extends Controller
             $new_odalan->save();
         }
 
-        // Save priest of temple
-        $new_priest = new TemplePriest();
-        $new_priest->priest_name = $request->priest_name;
-        $new_priest->address = $request->address_priest;
-        $new_priest->phone = $request->priest_phone;
-        $new_priest->save();
-
-
         // Save into temple table
         $new = new Temple();
         $new->temple_name = $request->temple_name;
@@ -148,11 +139,13 @@ class TempleController extends Controller
         $new->odalan_type = $request->odalan_type;
         $new->user_id = Auth::id();
         $new->validate_status = '0';
-        $new->temple_priest_id = $new_priest->id;
         $new->sub_district_id = $request->sub_district;
         $new->description = $request->description;
         $new->latitude = $request->latitude;
         $new->longitude = $request->longitude;
+        $new->priest_name = $request->priest_name;
+        $new->priest_address = $request->address_priest;
+        $new->priest_phone = $request->priest_phone;
         $new->save();
 
         $temple_id = $new->id;

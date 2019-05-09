@@ -115,8 +115,8 @@ $(document).ready(function(){
     // mymap.on('click', onMapClick);
 
     mymap.on('mousemove',function(e){
-        $("#latitude").val(e.latlng.lat);
-        $("#longitude").val(e.latlng.lng);
+        $("#show_latitude").val(e.latlng.lat);
+        $("#show_longitude").val(e.latlng.lng);
     });
 
     mymap.on('click',function(e){
@@ -125,8 +125,12 @@ $(document).ready(function(){
         }
 
         marker = L.marker(e.latlng).addTo(mymap);
-        document.getElementById("latitude").value = marker.lat; 
-        document.getElementById("longitude").value = marker.lng; 
+        document.getElementById("latitude").value = e.latlng.lat; 
+        document.getElementById("longitude").value = e.latlng.lng; 
+
+        if (marker) {
+            document.getElementById("select_position").disabled = false;
+        }
     });
 
 });

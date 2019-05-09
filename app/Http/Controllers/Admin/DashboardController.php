@@ -13,6 +13,12 @@ use App\OdalanWuku;
 use App\Province;
 use App\City;
 use App\SubDistrict;
+use App\TempleType;
+use App\Rahinan;
+use App\Wuku;
+use App\Sasih;
+use App\Pancawara;
+use App\Saptawara;
 
 class DashboardController extends Controller
 {
@@ -36,7 +42,6 @@ class DashboardController extends Controller
       ->where('temples.validate_status','!=','1')
       ->select('temples.*', 'temple_images.image_name')
       ->join('temple_images', 'temple_images.temple_id', '=', 'temples.id')
-      ->where('temples.validate_status','!=','1')
       ->get();
 
     // return $temples;
@@ -85,5 +90,35 @@ class DashboardController extends Controller
   	// $sub_districts = SubDistrict::all();
 
   	return view('admin.temple_detail',compact('temple','temple_images','odalan'));
+  }
+
+  public function update_temple($id)
+  {
+  	$temple = Temple::find($id);
+  	$temple_images = TempleImage::where('temple_id','=',$temple->id)->get();
+
+  	// Get odalan fit with odalan type
+  	if ($temple->odalan_type == "sasih") {
+  		// When odalan_type is sasih then select into odalan_sasih table
+  		$odalan = OdalanSasih::find($temple->odalan_id);
+  	}elseif ($temple->odalan_type = "wuku") {
+  		// When odalan_type is wuku, then select into odalan_wuku_table
+  		$odalan = OdalanWuku::find($temple->odalan_id);
+  	}
+
+
+  	// $provinces = Province::all();
+  	// $cities = City::all();
+  	// $sub_districts = SubDistrict::all();
+
+  	$type = TempleType::all();
+  	$provinces = Province::all();
+  	$rahinan = Rahinan::all();
+    $sasih = Sasih::all();
+    $wuku = Wuku::all();
+    $saptawara = Saptawara::all();
+    $pancawara = Pancawara::all();
+
+  	return view('admin.update_temple',compact('temple','temple_images','odalan','type','provinces','rahinan','sasih','wuku','saptawara','pancawara'));	
   }
 }

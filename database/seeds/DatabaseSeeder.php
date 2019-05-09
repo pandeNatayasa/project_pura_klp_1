@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SaptawaraSeeder::class);
         $this->call(SasihSeeder::class);
         $this->call(SubDistrictSeeder::class);
-        $this->call(TemplePriestSeeder::class);
         $this->call(TempleTypeSeeder::class);
         $this->call(WukuSeeder::class);
         // $this->call(UsersTableSeeder::class);

@@ -85,5 +85,6 @@ Route::get('/admin/validate', 'Admin\DashboardController@show_list_temple_valida
 Route::get('/admin/verify-accept-temple/{id}','Admin\DashboardController@verify_accept_temple');
 Route::get('/admin/verify-reject-temple/{id}','Admin\DashboardController@verify_reject_temple');
 Route::get('/admin/temple-detail/{id}','Admin\DashboardController@show_temple_detail')->name('show_temple_detail');
+Route::get('/admin/update-temple/{id}','Admin\DashboardController@update_temple')->name('admin.update_temple');
 
 

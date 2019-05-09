@@ -15,21 +15,17 @@
     <div class="card">
         <div class="card-header">
             <div class="float-left">
-                <a href="/" style="color:black"><i class="fa fa-arrow-left"></i></a>
+                <a href="{{ route('show_list_temple_validate') }}" style="color:black"><i class="fa fa-arrow-left"></i></a>
                 {{-- window.history.go(-1); return false; --}}
             </div>
             <div class="text-center">
-                TAMBAH LOKASI PURA
+                UPDATE DATA PURA
             </div> 
         </div>  
         <div class="card-body">
             <div class="container col-md-10">
               <!-- Form List Gambar-->
-            <form action="{{route('temple.store')}}" method="POST" class="dropzone dz-clickable mb-5" id="addImages" enctype="multipart/form-data">
-                {{csrf_field()}}
-                <div class="dz-default dz-message m-5"><span>Drop/Click here to upload images</span></div>
-              </form>
-                <form class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" accept-charset="utf-8" method="POST" action="{{route('temple.store')}}">
+                <form class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" accept-charset="utf-8" method="POST" >
                     {{ csrf_field() }}
                     @if($message =    Session::get('success'))
                       <div class="alert alert-success alert-dismissible">
@@ -48,7 +44,7 @@
                     <div class="form-group row">
                         <label for="inputNamePura" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Nama Pura<span class="required">*</span></label>
                         <div class="col-sm-9 col-md-9 col-xs-12">
-                            <input type="text" class="form-control " id="temple_name" name="temple_name" required>
+                            <input type="text" class="form-control " id="temple_name" name="temple_name" required value="{{ $temple->temple_name }}" >
                         </div>
                     </div>
 
@@ -59,7 +55,11 @@
                             <select class="form-control " required="required" id="temple_type_id" name="temple_type_id">
                             <option value="" disabled selected>Pilih Jenis Pura</option>
                             @foreach($type as $data)
-                              <option value="{{$data->id}}">{{$data->type_name}}</option>
+                              @if ($data->id == $temple->TempleType->id)
+                                <option value="{{$data->id}}" selected>{{$data->type_name}}</option>
+                              @else
+                                <option value="{{$data->id}}">{{$data->type_name}}</option>  
+                              @endif
                             @endforeach
                             </select>
                         </div>
@@ -69,7 +69,7 @@
                     <div class="form-group row">
                         <label for="inputNamePemangku" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Pemangku<span class="required">*</span></label>
                         <div class="col-10 col-sm-8 col-md-8 col-xs-12 pr-0">
-                            <input type="text" class="form-control" id="priest_name" name="priest_name" required>
+                            <input type="text" class="form-control" id="priest_name" name="priest_name" required value="{{ $temple->priest_name }}">
                         </div>
                         <div class="col-2 col-sm-1 text-center">
                             <button id="btn-detail-pemangku" class="btn btn-defaultp-0" type="button"> <i class="fa fa-chevron-up"></i></button>
@@ -81,13 +81,13 @@
                         <span class="col-sm-3 col-md-3"></span>
                         <label for="inputAlamatPemangku" class="col-sm-2 col-md-2 col-xs-12 col-form-label">Alamat<span class="required">*</span></label>
                         <div class="col-sm-7 col-md-7 col-xs-12 mb-2">
-                            <input type="text" class="form-control" id="address_priest" name="address_priest" required>
+                            <input type="text" class="form-control" id="address_priest" name="address_priest" required value="{{ $temple->priest_address }}">
                         </div>
                         <br/>
                         <span class="col-sm-3 col-md-3"></span>
                         <label for="inputNoTelp" class="col-sm-2 col-md-2 col-xs-12 col-form-label">No Telp<span class="required">*</span></label>
                         <div class="col-sm-7 col-md-7 col-xs-12">
-                            <input type="text" class="form-control" id="priest_phone" name="priest_phone" required>
+                            <input type="text" class="form-control" id="priest_phone" name="priest_phone" required value="{{ $temple->priest_phone }}">
                         </div>
                     </div>
 
@@ -95,7 +95,7 @@
                     <div class="form-group row">
                         <label for="inputAlamatPura" class="col-sm-3 col-md-3 col-xs-12 col-form-label" >Alamat Pura <span class="required">*</span></label>
                         <div class="col-10 col-sm-8 col-md-8 col-xs-12 pr-0">
-                            <input type="text" class="form-control" id="inputAlamatPura" name="address" required>
+                            <input type="text" class="form-control" id="inputAlamatPura" name="address" required value="{{ $temple->address }}">
                         </div>
                         <div class="col-2 col-sm-1 text-center">
                             <button data-toggle="modal" data-target="#modal_add_location" class="btn btn-default bg-white p-0"> <img src="/user_img/maps.png" width="35" alt=""></button>
@@ -108,8 +108,12 @@
                         <div class="col-md-9 col-sm-9 col-xs-12">
                             <select class="form-control dynamic" required="required" id="province" name="province" data-dependent="city">
                             <option value="" disabled selected>Pilih Provinsi</option>
-                            @foreach($province as $data)
-                              <option value="{{$data->id}}">{{$data->province_name}}</option>
+                            @foreach($provinces as $data)
+                              @if ($data->id == $temple->SubDistrict->City->province_id)
+                                <option value="{{$data->id}}" selected>{{$data->province_name}}</option>  
+                              @else
+                                <option value="{{$data->id}}">{{$data->province_name}}</option>
+                              @endif
                             @endforeach
                             </select>
                         </div>
@@ -142,8 +146,8 @@
                             <div class="col-md-9 col-sm-9 col-xs-12 inline-group">
                               <!-- Tab links -->
                               <div class="tab">
-                                <div class="radio-inline input-odalan"><input type="radio" name="odalan_type" id="odalan_sasih" value="sasih" onclick="openOdalanType(event, 'Sasih')"> Sasih</div>
-                                <div class="radio-inline input-odalan"><input type="radio" name="odalan_type" id="odalan_wuku" value="wuku" onclick="openOdalanType(event, 'Wuku')"> Wuku</div>
+                                <div class="radio-inline input-odalan"><input type="radio" name="odalan_type" id="odalan_sasih" value="sasih" onclick="openOdalanType(event, 'Sasih')" @if ($temple->odalan_type="sasih") checked @endif > Sasih</div>
+                                <div class="radio-inline input-odalan"><input type="radio" name="odalan_type" id="odalan_wuku" value="wuku" onclick="openOdalanType(event, 'Wuku')" @if ($temple->odalan_type=="wuku") checked @endif > Wuku</div>
                                 <!-- <button class="tablinks" onclick="openCity(event, 'Sasih')">Sasih</button>
                                 <button class="tablinks" onclick="openCity(event, 'Wuku')">Wuku</button> -->
                               </div>  
@@ -219,7 +223,14 @@
                     <div class="form-group row">
                         <label for="inputDescription" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Deskripsi<span class="required">*</span></label>
                         <div class="col-sm-9 col-md-9 col-xs-12">
-                            <textarea type="text" class="form-control" id="inputDescription" name="description"></textarea>
+                            <textarea type="text" class="form-control" id="inputDescription" name="description">{{ $temple->description }}</textarea>
+                        </div>
+                    </div>
+                    <!-- Form Deskripsi Pura-->
+                    <div class="form-group row">
+                        <label for="inputDescription" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Posisi pada Map<span class="required">*</span></label>
+                        <div class="col-sm-9 col-md-9 col-xs-12">
+                            
                         </div>
                     </div>
 
@@ -254,7 +265,7 @@
                     <input type="hidden" name="latitude" id="latitude" value="">
                     <input type="hidden" name="longitude" id="longitude" value="">
                     <!-- Button Submit-->
-                    <button id="addTemple" type="submit" class="btn btn-primary btn-block">Tambahkan</button>
+                    <button id="addTemple" type="submit" class="btn btn-primary btn-block">Perbaharui</button>
                 </form>
             </div>
             

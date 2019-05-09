@@ -9,6 +9,11 @@
 
     <title>Validasi</title>
 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+    crossorigin=""></script>
+
     <!-- Bootstrap -->
     <link type="text/css" href="{{ asset('public_admin/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
     <!--Font Awesome -->
@@ -17,7 +22,7 @@
     <!-- Custom Theme Style -->
     <link type="text/css" href="{{ asset('public_admin/build/css/custom.css') }}" rel="stylesheet">
 
-    <link href="{{asset('admin/build/css/button_on_off.css')}}" rel="stylesheet">
+    <link href="{{asset('public_admin/build/css/button_on_off.css')}}" rel="stylesheet">
     <style type="text/css">
       /* Style the tab */
       .tab {
@@ -45,7 +50,7 @@
         border: 1px solid #ccc;
         border-top: none;
       }
-      #mymap {top: 10px;bottom: 10px;height: 300px;}
+      #mymap {top: 10px; margin-bottom: 20px;height: 300px;}
     </style>
 
     <!-- This is css and js for map to enable add position on map -->
@@ -75,7 +80,7 @@
     <div class="clearfix"></div>
 
     <div class="row">
-      <div class="col-md-offset-2 col-sm-offset-1 col-md-8 col-sm-10 col-xs-12">
+      <div class="col-md-offset-1 col-sm-offset-1 col-md-10 col-sm-10 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
             <h2>Detail Data Pura | Admin <!-- <small>sub title</small> --></h2>
@@ -104,7 +109,7 @@
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <select class="form-control" required="required" id="temple_priest_id" name="temple_priest_id">
-                    <option value="{{ $temple->TemplePriest->id }}" selected>{{ $temple->TemplePriest->priest_name }}</option>  
+                    <option value="{{ $temple->id }}" selected>{{ $temple->priest_name }}</option>  
                   </select>
                 </div>
               </div>
@@ -209,7 +214,7 @@
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="col-md-12 col-xs-12 " >
-                      <img id="image_1" src="{{ $data->image_name }}" class="col-md-offset-3 col-md-5 " style="margin-bottom: 5px; ">
+                      <img id="image_1" src="{{ asset($data->image_name) }}" class="col-md-offset-3 col-md-5 " style="margin-bottom: 5px; ">
                     </div>
                   </div>  
                 </div>
@@ -218,13 +223,30 @@
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Posisi pada map <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <button type="button" class="btn btn-primary" id="map_position" name="map_position" data-toggle="modal" data-target="#modal_add_location"> Posisi pada Map</button>
+                  <div class="item form-group" >
+                    <div id="mymap" class="col-md-12 col-sm-12 col-xs-12">
+                    </div>
+                  </div>
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Latitude <span class="required">*</span>
+                    </label>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                      <input type="text" id="latitude" name="latitude" disabled value="{{ $temple->latitude }}" class="form-control col-md-6 col-xs-12">
+                    </div>
+                  </div>
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Longitude <span class="required">*</span>
+                    </label>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                      <input type="text" id="longitude" name="longitude" disabled value="{{ $temple->longitude }}" class="form-control col-md-6 col-xs-12">
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="ln_solid"></div>
               <div class="form-group">
-                <div class="col-md-6 col-md-offset-3">
-                  <button id="send" type="submit" class="btn btn-success">Edit</button>
+                <div class="col-md-2 col-md-offset-10">
+                  <a href="{{ route('admin.update_temple',$temple->id) }}"><button id="send" type="submit" class="btn btn-block btn-success">Edit</button></a>
                 </div>
               </div>
             </form>
@@ -234,70 +256,26 @@
     </div>
   </div>
 
-  <!-- Modal Edit Shipping Cost-->
-  <div class="modal fade" id="modal_add_location" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" >Posisi Pada Map</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form class="form-horizontal form-label-left">
-            <div class="item form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12" >Latitude <span class="required">*</span>
-              </label>
-              <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="latitude" name="latitude" disabled placeholder="ex: 119.023365" value="" class="form-control col-md-6 col-xs-12">
-              </div>
-            </div>
-            <div class="item form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12" >Longitude <span class="required">*</span>
-              </label>
-              <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="longitude" name="longitude" disabled placeholder="ex: 119.023365" value="" class="form-control col-md-6 col-xs-12">
-              </div>
-            </div>
-            <div class="item form-group" >
-              <label class="control-label col-md-3 col-sm-3 col-xs-12" >Tekan pada map ini <span class="required">*</span>
-              </label>
-              <div id="mymap" class="col-md-12 col-sm-12 col-xs-12">
-                
-              </div>
-            </div>
-            <div class="ln_solid"></div>
-            <div class="form-group">
-              <div class="col-md-2 col-md-offset-10 col-sm-4 col-sm-offset-">
-                <button id="selected" type="button" class="btn btn-success" data-dismiss="modal">Pilih</button>
-              </div>
-            </div>
-          </form>                         
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- End of Modal Edit Shipping Cost -->
-<!-- /page content -->
+  <!-- /page content -->
   <script src="{{asset('public_admin/vendors/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{asset('public_admin/vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
   <script src="{{ asset('public_admin/build/js/custom.js') }}" type="text/javascript"></script>
   <script type="text/javascript" charset="utf8" src="{{asset('public_admin/vendors/datatables/datatables.min.js')}}"></script>
 	<!-- validator -->
-  <script src="{{asset('admin/vendors/validator/validator.js')}}"></script>
+  <script src="{{asset('public_admin/vendors/validator/validator.js')}}"></script>
 
   <script type="text/javascript">
     $(document).ready(function(){
-    // Javascript of modal to add location on map
-    $('#modal_add_location').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget) 
-      // var judul = button.data('judul') 
+      // Javascript of modal to add location on map
+      $('#modal_add_location').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) 
+        // var judul = button.data('judul') 
 
-      // var modal = $(this)
-      // modal.find('.modal-body #judul').val(judul)
-      // modal.find('.modal-body #deskripsi_singkat').text(deskripsi_singkat)
-      // modal.find('.modal-body #image').attr('src',image)
+        // var modal = $(this)
+        // modal.find('.modal-body #judul').val(judul)
+        // modal.find('.modal-body #deskripsi_singkat').text(deskripsi_singkat)
+        // modal.find('.modal-body #image').attr('src',image)
+      });
     });
     // End of modal
 
