@@ -15,11 +15,11 @@
 @section('context')
     <div class="page-wrapper chiller-theme toggled">
     <!--Sidebar-->
-    @foreach($marker as $data)
-    <nav id="sidebar{{$data->id}}" class="sidebar-wrapper loading">
+    <nav id="sidebar" class="sidebar-wrapper loading">
+        @foreach($marker as $data)
         <!-- Main Sidebar-->
         <div class="dots-loader"></div>
-        <div class="sidebar-content">
+        <div id="sidebar-content{{$data->id}}" class="sidebar-content">
         <div class="sidebar-menu">
             <div id="carouselElement" class="carousel slide">
                 <div class="carousel-inner">
@@ -146,8 +146,8 @@
                 <p class="mb-0"><i class="fas fa-landmark fa-sm mb-2"></i><span class="mx-1"></span> Deskripsi :</p>
             </div>
         </div>
+        @endforeach
     </nav>
-    @endforeach
 
     <!-- Main Content -->
     <main class="page-content p-0" style="height:100%">

@@ -15,7 +15,7 @@ $(document).ready(function(){
 
 
     $("#close-sidebar").click(function() {
-        $(".sidebar-wrapper").animate({
+        $(".sidebar-content").animate({
             width: "0"
         });
         $('#myElement').hide();
@@ -54,10 +54,10 @@ $(document).ready(function(){
         $(this).addClass('active');
     });
 
-    // setTimeout(function() {
-    // $('#sidebar')
-    //     .removeClass('loading')
-    //     .addClass('loaded')
-    // }, 3000);
+    setTimeout(function() {
+    $('#sidebar')
+        .removeClass('loading')
+        .addClass('loaded')
+    }, 3000);
 
 });

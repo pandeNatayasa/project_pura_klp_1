@@ -157,15 +157,17 @@ class TempleController extends Controller
 
         $temple_id = $new->id;
         
-        // $image = new TempleImage;
-        // $file = $request->file('file');
+        $image = new TempleImage;
+        $file = $request->file('file');
+        // $extension = $file->getClientOriginalExtension();
         // $imageName = $file->getClientOriginalName();
         // $file->move('img',$imageName);
+        $imageName = str_random(12);
 
-        // $imagePath =  "img/$imageName";
-        // $image->image_name = $imagePath;
-        // $image->temple_id = $temple_id;
-        // $image->save();
+        $imagePath =  "img/$imageName";
+        $image->image_name = $imagePath;
+        $image->temple_id = $temple_id;
+        $image->save();
 
         // return "done";
 

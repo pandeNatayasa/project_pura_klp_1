@@ -117,7 +117,6 @@
     top: 0;
     left: -300px;
     z-index: 3;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   
   .sidebar-wrapper ul {
@@ -136,7 +135,10 @@
     max-height: calc(100% - 10px);
     height: calc(100% - 10px);
     overflow-y: auto;
-    position: relative;
+    position: absolute;
+    background: #ffffff;
+    z-index: 1;
+
   }
 
   /* .sidebar-content:hover{
@@ -418,7 +420,7 @@
   /*-----------------------------chiller-theme-------------------------------------------------*/
   
   .chiller-theme .sidebar-wrapper {
-      background: #ffffff;
+      /* background: #ffffff; */
       /* border-right: 0.1rem solid #1e2229; */
   }
   
@@ -611,8 +613,8 @@
   a:hover{
     text-decoration: none;
   }
-  
-  /* .loading * {
+/*   
+  .loading * {
     display: none;
   }
   
