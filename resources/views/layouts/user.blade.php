@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Maps Temple">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="_token" content="{{ csrf_token() }}" />
     <title>Temple Information</title>
     <!-- Icon -->
     <link rel="icon" href="user_img/temple-icon.png">
@@ -37,7 +37,7 @@
     <script>
     $.ajaxSetup({
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
         }
     });
 

@@ -15,11 +15,11 @@
 @section('context')
     <div class="page-wrapper chiller-theme toggled">
     <!--Sidebar-->
-    <nav id="sidebar" class="sidebar-wrapper loading">
+    <nav id="sidebar" class="sidebar-wrapper bg-white loading">
         @foreach($marker as $data)
         <!-- Main Sidebar-->
         <div class="dots-loader"></div>
-        <div id="sidebar-content{{$data->id}}" class="sidebar-content">
+        <div id="sidebar-content{{$data->id}}" class="sidebar-content" >
         <div class="sidebar-menu">
             <div id="carouselElement" class="carousel slide">
                 <div class="carousel-inner">

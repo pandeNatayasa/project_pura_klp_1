@@ -25,11 +25,10 @@
         <div class="card-body">
             <div class="container col-md-10">
                 <!-- Form List Gambar-->
-                <form action="{{route('temple.store')}}" method="POST" class="dropzone dz-clickable mb-5" id="addImages" enctype="multipart/form-data">
-                  {{csrf_field()}}
+                <form class="dz-clickable mb-5 dropzone"  id="addImages" method="POST" action="{{route('temple.store')}}">
                   <div class="dz-default dz-message m-5"><span>Drop/Click here to upload images</span></div>
                 </form>
-                <form class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" accept-charset="utf-8" method="POST" action="{{route('temple.store')}}">
+                <form class="form-horizontal form-label-left" accept-charset="utf-8" method="POST" action="{{route('temple.store')}}">
                     {{ csrf_field() }}
                     @if($message =    Session::get('success'))
                       <div class="alert alert-success alert-dismissible">
@@ -254,7 +253,7 @@
                     <input type="hidden" name="latitude" id="latitude" value="">
                     <input type="hidden" name="longitude" id="longitude" value="">
                     <!-- Button Submit-->
-                    <button id="addTemple" type="submit" class="btn btn-primary btn-block">Tambahkan</button>
+                    <button  type="submit" id="addTemple" class="btn btn-primary btn-block">Tambahkan</button>
                 </form>
             </div>
             
@@ -321,7 +320,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="/event-upload" class="dropzone dz-clickable mb-5" id="addImages" enctype="multipart/form-data">
+          <form action="/event-upload" class="dropzone dz-clickable mb-5" id="addImagesElement" enctype="multipart/form-data">
             <div class="dz-default dz-message m-5"><span>Drop/Click here to upload images</span></div>
           </form>
           <form class="form-horizontal form-label-left">
@@ -372,23 +371,27 @@
      Dropzone.options.addImages = {
         autoProcessQueue: false,
         url: '{{route("temple.store")}}',
+        paramName: 'file',
+        uploadMultiple: true,
         init: function () {
 
             var myDropzone = this;
 
             // Update selector to match your button
-            $("#uploadButton").click(function (e) {
-                e.preventDefault();
-                myDropzone.processQueue();
+            $("#adddTemple").on("click", function(e) {
+              // Make sure that the form isn't actually being sent.
+              e.preventDefault();
+              e.stopPropagation();
+              myDropzone.processQueue();
             });
 
             this.on('sending', function(file, xhr, formData) {
                 // Append all form inputs to the formData Dropzone will POST
                 var data = $('#addImages').serializeArray();
                 $.each(data, function(key, el) {
-                    // formData.append(el.name, el.value);
-                    console.log(el)
+                    formData.append(el.name, el.value);
                 });
+                console.log(data)
             });
         }
     }

@@ -136,14 +136,14 @@ $(document).ready(function(){
                     $('#sidebar-content'+response[i].id).animate({
                         width: "360px"
                     });;;
-                    map.setView([response[i].longitude,response[i].latitude],map.getZoom());
+                    map.setView([response[i].latitude, response[i].longitude],map.getZoom());
                 }
 
                 var icons = L.divIcon({
                     iconSize:null,
                     html:'<div class="map-label"><img src="/user_img/temple-icon.png" width="30px"></img><div class="map-label-content">'+response[i].temple_name+'</div></div>'
                 });
-                marker = L.marker([response[i].longitude,response[i].latitude],{icon: icons}).on('click', markerOnClick)
+                marker = L.marker([response[i].latitude, response[i].longitude],{icon: icons}).on('click', markerOnClick)
                 markers.addLayer(marker);
                 console.log(response)
             });

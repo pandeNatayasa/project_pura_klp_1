@@ -56,7 +56,7 @@ $(document).ready(function(){
 
     setTimeout(function() {
     $('#sidebar')
-        .removeClass('loading')
+        .removeClass('bg-white loading')
         .addClass('loaded')
     }, 3000);
 

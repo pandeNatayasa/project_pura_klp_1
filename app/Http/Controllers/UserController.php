@@ -88,6 +88,7 @@ class UserController extends Controller
     }
 
     public function dropzone(Request $request){
+        $temple_id = Temple::max('id');
         $file = $request->file('file');
         
         if($file){
@@ -96,7 +97,8 @@ class UserController extends Controller
                     $file->move('img',$imageName),
 
                     $imagePath =  "img/$imageName",
-                    'image_name' => $imagePath
+                    'image_name' => $imagePath,
+                    'temple_id' => $temple_id
             ]);
         }
 
