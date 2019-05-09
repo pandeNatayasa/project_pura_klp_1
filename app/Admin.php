@@ -34,4 +34,8 @@ class Admin extends Authenticatable
   {
     $this->notify(new AdminResetPaswordNotification($token));
   }
+
+  public function Temple(){
+    return $this->hashMany('App\Temple');
+  }
 }

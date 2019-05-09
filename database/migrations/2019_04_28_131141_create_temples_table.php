@@ -27,7 +27,9 @@ class CreateTemplesTable extends Migration
             $table->unsignedInteger('admin_id')->nullable();
             $table->enum('validate_status',['0','1','2']); // 0=not validate, 1=validate, 2=reject
             $table->datetime('date_validate')->nullable();
-            $table->unsignedInteger('temple_priest_id')->nullable();
+            $table->string('priest_name',255);
+            $table->text('priest_address');
+            $table->string('priest_phone',20);
             $table->unsignedInteger('sub_district_id');
             $table->timestamps();
 
@@ -35,7 +37,6 @@ class CreateTemplesTable extends Migration
             $table->foreign('temple_type_id')->references('id')->on('temple_types');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('admin_id')->references('id')->on('admins');
-            $table->foreign('temple_priest_id')->references('id')->on('temple_priests');    
             $table->foreign('sub_district_id')->references('id')->on('sub_districts');    
         });
     }

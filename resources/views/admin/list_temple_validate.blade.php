@@ -79,8 +79,8 @@
                           <td>{{ $data->address }}</td>
                           <td>{{ $data->User->name }}</td>
                           <td>
-                            <a href=""><button class="btn btn-info " data-toggle="tooltip" data-placement="right" title="Detail Pura"><i class="fa fa-eye"></i></button></a>
-                            <button class="btn btn-primary " name="temple_edit" data-toggle="tooltip" data-placement="right" title="Edit"><i class="fa fa-edit"></i></button>
+                            <a href="{{ route('show_temple_detail',$data->id) }}"><button class="btn btn-info " data-toggle="tooltip" data-placement="right" title="Detail Pura"><i class="fa fa-eye"></i></button></a>
+                            <a href="{{ route('admin.update_temple',$data->id) }}"><button class="btn btn-primary " name="temple_edit" data-toggle="tooltip" data-placement="right" title="Edit"><i class="fa fa-edit"></i></button></a> 
                             <button class="btn btn-danger " data-temple_id="{{ $data->id }}" data-temple_name="{{ $data->temple_name }}" data-toggle="modal"  name="confirm_delete" data-target="#modal_confirm_delete" data-toggle="tooltip" data-placement="right" title="Delete"><i class="fa fa-trash"></i></button>
                           </td>
                           <td>
