@@ -18,6 +18,10 @@ class Temple extends Model
         return $this->belongsTo('App\TempleType','temple_type_id');
     }
 
+    public function Admin(){
+        return $this->belongsTo('App\Admin','admin_id');
+    }
+
     public function User()
     {
     	return $this->belongsTo('App\User','user_id');
@@ -26,6 +30,15 @@ class Temple extends Model
     public function TempleImage()
     {
     	return $this->hashMany('Add\TempleImage');
+    }
+
+    public function TempleDetail(){
+        return $this->hashMany('App\TempleDetail');
+    }
+
+    public function SubDistrict()
+    {
+        return $this->belongsTo('App\SubDistrict','sub_district_id');
     }
 
     // public function image_temple(){
