@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Temple extends Model
 {    
-    public function TempleType(){
+    public function templeType(){
         return $this->belongsTo('App\TempleType','temple_type_id');
     }
 

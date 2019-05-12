@@ -125,7 +125,7 @@ $(document).ready(function(){
 
                 //Maps Marker
                 map.on('click', function(){
-                    $('#sidebar-content'+response[i].id).animate({
+                    $('.sidebar-wrapper').animate({
                         width: "0"
                     });;
                     $('#myElement').hide();
@@ -133,7 +133,7 @@ $(document).ready(function(){
                 })
 
                 function markerOnClick(e) {
-                    $('#sidebar-content'+response[i].id).animate({
+                    $('.sidebar-wrapper').animate({
                         width: "360px"
                     });;;
                     map.setView([response[i].latitude, response[i].longitude],map.getZoom());

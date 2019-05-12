@@ -134,9 +134,7 @@
   .sidebar-content {
     height: 100%;
     overflow-y: auto;
-    position: absolute;
     background: #ffffff;
-    z-index: 999;
 
   }
 
