@@ -18,6 +18,7 @@
 Auth::routes();
 Route::get('/member/login', 'Auth\LoginController@showLoginForm2')->name('member.login');
 Route::get('/member/register', 'Auth\RegisterController@showRegisterForm2')->name('member.register');
+Route::post('/member/register', 'Auth\RegisterController@register_member')->name('member.register');
 Route::get('/member/activation/{token}','Auth\RegisterController@userActivation');
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -61,10 +62,11 @@ Route::resource('/admin/rahinan','Admin\RahinanController');
 Route::resource('/admin/temple-type','Admin\TempleTypeController');
 
 // User
-Route::get('/', 'UserController@maps');
-Route::get('/user/add_temple', 'UserController@add_temple')->name('add_temple');
+Route::get('/', 'LandingController@maps')->name('landing');
+Route::get('/user', 'UserController@maps')->name('user');
+Route::get('/user/add-temple', 'UserController@add_temple')->name('add_temple');
 Route::post('/fetch_data','UserController@fetch')->name('fetch_data');
-Route::get('/loadMarker','UserController@loadMarker');
+Route::get('/loadMarker','LandingController@loadMarker');
 Route::post('/dropzone','UserController@dropzone')->name('dropzone');
 Route::get('/user/profile','UserController@profile')->name('user.profile');
 
@@ -72,7 +74,7 @@ Route::get('/user/profile','UserController@profile')->name('user.profile');
 Route::resource('/temple-type','Admin\TempleTypeController');
 
 // TEMPLE 
-Route::resource('/temple','TempleController');
+Route::resource('/user/temple','TempleController');
 Route::post('/fecth-location','TempleController@fetch')->name('fetch_location');
 
 // Route::get('/xxx/{username?}', function ($username) {

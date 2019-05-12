@@ -50,6 +50,19 @@
             </div>
             <form id="form-login" method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
+                @if($message =    Session::get('success'))
+                  <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <p>{{$message}}</p>
+                  </div>
+                @endif
+
+                @if($message = Session::get('warning'))
+                  <div class="alert alert-warning alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <p>{{$message}}</p>
+                  </div>
+                @endif
                 <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                     <label for="exampleInputEmail1">Alamat Email</label>
                     <input type="email" placeholder="Masukkan Alamat Email" class="form-control" id="email" name="email" aria-describedby="emailHelp"

@@ -148,42 +148,61 @@ class TempleController extends Controller
         $new->priest_phone = $request->priest_phone;
         $new->save();
 
-        $temple_id = $new->id;
+        // $temple_id = $new->id;
         
-        $file = $request->file('file');
-        TempleImage::create([
-            // $imageName = $file->getClientOriginalName(),
-            // $file->move('img',$imageName),
-            $imageName = str_random(12),
+        // $file = $request->file('file');
+        // TempleImage::create([
+        //     // $imageName = $file->getClientOriginalName(),
+        //     // $file->move('img',$imageName),
+        //     $imageName = str_random(12),
 
-            $imagePath =  "img/$imageName",
-            'image_name' => $imagePath,
-            'temple_id' => $temple_id
-        ]);
+        //     $imagePath =  "img/$imageName",
+        //     'image_name' => $imagePath,
+        //     'temple_id' => $temple_id
+        // ]);
         
 
         // return "done";
 
-        // Save image into folder and link into database
-        // $number_of_image = $request->total_semua_foto;
-        // $id_max=TempleImage::max('id');
-        // $id=$id_max +1;
-
         
-        // if ($files=$request->hasFile('file')) {
+        // if ($files=$request->hasFile('file')) { // foto_pura_1
         //     $filePic=$request->file('file');
         //     $extension = $filePic->getClientOriginalExtension();
-        //     $fileName = 'temple_image_'.$id;
-        //     $filePic->move('temple_image/',$fileName.'.'.$extension);
+            // $fileName = 'temple_image_'.$id;
+            // $filePic->move('temple_image/',$fileName.'.'.$extension);
 
-        //     $new_image = new TempleImage();
-        //     $new_image->image_name = 'temple_image/'.$fileName.'.'.$extension;
-        //     $new_image->temple_id = $new->id;
-        //     $new_image->save();
+            // $new_image = new TempleImage();
+            // $new_image->image_name = 'temple_image/'.$fileName.'.'.$extension;
+            // $new_image->temple_id = $new->id;
+            // $new_image->save();
+            
         // }
 
         // Return redirect with message success
-        return redirect()->back()->with('success','New Temple information saved successfully');
+
+        // New save Image By Nata
+        // Save image into folder and link into database
+        $number_of_image = $request->total_semua_foto;
+        $id_max=TempleImage::max('id');
+        $id=$id_max +1;
+
+        for ($i=1; $i <=$number_of_image ; $i++) {
+            if ($request->hasFile('foto_pura_'.$i)) {
+                // return "number_of_image";
+                $filePic=$request->file('foto_pura_'.$i);
+                $extension = $filePic->getClientOriginalExtension();
+                $fileName = 'temple_image_'.$id;
+                $filePic->move('temple_image/',$fileName.'.'.$extension);
+
+                $new_image = new TempleImage();
+                $new_image->image_name = 'temple_image/'.$fileName.'.'.$extension;
+                $new_image->temple_id = $new->id;
+                $new_image->save();
+            }
+            $id++;   
+        }
+
+        return redirect()->back()->with('success','Data Pura baru berhasil disimpan');
     }
 
     /**

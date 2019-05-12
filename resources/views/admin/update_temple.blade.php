@@ -141,90 +141,163 @@
 
                     <!-- Form Odalan-->
                     <div class="row form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Pinanggal Odalan <span class="required">*</span>
-                            </label></label>
-                            <div class="col-md-9 col-sm-9 col-xs-12 inline-group">
-                              <!-- Tab links -->
-                              <div class="tab">
-                                <div class="radio-inline input-odalan"><input type="radio" name="odalan_type" id="odalan_sasih" value="sasih" onclick="openOdalanType(event, 'Sasih')" @if ($temple->odalan_type="sasih") checked @endif > Sasih</div>
-                                <div class="radio-inline input-odalan"><input type="radio" name="odalan_type" id="odalan_wuku" value="wuku" onclick="openOdalanType(event, 'Wuku')" @if ($temple->odalan_type=="wuku") checked @endif > Wuku</div>
-                                <!-- <button class="tablinks" onclick="openCity(event, 'Sasih')">Sasih</button>
-                                <button class="tablinks" onclick="openCity(event, 'Wuku')">Wuku</button> -->
-                              </div>  
-                              <!-- Tab content -->
-                              <div id="Sasih" class="tabcontent">
-                                <div class="item form-group">
-                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Rahinan <span class="required">*</span>
-                                  </label>
-                                  <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select id="rahinan" name="rahinan" class="form-control" >
-                                      <option value="" disabled selected>Pilih Hari Rahinan</option>
-                                      @foreach($rahinan as $data)
-                                        <option value="{{$data->id}}">{{$data->rahinan_name}}</option>
-                                      @endforeach
-                                    </select>
-                                  </div>
-                                </div>
-                                <div class="item form-group">
-                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Sasih <span class="required">*</span>
-                                  </label>
-                                  <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select id="sasih" name="sasih" class="form-control" >
-                                      <option value="" disabled selected>Pilih Sasih</option>
-                                      @foreach($sasih as $data)
-                                        <option value="{{$data->id}}">{{$data->sasih_name}}</option>
-                                      @endforeach
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                              <div id="Wuku" class="tabcontent">
-                                <div class="item form-group">
-                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Samptawara <span class="required">*</span>
-                                  </label>
-                                  <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select id="saptawara" name="saptawara" class="form-control" >
-                                      <option value="" disabled selected>Pilih Saptawara</option>
-                                      @foreach($saptawara as $data)
-                                        <option value="{{$data->id}}" >{{$data->saptawara_name}}</option>
-                                      @endforeach
-                                    </select>
-                                  </div>
-                                </div>
-                                <div class="item form-group">
-                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Pancawara <span class="required">*</span>
-                                  </label>
-                                  <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select id="pancawara" name="pancawara" class="form-control" >
-                                      <option value="" disabled selected>Pilih Pancawara</option>
-                                      @foreach($pancawara as $data)
-                                        <option value="{{$data->id}}" >{{$data->pancawara_name}}</option>
-                                      @endforeach
-                                    </select>
-                                  </div>
-                                </div>
-                                <div class="item form-group">
-                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Wuku <span class="required">*</span>
-                                  </label>
-                                  <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select id="wuku" name="wuku" class="form-control" >
-                                      <option value="" disabled selected>Pilih Wuku</option>
-                                      @foreach($wuku as $data)
-                                        <option value="{{$data->id}}">{{$data->wuku_name}}</option>
-                                      @endforeach
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Pinanggal Odalan <span class="required">*</span>
+                      </label></label>
+                      <div class="col-md-9 col-sm-9 col-xs-12 inline-group">
+                        <!-- Tab links -->
+                        <div class="tab">
+                          <div class="radio-inline input-odalan"><input type="radio" name="odalan_type" id="odalan_sasih" value="sasih" onclick="openOdalanType(event, 'Sasih')" @if ($temple->odalan_type="sasih") checked @endif > Sasih</div>
+                          <div class="radio-inline input-odalan"><input type="radio" name="odalan_type" id="odalan_wuku" value="wuku" onclick="openOdalanType(event, 'Wuku')" @if ($temple->odalan_type=="wuku") checked @endif > Wuku</div>
+                          <!-- <button class="tablinks" onclick="openCity(event, 'Sasih')">Sasih</button>
+                          <button class="tablinks" onclick="openCity(event, 'Wuku')">Wuku</button> -->
+                        </div>  
+                        <!-- Tab content -->
+                        <div id="Sasih" class="tabcontent">
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Rahinan <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <select id="rahinan" name="rahinan" class="form-control" >
+                                <option value="" disabled selected>Pilih Hari Rahinan</option>
+                                @if ($temple->odalan_type=="sasih")
+                                  @foreach($rahinan as $data)
+                                    @if ($data->id == $odalan->rahinan_id)
+                                      <option value="{{$data->id}}" selected>{{$data->rahinan_name}}</option>
+                                    @else
+                                      <option value="{{$data->id}}">{{$data->rahinan_name}}</option>
+                                    @endif
+                                  @endforeach
+                                @else
+                                  @foreach($rahinan as $data)
+                                    <option value="{{$data->id}}">{{$data->rahinan_name}}</option>
+                                  @endforeach
+                                @endif
+                              </select>
                             </div>
                           </div>
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Sasih <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <select id="sasih" name="sasih" class="form-control" >
+                                <option value="" disabled selected>Pilih Sasih</option>
+                                @if ($temple->odalan_type=="sasih")
+                                  @foreach($sasih as $data)
+                                    @if ($data->id == $odalan->sasih_id)
+                                      <option value="{{$data->id}}" selected>{{$data->sasih_name}}</option>
+                                    @else
+                                      <option value="{{$data->id}}">{{$data->sasih_name}}</option>
+                                    @endif
+                                  @endforeach
+                                @else
+                                  @foreach($sasih as $data)
+                                    <option value="{{$data->id}}">{{$data->sasih_name}}</option>
+                                  @endforeach
+                                @endif
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div id="Wuku" class="tabcontent">
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Samptawara <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <select id="saptawara" name="saptawara" class="form-control" >
+                                <option value="" disabled selected>Pilih Saptawara</option>
+                                @if ($temple->odalan_type=="wuku")
+                                  @foreach($saptawara as $data)
+                                    @if ($data->id == $odalan->saptawara_id)
+                                      <option value="{{$data->id}}" selected>{{$data->saptawara_name}}</option>
+                                    @else
+                                      <option value="{{$data->id}}" >{{$data->saptawara_name}}</option>
+                                    @endif
+                                  @endforeach  
+                                @else
+                                  @foreach($saptawara as $data)
+                                    <option value="{{$data->id}}" >{{$data->saptawara_name}}</option>
+                                  @endforeach  
+                                @endif
+                              </select>
+                            </div>
+                          </div>
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Pancawara <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <select id="pancawara" name="pancawara" class="form-control" >
+                                <option value="" disabled selected>Pilih Pancawara</option>
+                                @if ($temple->odalan_type=="wuku")
+                                  @foreach($pancawara as $data)
+                                    @if ($data->id == $odalan->pancawara_id)
+                                      <option value="{{$data->id}}" selected>{{$data->pancawara_name}}</option>
+                                    @else
+                                      <option value="{{$data->id}}" >{{$data->pancawara_name}}</option>
+                                    @endif
+                                  @endforeach  
+                                @else
+                                  @foreach($pancawara as $data)
+                                    <option value="{{$data->id}}" >{{$data->pancawara_name}}</option>
+                                  @endforeach  
+                                @endif
+                              </select>
+                            </div>
+                          </div>
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Wuku <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <select id="wuku" name="wuku" class="form-control" >
+                                <option value="" disabled selected>Pilih Wuku</option>
+                                @if ($temple->odalan_type=="wuku")
+                                  @foreach($wuku as $data)
+                                    @if ($data->id == $odalan->wuku_id)
+                                      <option value="{{$data->id}}" selected>{{$data->wuku_name}}</option>
+                                    @else
+                                      <option value="{{$data->id}}">{{$data->wuku_name}}</option>
+                                    @endif
+                                  @endforeach  
+                                @else
+                                  @foreach($wuku as $data)
+                                    <option value="{{$data->id}}">{{$data->wuku_name}}</option>
+                                  @endforeach  
+                                @endif
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
                     <!-- Form Deskripsi Pura-->
                     <div class="form-group row">
-                        <label for="inputDescription" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Deskripsi<span class="required">*</span></label>
+                        <label for="inputDescription" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Sejarah<span class="required">*</span></label>
                         <div class="col-sm-9 col-md-9 col-xs-12">
                             <textarea type="text" class="form-control" id="inputDescription" name="description">{{ $temple->description }}</textarea>
                         </div>
+                    </div>
+                    @foreach ($temple_images as $data)
+                      <div class="form-group row" id="tambah_foto_{{ $loop->iteration }}">
+                        <label class="col-sm-3 col-md-3 col-xs-12 col-form-label" >Foto Pura <span class="required">*</span>
+                        </label>
+                        <div class="col-sm-9 col-md-9 col-xs-12">
+                          <div class="col-md-12 col-xs-12 " >
+                            <img id="image_{{$loop->iteration}}" src="{{ asset($data->image_name) }}" class="col-md-offset-3 col-md-5 " style="margin-bottom: 5px; ">
+                          </div>
+                          <input name="foto_pura_{{$loop->iteration}}" id="file_{{$loop->iteration}}" id_input_foto="1" class="form-control col-md-12 col-xs-12" required="required" type="file" accept="image/*" onchange="showImage.call(this)">
+                          <span class="text-danger" id='width_{{$loop->iteration}}'>* Max Width: 5128 pixel</span><span class="text-danger" id='height_{{$loop->iteration}}'>, Max Height: 5128 pixel</span>
+                          <span class="text-danger" id="response_{{$loop->iteration}}"></span>
+                        </div>  
+                      </div>
+                    @endforeach
+                    <div style="margin-bottom: 20px;">
+                      <div id="tombol_tambah_foto" class="row">
+                        <input type="hidden" name="total_semua_foto" id="total_semua_foto" value="{{count($temple_images)}}">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                          <button name="tambah_foto" class="btn btn-success" type="button" id="tambah_foto">(+) Tambah</button ><button name="hapus_foto" class="btn btn-danger" type="button" id="hapus_foto">(-) Hapus</button>  
+                        </div>
+                      </div>
                     </div>
                     <!-- Form Deskripsi Pura-->
                     <div class="form-group row">
@@ -376,4 +449,100 @@
 @section('script')
     <script src="/js/add_temple.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+    <script type="text/javascript">
+      // Javascript to show image are selected
+      function showImage(){
+        if( this.files && this.files[0]){
+          var obj = new FileReader();
+          var total_foto = document.getElementById('total_semua_foto').value;
+          console.log(total_foto);
+
+          var id_input_foto = $(this).attr('id_input_foto');
+
+          obj.onload = function(data){
+            
+            var image = document.getElementById("image_"+id_input_foto);
+            
+            console.log(id_input_foto);
+
+            image.src = data.target.result;
+            image.style.display = "block";
+          }
+          obj.readAsDataURL(this.files[0]);
+
+          // Validate image size
+          var _URL = window.URL || window.webkitURL;
+
+          var total_foto = document.getElementById('total_semua_foto').value;
+
+          var file = $(this)[0].files[0];
+
+          img = new Image();
+          var imgwidth = 0;
+          var imgheight = 0;
+          var maxwidth = 5128;
+          var maxheight = 5128;
+
+          img.src = _URL.createObjectURL(file);
+          img.onload = function() {
+            imgwidth = this.width;
+            imgheight = this.height;
+         
+            $("#width_"+id_input_foto).text("*Image Width: "+imgwidth+" pixel");
+            $("#height_"+id_input_foto).text(", Image Height: "+imgheight+" pixel");
+
+            if(imgwidth >= maxwidth || imgheight >= maxheight){
+       
+              $("#response_"+id_input_foto).text(", Image size must be max Size : "+maxwidth+" X "+maxheight+" pixel");
+              $('#file_'+id_input_foto).val('');
+            }else{
+              $("#response_"+id_input_foto).text("");
+            }
+          }
+
+          img.onerror = function() {
+            $("#response_"+id_input_foto).text("not a valid file: " + file.type);
+          }
+        }
+      }
+      // End of show image
+
+
+      $(document).ready(function(){
+       // Javascript to make dymanic input of image temple
+       var total_foto = document.getElementById('total_semua_foto').value;
+       function tambah_foto(){
+        total_foto++;
+
+        var isi = '<div class="form-group row" id="tambah_foto_'+total_foto+'">';
+        isi +='<label class="col-sm-3 col-md-3 col-xs-12 col-form-label" >Foto Pura <span class="required">*</span></label><div class="col-sm-9 col-md-9 col-xs-12"><div class="col-md-12 col-xs-12 " ><img id="image_'+total_foto+'" class="col-md-offset-3 col-md-5 " style="margin-bottom: 5px; "></div><input name="foto_pura_'+total_foto+'" id="file_'+total_foto+'" id_input_foto="'+total_foto+'" class="form-control col-md-12 col-xs-12" required="required" type="file" accept="image/*" onchange="showImage.call(this)"><span class="text-danger" id="width_'+total_foto+'">* Max Width: 5128 pixel</span><span class="text-danger" id="height_'+total_foto+'">, Max Height: 5128 pixel</span><span class="text-danger" id="response_'+total_foto+'"></span></div>';
+        isi +='</div>';
+
+        $('#tombol_tambah_foto').before(isi);
+        $('#tambah_foto_'+total_foto).slideDown('medium');
+
+        $('#total_semua_foto').val(total_foto);
+       }
+
+       function hapus_foto(){
+          if (total_foto >1) {
+            $('#tambah_foto_'+total_foto).slideUp('medium', function(){
+              $(this).remove();
+            });
+            total_foto--;
+            $('#total_semua_foto').val(total_foto);  
+          }
+          
+       }
+
+       $('#tambah_foto').click(function(){
+          tambah_foto();
+       });
+
+       $('#hapus_foto').click(function(){
+          hapus_foto();
+       });
+      });
+      // End of dynamic input of image temple
+    </script>
 @endsection

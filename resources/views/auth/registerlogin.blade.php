@@ -34,7 +34,7 @@
         <div id="main-login" class="container">
 
             <div class="row">
-            <form id="form-login" class="form-horizontal" method="POST" action="{{ route('register') }}">
+            <form id="form-login" class="form-horizontal" method="POST" action="{{ route('member.register') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

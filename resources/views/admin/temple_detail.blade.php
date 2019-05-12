@@ -246,7 +246,7 @@
               <div class="ln_solid"></div>
               <div class="form-group">
                 <div class="col-md-2 col-md-offset-10">
-                  <a href="{{ route('admin.update_temple',$temple->id) }}"><button id="send" type="submit" class="btn btn-block btn-success">Edit</button></a>
+                  <a href="{{ route('admin.update_temple',$temple->id) }}"><button id="send" type="button" class="btn btn-block btn-success">Edit</button></a>
                 </div>
               </div>
             </form>

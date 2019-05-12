@@ -159,14 +159,14 @@
         </a>
         <!--Login FLoating-->
         <div class="login-floating p-0">
-            {{-- @auth --}}
+            @auth
                 <a id="sidebar-nav" href="#" class="p-0"><img src="/user_img/user.png" width="20px" alt=""></a>
-            {{-- @else
+            @else
                 <ul class="row  mr-2 p-0 ">
                     <a href="{{ route('member.login') }}" style="color:black">Login</a><span class="mx-2"></span> | <span class="mx-2"></span>
                     <a href="{{ route('member.register') }}"  style="color:black">Register</a>
                 </ul>
-            @endauth --}}
+            @endauth
         </div>
         <!--Search FLoating-->
         <div class="card floating-area p-0 ">
@@ -223,10 +223,10 @@
                 <hr class="mb-3 mt-0"/>
                 <div class=" mt-4">
                     <div class="ml-3">
-                        <p><img src="/user_img/user-icon.png" width="18" alt="" class="mr-3"><a href=""  style="color:black"> Profil</a></p>
+                        <p><img src="/user_img/user-icon.png" width="18" alt="" class="mr-3"><a href="{{ route('user.profile') }}"  style="color:black"> Profil</a></p>
                         <p><img src="/user_img/link.png" width="18" alt="" class="mr-3"><a href="#sharelocModal" data-toggle="modal" style="color:black"> Bagi Lokasi</a></p>
                         <p><img src="/user_img/berkas.png" width="18" alt="" class="mr-3"><a href="" style="color:black"> Kontribusi Anda</a></p>
-                        <p><img src="/user_img/add.png" width="18" alt="" class="mr-3"><a href=""><a href="/user/add_temple"  style="color:black"> Tambahkan Tempat</a></p>
+                        <p><img src="/user_img/add.png" width="18" alt="" class="mr-3"><a href=""><a href="{{ route('add_temple') }}"  style="color:black"> Tambahkan Tempat</a></p>
                     </div>
                     <hr>
                     <div class="ml-3">
@@ -252,13 +252,14 @@
                 <p>Do You Realy Want To Log Out ?</p>
             </div> --}}
             <div class="modal-footer">
-                <a class="btn btn-danger btn-sm" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <a class="btn btn-danger btn-sm" href="{{ route('member.logout') }}">
                         Keluar
                 </a>
+                {{-- <a href="{{route('member.logout')}}"><i class="fa fa-sign-out pull-right"></i> Log Out</a> --}}
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{-- <form id="logout-form" action="{{ route('member.logout') }}" method="POST" style="display: none;">
                     {{ csrf_field() }}
-                </form>
+                </form> --}}
                 <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
             </div>
             </div>

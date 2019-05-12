@@ -17,10 +17,10 @@ use App\TempleImage;
 
 class UserController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     //Maps Template
     public function maps(){
@@ -81,11 +81,11 @@ class UserController extends Controller
         }
     }
 
-    public function loadMarker(Request $request){
-        $marker = Temple::all();
+    // public function loadMarker(Request $request){
+    //     $marker = Temple::all();
 
-        return $marker;
-    }
+    //     return $marker;
+    // }
 
     public function dropzone(Request $request){
         $temple = new Temple;

@@ -73,7 +73,7 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function register(Request $request){
+    public function register_member(Request $request){
         $input = $request->all();
         $validator = $this->validator($input);
 
