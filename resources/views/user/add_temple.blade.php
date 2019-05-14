@@ -8,6 +8,27 @@
   crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
   crossorigin=""></script>
+  <script type="text/javascript">
+    function delete_element(id) {
+      // console.log(id);
+      var number_of_card_element = document.getElementById('number_of_card_element').value;
+      var max_number_of_card_element = document.getElementById('max_number_of_card_element').value;
+
+      if (number_of_card_element > 1) {
+        $('#card_element_'+id).slideUp('medium', function() {
+          $(this).remove();
+        });
+        number_of_card_element--;
+        $('#number_of_card_element').val(number_of_card_element);
+
+        // If card_element deleted is max number of card element, then max_number_of_card_element -1
+        if (id == max_number_of_card_element) {
+          max_number_of_card_element--;
+          $('#max_number_of_card_element').val(max_number_of_card_element);
+        }
+      }
+    }
+  </script>
 @endsection
 
 @section('context')
@@ -252,10 +273,12 @@
                         <label for="">Element<span class="required">*</span></label>
                         <br>
                         <div class="text-right mb-3">
-                            <button data-target="#elementModal" data-toggle="modal" class="btn btn-outline-info"><i class="fa fa-plus"></i></button>
+                            <button data-target="#modal_add_element" data-toggle="modal" type="button" class="btn btn-outline-info"><i class="fa fa-plus"></i></button>
                         </div>
                         <div class="row">
-                            <div class="col-sm-4">
+                            <input type="hidden" name="number_of_card_element" id="number_of_card_element" value="1">
+                            <input type="hidden" name="max_number_of_card_element" id="max_number_of_card_element" value="1">
+                            <div class="col-sm-4" id="card_element_1" style="margin-top: 20px;">
                                 <div id="element" class="card">
                                     <img class="card-img-top" src="/user_img/element/element1.1.jpg" alt="Card image cap">
                                     <div class="card-body">
@@ -266,7 +289,7 @@
                                                 <a href="#" class="btn btn-primary btn-block btn-sm">Ubah</a>
                                             </div>
                                             <div class="col-sm">
-                                                <a href="#" class="btn btn-danger btn-block btn-sm">Hapus</a>
+                                                <button type="button" class="btn btn-danger btn-block btn-sm" id="btn_delete_card_element_1" onclick="delete_element(1);">Hapus</button>
                                             </div>
                                         </div>
                                     </div>
@@ -331,7 +354,7 @@
   <!-- End of Modal Maps -->
 
 <!-- Modal Element-->
-<div class="modal fade" id="elementModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_add_element" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -341,40 +364,61 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="/event-upload" class="dropzone dz-clickable mb-5" id="addImagesElement" enctype="multipart/form-data">
+          {{-- <form action="/event-upload" class="dropzone dz-clickable mb-5" id="addImagesElement" enctype="multipart/form-data">
             <div class="dz-default dz-message m-5"><span>Drop/Click here to upload images</span></div>
-          </form>
+          </form> --}}
           <form class="form-horizontal form-label-left">
+            <div class="form-group row" id="element_image_1">
+              <label class="col-sm-3 col-md-3 col-xs-12 col-form-label" >Foto Elemen <span class="required">*</span>
+              </label>
+              <div class="col-sm-9 col-md-9 col-xs-12">
+                <div class="col-md-12 col-xs-12 " >
+                  <img id="view_element_image_1" class="col-md-offset-3 col-md-5 " style="margin-bottom: 5px; ">
+                </div>
+                <input name="element_image_1" id="element_image_1" id_input_foto="1" class="form-control col-md-12 col-xs-12" required="required" type="file" accept="image/*" onchange="showElementImage.call(this)">
+                <span class="text-danger" id='width_1'>* Max Width: 5128 pixel</span><span class="text-danger" id='height_1'>, Max Height: 5128 pixel</span>
+                <span class="text-danger" id="response_1"></span>
+              </div>  
+            </div>
+            {{-- <div style="margin-bottom: 20px;">
+              <div id="tombol_tambah_foto" class="row">
+                <input type="hidden" name="total_semua_foto" id="total_semua_foto" value="1">
+                <div class="col-md-3"></div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                  <button name="tambah_foto" class="btn btn-success" type="button" id="tambah_foto">(+) Tambah</button ><button name="hapus_foto" class="btn btn-danger" type="button" id="hapus_foto">(-) Hapus</button>  
+                </div>
+              </div>
+            </div> --}}
             <div class="form-group row">
                 <label for="inputNamePura" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Nama Element<span class="required">*</span></label>
                 <div class="col-sm-9 col-md-9 col-xs-12">
-                    <input type="text" class="form-control " id="inputNamePura" required>
+                    <input type="text" class="form-control " id="inputElementName" required>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="inputNamePura" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Nama Dewa<span class="required">*</span></label>
                 <div class="col-sm-9 col-md-9 col-xs-12">
-                    <input type="text" class="form-control " id="inputNamePura" required>
+                    <input type="text" class="form-control " id="inputGodName" required>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="inputNamePura" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Deskripsi<span class="required">*</span></label>
                 <div class="col-sm-9 col-md-9 col-xs-12">
-                    <textarea type="text" class="form-control " id="inputNamePura" required></textarea>
+                    <textarea type="text" class="form-control " id="inputElementDescription" required></textarea>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="inputNamePura" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Posis Element<span class="required">*</span></label>
                 <div class="col-sm-9 col-md-9 col-xs-12">
-                    <input type="text" class="form-control " id="inputNamePura" required>
+                    <input type="text" class="form-control " id="inputElementPosition" required>
                 </div>
             </div>
 
             <div class="float-right">
-              <button class="btn btn-success">Tambah Element</button>
+              <button class="btn btn-success" type="button" id="btn_add_element" data-dismiss="modal" >Tambah Element</button>
             </div>
           </form>                         
         </div>
@@ -511,5 +555,117 @@
        });
       });
       // End of dynamic input of image temple
+
+      // Javascript to make dynamic card element
+      $(document).ready(function(){
+        function add_element(element_name, element_god_name, element_description, element_position, src_image) {
+          var number_of_card_element = document.getElementById('number_of_card_element').value;
+          var max_number_of_card_element = document.getElementById('max_number_of_card_element').value;
+          number_of_card_element ++;
+          max_number_of_card_element ++;
+
+          var element = '<div class="col-sm-4" id="card_element_'+max_number_of_card_element+'" style="margin-top: 20px;">';
+
+          element += '<div id="element" class="card"><img class="card-img-top" src="'+src_image+'" alt="Card image cap"><div class="card-body"><h5 class="card-title">'+element_name+'</h5><p class="card-text">'+element_god_name+' <br> '+element_position+' <br> '+element_description+'</p><div class="row "><div class="col-sm"><a href="#" class="btn btn-primary btn-block btn-sm">Ubah</a></div><div class="col-sm"><button type="button" id="btn_delete_card_element_'+max_number_of_card_element+'" onclick="delete_element('+max_number_of_card_element+');" class="btn btn-danger btn-block btn-sm">Hapus</button></div></div></div></div></div>';
+
+          var position = max_number_of_card_element-1;
+          $('#card_element_'+position).after(element);
+          $('#card_element_'+max_number_of_card_element).slideDown('medium');
+
+          $('#number_of_card_element').val(number_of_card_element);
+          $('#max_number_of_card_element').val(max_number_of_card_element);
+
+          
+          // console.log("clicked");          
+        }
+
+        // function delete_element() {
+        //   console.log(this.id);
+
+          // if (number_of_card_element > 1) {
+          //   $('#card_element_'+number_of_card_element).slideUp('medium', function() {
+          //     $(this).remove();
+          //   });
+          //   number_of_card_element--;
+          //   $('#number_of_card_element').val(number_of_card_element);
+          // }
+        // }
+
+        $('#btn_add_element').click(function(){
+
+          var element_name = document.getElementById('inputElementName').value;
+          var element_god_name = document.getElementById('inputGodName').value;
+          var element_description = document.getElementById('inputElementDescription').value;
+          var element_position = document.getElementById('inputElementPosition').value;
+
+          var src_image = document.getElementById("view_element_image_1").src;
+
+          console.log('nama element : '+element_name);
+          console.log('dewa element : '+element_god_name);
+          console.log('deskripsi element : '+element_description);
+          console.log('posisi element : '+element_position);
+          console.log('src_image : '+src_image);
+
+          add_element(element_name, element_god_name, element_description, element_position, src_image);
+        });
+
+
+      });
+
+      function showElementImage(){
+        if( this.files && this.files[0]){
+          var obj = new FileReader();
+          // var total_foto = document.getElementById('total_semua_foto').value;
+          // console.log(total_foto);
+
+          var id_input_foto = $(this).attr('id_input_foto');
+
+          obj.onload = function(data){
+            
+            var image = document.getElementById("view_element_image_"+id_input_foto);
+            
+            console.log(id_input_foto);
+
+            image.src = data.target.result;
+            image.style.display = "block";
+          }
+          obj.readAsDataURL(this.files[0]);
+
+          // Validate image size
+          var _URL = window.URL || window.webkitURL;
+
+          // var total_foto = document.getElementById('total_semua_foto').value;
+
+          var file = $(this)[0].files[0];
+
+          img = new Image();
+          var imgwidth = 0;
+          var imgheight = 0;
+          var maxwidth = 5128;
+          var maxheight = 5128;
+
+          img.src = _URL.createObjectURL(file);
+          img.onload = function() {
+            imgwidth = this.width;
+            imgheight = this.height;
+         
+            $("#width_"+id_input_foto).text("*Image Width: "+imgwidth+" pixel");
+            $("#height_"+id_input_foto).text(", Image Height: "+imgheight+" pixel");
+
+            if(imgwidth >= maxwidth || imgheight >= maxheight){
+       
+              $("#response_"+id_input_foto).text(", Image size must be max Size : "+maxwidth+" X "+maxheight+" pixel");
+              $('#file_'+id_input_foto).val('');
+            }else{
+              $("#response_"+id_input_foto).text("");
+            }
+          }
+
+          img.onerror = function() {
+            $("#response_"+id_input_foto).text("not a valid file: " + file.type);
+          }
+        }
+      }
+      // End of show image
     </script>
 @endsection
