@@ -16,9 +16,9 @@ class CreateTempleDetailsTable extends Migration
         Schema::create('temple_details', function (Blueprint $table) {
             $table->increments('id');
             $table->string('element_name',255);
-            $table->string('god',255);
-            $table->text('element_description');
-            $table->text('element_position');
+            $table->string('god',255)->nullable();
+            $table->text('element_description')->nullable();
+            $table->text('element_position')->nullable();
             $table->unsignedInteger('temple_id');
             
             $table->timestamps();

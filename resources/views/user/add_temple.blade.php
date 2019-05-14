@@ -276,13 +276,18 @@
                             <button data-target="#modal_add_element" data-toggle="modal" type="button" class="btn btn-outline-info"><i class="fa fa-plus"></i></button>
                         </div>
                         <div class="row">
-                            <input type="hidden" name="number_of_card_element" id="number_of_card_element" value="1">
-                            <input type="hidden" name="max_number_of_card_element" id="max_number_of_card_element" value="1">
-                            <div class="col-sm-4" id="card_element_1" style="margin-top: 20px;">
+                            <input type="hidden" name="number_of_card_element" id="number_of_card_element" value="0">
+                            <input type="hidden" name="max_number_of_card_element" id="max_number_of_card_element" value="0">
+                            {{-- <div class="col-sm-4" id="card_element_1" style="margin-top: 20px;">
+                                <input type="hidden" name="inputHiddenElementImage" id="inputHiddenElementImage" value="">
+                                <input type="hidden" name="inputHiddenElementName" id="inputHiddenElementName" value="">
+                                <input type="hidden" name="inputHiddenGodName" id="inputHiddenGodName" value="">
+                                <input type="hidden" name="inputHiddenElementDescription" id="inputHiddenElementDescription" value="">
+                                <input type="hidden" name="inputHiddenElementPosition" id="inputHiddenElementPosition" value="">
                                 <div id="element" class="card">
                                     <img class="card-img-top" src="/user_img/element/element1.1.jpg" alt="Card image cap">
                                     <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
+                                        <h5 class="card-title">Card example</h5>
                                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                         <div class="row ">
                                             <div class="col-sm">
@@ -294,7 +299,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         
                     </div>
@@ -375,7 +380,7 @@
                 <div class="col-md-12 col-xs-12 " >
                   <img id="view_element_image_1" class="col-md-offset-3 col-md-5 " style="margin-bottom: 5px; ">
                 </div>
-                <input name="element_image_1" id="element_image_1" id_input_foto="1" class="form-control col-md-12 col-xs-12" required="required" type="file" accept="image/*" onchange="showElementImage.call(this)">
+                <input name="input_element_image_1" id="input_element_image_1" id_input_foto="1" class="form-control col-md-12 col-xs-12" required="required" type="file" accept="image/*" onchange="showElementImage.call(this)">
                 <span class="text-danger" id='width_1'>* Max Width: 5128 pixel</span><span class="text-danger" id='height_1'>, Max Height: 5128 pixel</span>
                 <span class="text-danger" id="response_1"></span>
               </div>  
@@ -566,10 +571,16 @@
 
           var element = '<div class="col-sm-4" id="card_element_'+max_number_of_card_element+'" style="margin-top: 20px;">';
 
-          element += '<div id="element" class="card"><img class="card-img-top" src="'+src_image+'" alt="Card image cap"><div class="card-body"><h5 class="card-title">'+element_name+'</h5><p class="card-text">'+element_god_name+' <br> '+element_position+' <br> '+element_description+'</p><div class="row "><div class="col-sm"><a href="#" class="btn btn-primary btn-block btn-sm">Ubah</a></div><div class="col-sm"><button type="button" id="btn_delete_card_element_'+max_number_of_card_element+'" onclick="delete_element('+max_number_of_card_element+');" class="btn btn-danger btn-block btn-sm">Hapus</button></div></div></div></div></div>';
+          element += '<input type="hidden" name="inputHiddenElementImage_'+max_number_of_card_element+'" id="inputHiddenElementImage_'+max_number_of_card_element+'" value="'+src_image+'"><input type="hidden" name="inputHiddenElementName_'+max_number_of_card_element+'" id="inputHiddenElementName_'+max_number_of_card_element+'" value="'+element_name+'"><input type="hidden" name="inputHiddenGodName_'+max_number_of_card_element+'" id="inputHiddenGodName_'+max_number_of_card_element+'" value="'+element_god_name+'"><input type="hidden" name="inputHiddenElementDescription_'+max_number_of_card_element+'" id="inputHiddenElementDescription_'+max_number_of_card_element+'" value="'+element_description+'"><input type="hidden" name="inputHiddenElementPosition_'+max_number_of_card_element+'" id="inputHiddenElementPosition_'+max_number_of_card_element+'" value="'+element_position+'"><div id="element" class="card"><img class="card-img-top" src="'+src_image+'" alt="Card image cap"><div class="card-body"><h5 class="card-title">'+element_name+'</h5><p class="card-text">'+element_god_name+' <br> '+element_position+' <br> '+element_description+'</p><div class="row "><div class="col-sm"><a href="#" class="btn btn-primary btn-block btn-sm">Ubah</a></div><div class="col-sm"><button type="button" id="btn_delete_card_element_'+max_number_of_card_element+'" onclick="delete_element('+max_number_of_card_element+');" class="btn btn-danger btn-block btn-sm">Hapus</button></div></div></div></div></div>';
 
           var position = max_number_of_card_element-1;
-          $('#card_element_'+position).after(element);
+          if (position == 0) {
+            // If card element is first of card
+            $('#max_number_of_card_element').after(element); // This is mining set position element after max_number_of_card id
+          }else{
+            // If card element is not first of card
+            $('#card_element_'+position).after(element);  // This is mining set position element after card_element id of last card
+          }
           $('#card_element_'+max_number_of_card_element).slideDown('medium');
 
           $('#number_of_card_element').val(number_of_card_element);
@@ -579,25 +590,12 @@
           // console.log("clicked");          
         }
 
-        // function delete_element() {
-        //   console.log(this.id);
-
-          // if (number_of_card_element > 1) {
-          //   $('#card_element_'+number_of_card_element).slideUp('medium', function() {
-          //     $(this).remove();
-          //   });
-          //   number_of_card_element--;
-          //   $('#number_of_card_element').val(number_of_card_element);
-          // }
-        // }
-
         $('#btn_add_element').click(function(){
 
           var element_name = document.getElementById('inputElementName').value;
           var element_god_name = document.getElementById('inputGodName').value;
           var element_description = document.getElementById('inputElementDescription').value;
           var element_position = document.getElementById('inputElementPosition').value;
-
           var src_image = document.getElementById("view_element_image_1").src;
 
           console.log('nama element : '+element_name);
@@ -607,6 +605,14 @@
           console.log('src_image : '+src_image);
 
           add_element(element_name, element_god_name, element_description, element_position, src_image);
+
+          // Clear all input in modal ad_element
+          document.getElementById('inputElementName').value = '';
+          document.getElementById('inputGodName').value = '';
+          document.getElementById('inputElementDescription').value = '';
+          document.getElementById('inputElementPosition').value = '';
+          document.getElementById("view_element_image_1").src = '';
+          document.getElementById("input_element_image_1").value = '';
         });
 
 

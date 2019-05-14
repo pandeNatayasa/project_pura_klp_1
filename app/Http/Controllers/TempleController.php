@@ -17,8 +17,11 @@ use App\Pancawara;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 use App\TempleImage;
+use App\TempleElementImage;
 use App\OdalanSasih;
 use App\OdalanWuku;
+use App\TempleDetail;
+use Image;
 
 class TempleController extends Controller
 {
@@ -148,7 +151,7 @@ class TempleController extends Controller
         $new->priest_phone = $request->priest_phone;
         $new->save();
 
-        // $temple_id = $new->id;
+    // $temple_id = $new->id;
         
         // $file = $request->file('file');
         // TempleImage::create([
@@ -176,7 +179,7 @@ class TempleController extends Controller
             // $new_image->temple_id = $new->id;
             // $new_image->save();
             
-        // }
+    // }
 
         // Return redirect with message success
 
@@ -201,6 +204,69 @@ class TempleController extends Controller
             }
             $id++;   
         }
+
+        // Process save element and image of their element
+        $max_number_of_card_element = $request->max_number_of_card_element;
+        $max_id = TempleElementImage::max('id');
+        // $id = $max_id->id;    
+
+        for ($a=1; $a <= $max_number_of_card_element; $a++) { 
+            // Check when input is not null
+            if ($request->get('inputHiddenElementName_'.$a)) {
+                $new_temple_element = new TempleDetail();
+                $new_temple_element->element_name = $request->get('inputHiddenElementName_'.$a);
+                $new_temple_element->god = $request->get('inputHiddenGodName_'.$a);
+                $new_temple_element->element_description = $request->get('inputHiddenElementDescription_'.$a);
+                $new_temple_element->element_position = $request->get('inputHiddenElementPosition_'.$a);
+                $new_temple_element->temple_id = $new->id;
+                $new_temple_element->save();
+
+                // Check when upload profile image
+                if (null !== $request->get('inputHiddenElementImage_'.$a)){
+                    if($request->get('inputHiddenElementImage_'.$a)){ // start success
+                        $max_id += 1;
+                        $image_str = $request->inputHiddenElementImage_2;
+                        $array = explode(',', $image_str);
+                        $extension = explode('/', explode(':', substr($image_str, 0, strpos($image_str, ';')))[1])[1];;
+                        $filePic = Image::make($array[1])->encode($extension); 
+                        
+                        $fileName = 'temple_element_image_'.$max_id;
+                        $path = 'temple_element_image/';
+                        $filePic->save($path . $fileName.'.'.$extension);
+
+                        $new_temple_element_image = new TempleElementImage();
+                        $new_temple_element_image->image_name = $path . $fileName.'.'.$extension;
+                        $new_temple_element_image->image_position = "default";
+                        $new_temple_element_image->temple_detail_id = $new_temple_element->id;
+                        $new_temple_element_image->save();
+                    }
+                }    
+            }
+        }
+
+    //  for ($i=0; $i < $max_number_of_card_element; $i++) { 
+        //     // Check when upload profile image
+        //     if (isset($request->get('inputHiddenElementImage_'.$i)) {
+        //         if($request->get('inputHiddenElementImage_'.$i)){ // start success
+        //             $id += 1;
+        //             $image_str = $request->inputHiddenElementImage_2;
+        //             $array = explode(',', $image_str);
+        //             $extension = explode('/', explode(':', substr($image_str, 0, strpos($image_str, ';')))[1])[1];;
+        //             $filePic = Image::make($array[1])->encode($extension); 
+                    
+        //             $fileName = 'temple_element_image_'.$id;
+        //             $path = public_path('temple_element_image/');
+        //             $filePic->save($path . $fileName.'.'.$extension);
+
+        //             $new_temple_element_image = new TempleElementImage();
+        //             $new_temple_element_image->image_name = $path . $fileName.'.'.$extension;
+        //             $new_temple_element_image->image_position = "default";
+        //             $new_temple_element_image->temple_detail_id = ;
+        //             $new_temple_element_image->save();
+        //         }
+        //     }    
+    // }
+        // End of process save image of element
 
         return redirect()->back()->with('success','Data Pura baru berhasil disimpan');
     }
