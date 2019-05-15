@@ -221,13 +221,15 @@ class TempleController extends Controller
                 $new_temple_element->temple_id = $new->id;
                 $new_temple_element->save();
 
+                // return $request->get('inputHiddenElementImage_'.$a);
+
                 // Check when upload profile image
                 if (null !== $request->get('inputHiddenElementImage_'.$a)){
                     if($request->get('inputHiddenElementImage_'.$a)){ // start success
                         $max_id += 1;
-                        $image_str = $request->inputHiddenElementImage_2;
+                        $image_str = $request->get('inputHiddenElementImage_'.$a);
                         $array = explode(',', $image_str);
-                        $extension = explode('/', explode(':', substr($image_str, 0, strpos($image_str, ';')))[1])[1];;
+                        $extension = explode('/', explode(':', substr($image_str, 0, strpos($image_str, ';')))[1])[1];
                         $filePic = Image::make($array[1])->encode($extension); 
                         
                         $fileName = 'temple_element_image_'.$max_id;
