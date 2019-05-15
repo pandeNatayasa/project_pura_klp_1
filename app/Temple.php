@@ -32,6 +32,7 @@ class Temple extends Model
     {
         return $this->belongsTo('App\SubDistrict','sub_district_id');
     }
+    
 
     // public function image_temple(){
     //     return $this->belongsTo('App\TempleImage','temple_id');

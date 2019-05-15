@@ -14,6 +14,7 @@ use App\Saptawara;
 use App\Pancawara;
 use App\Temple;
 use App\TempleImage;
+use App\User;
 
 class UserController extends Controller
 {
@@ -111,5 +112,18 @@ class UserController extends Controller
         }
 
         return ;
+    }
+
+    public function edit_profile(Request $request, $id){
+
+        $profile = User::find($id);
+
+        $profile->name = $request->user_name;
+        $profile->email = $request->user_email;
+        $profile->no_telp = $request->user_telp;
+
+        $profile->save();
+
+        return back();
     }
 }

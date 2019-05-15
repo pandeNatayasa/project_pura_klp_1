@@ -2,68 +2,137 @@
 
 @section('css')
   <!--Dropdzone-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css">
-  <link rel="stylesheet" href="/css/user.css">
+  <link rel="stylesheet" href="{{asset('css/user.css')}}">
 @endsection
 
 @section('context')
-<div class="container">
-    <form action="{{route('dropzone')}}" method="POST" class="dropzone dz-clickable mb-5" id="addImages" enctype="multipart/form-data">
-        {{csrf_field()}}
-        <div class="dz-default dz-message m-5"><span>Drop/Click here to upload images</span></div>
-        <div class="fallback">
-            <input name="file_image" type="file" multiple />
+<div id="addlocation" class="container mt-5 mb-5">
+    <div class="card">
+        <div class="card-header">
+            <div class="float-left">
+                <a href="/" style="color:black"><i class="fa fa-arrow-left"></i></a>
+                {{-- window.history.go(-1); return false; --}}
+            </div>
+            <div class="text-center">
+                PROFILE
+            </div> 
+        </div>  
+        <div class="card-body ">
+            <div class="container">
+                <div class="card  mx-auto" style="height: 200px; width:200px; border-radius: 50%;padding: 5px" >
+                    <img src="/user_img/user.png" style="width: 100%;position: static" alt="">
+                        <input type="file" id="file1" name="image"  accept="image/*" capture style="display:none"><button id="upfile1"  type="button" class="btn btn-default btn-circle btn-xl" style="z-index: 1;right:0;bottom:0;position: absolute"><i class="fa fa-camera"></i>
+                    </button>
+                </div>
+                <div class="mt-5">
+                <form action="/edit/profile/{{Auth::user()->id}}" method="POST">
+                    {{csrf_field()}}
+                    {{method_field('PUT')}}
+                    <!-- Form Nama User-->
+                    <div class="form-group row">
+                        <label for="inputNamaUser" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Nama<span class="required">*</span></label>
+                        <div class="col-sm-9 col-md-9 col-xs-12">
+                        <input type="text" class="form-control " id="user_name" name="user_name" value="{{Auth::user()->name}}" required>
+                        </div>
+                    </div>
+                    <!-- Form Email User-->
+                    <div class="form-group row">
+                        <label for="inputEmailUser" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Email<span class="required">*</span></label>
+                        <div class="col-sm-9 col-md-9 col-xs-12">
+                            <input type="text" class="form-control " id="user_email" name="user_email" value="{{Auth::user()->email}}" required>
+                        </div>
+                    </div>
+                    <!-- Form Telp User-->
+                    <div class="form-group row">
+                        <label for="inputTelpUser" class="col-sm-3 col-md-3 col-xs-12 col-form-label">No Telp<span class="required">*</span></label>
+                        <div class="col-sm-9 col-md-9 col-xs-12">
+                            <input type="text" class="form-control " id="user_telp" name="user_telp" value="{{Auth::user()->no_telp}}" required>
+                        </div>
+                    </div>
+                    <!-- Form Password User-->
+                    <div class="form-group row">
+                        <label for="inputPasswordUser" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Password<span class="required">*</span></label>
+                        <div class="col-sm-7 col-md-7 col-xs-10">
+                            <input type="password" class="form-control " id="user_password" name="user_password" disabled>
+                        </div>
+                        <div class="col-sm-2 col-md-2 col-xs-2">
+                            <button type="button" class="btn btn-success btn-block" data-target="#passwordModal" data-toggle="modal">Ubah</button>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputConfirmPasswordUser" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Confirm Password<span class="required">*</span></label>
+                        <div class="col-sm-7 col-md-7 col-xs-10">
+                            <input type="password" class="form-control " id="user_confirm_password" name="user_confirm_password" disabled>
+                        </div>
+                    </div>
+                    <!--Button Simpan-->
+                    <div class="mt-5">
+                        <button class="btn btn-primary btn-block" type="submit">Simpan</button>
+                    </div>
+                </form>
+                </div>
+            </div>
         </div>
-
-        <!-- Now setup your input fields -->
-        <input type="text" name="name" />
-
-        <button type="submit" id="uploadButton" class="btn btn-primary btn-block">Click Me</button>
-    </form>
+    </div>
 </div>
-    
+
+<!-- Edit Password-->
+    <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Password Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                        <div class="form-group row">
+                            <div class="col">
+                                <input type="text" class="form-control form-control-sm" placeholder="Password Confirmation">
+                            </div>
+                            
+                        </div>
+                    <div class="float-right">
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary btn-sm">Confirm</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
     
 @endsection
 
 @section('script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
-
-    <script>
-    
-    Dropzone.options.addImages = {
-        autoProcessQueue: false,
-        paramName: 'file',
-        url: '{{route("dropzone")}}',
-        init: function () {
-
-            var myDropzone = this;
+<script>
 
 
-            // Update selector to match your button
-            $("#uploadButton").click(function (e) {
-                e.preventDefault();
-                myDropzone.processQueue();
-            });
-            
-            this.on("sendingmultiple", function() {
-              // Append all form inputs to the formData Dropzone will POST
-              var data = $("input[type='file']").serializeArray();
-                $.each(data, function(key, el) {
-                    formData.append(el.name, el.value);
-                    console.log(el)
-                });
-            });
+    var input = document.querySelector('input[type=file]'); // see Example 4
 
-            // this.on('sending', function(file, xhr, formData) {
-            //     // Append all form inputs to the formData Dropzone will POST
-            //     var data = $("input[type='file']").serializeArray();
-            //     $.each(data, function(key, el) {
-            //         formData.append(el.name, el.value);
-            //         console.log(el)
-            //     });
-            // });
-        }
+    input.onchange = function () {
+    var file = input.files[0];
+
+    drawOnCanvas(file);   // see Example 6
+    displayAsImage(file); // see Example 7
+    };
+
+
+    function displayAsImage(file) {
+    var imgURL = URL.createObjectURL(file),
+        img = document.createElement('img');
+
+    img.onload = function() {
+        URL.revokeObjectURL(imgURL);
+    };
+
+    img.src = imgURL;
+    document.body.appendChild(img);
     }
-    
-    </script>
+
+    $("#upfile1").click(function () {
+        $("#file1").trigger('click');
+    });
+</script>
 @endsection
