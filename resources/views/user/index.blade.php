@@ -226,7 +226,7 @@
                     <div class="ml-3">
                         <p><img src="/user_img/user-icon.png" width="18" alt="" class="mr-3"><a href="{{ route('user.profile') }}"  style="color:black"> Profil</a></p>
                         <p><img src="/user_img/link.png" width="18" alt="" class="mr-3"><a href="#sharelocModal" data-toggle="modal" style="color:black"> Bagi Lokasi</a></p>
-                        <p><img src="/user_img/berkas.png" width="18" alt="" class="mr-3"><a href="" style="color:black"> Kontribusi Anda</a></p>
+                        <p><img src="/user_img/berkas.png" width="18" alt="" class="mr-3"><a href="/user/contribution" style="color:black"> Kontribusi Anda</a></p>
                         <p><img src="/user_img/add.png" width="18" alt="" class="mr-3"><a href=""><a href="{{ route('add_temple') }}"  style="color:black"> Tambahkan Tempat</a></p>
                     </div>
                     <hr>

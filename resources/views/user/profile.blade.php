@@ -19,8 +19,8 @@
         </div>  
         <div class="card-body ">
             <div class="container">
-                <div class="card  mx-auto" style="height: 200px; width:200px; border-radius: 50%;padding: 5px" >
-                    <img src="/user_img/user.png" style="width: 100%;position: static" alt="">
+                <div class="card  mx-auto" style="height: 200px; width:200px; border-radius: 50%; border: grey 6px solid" >
+                    <img src="/user_img/images.jpg" style="width: 100%;height: 100%;position: static;border-radius: 50%;" alt="">
                         <input type="file" id="file1" name="image"  accept="image/*" capture style="display:none"><button id="upfile1"  type="button" class="btn btn-default btn-circle btn-xl" style="z-index: 1;right:0;bottom:0;position: absolute"><i class="fa fa-camera"></i>
                     </button>
                 </div>

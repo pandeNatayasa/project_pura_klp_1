@@ -50,6 +50,11 @@ class UserController extends Controller
         return view('user.profile');
     }
 
+    public function contribution(){
+        
+        return view('user.contribution');
+    }
+
     //Fetch Data Location
     public function fetch(Request $request)
     {
