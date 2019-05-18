@@ -141,7 +141,7 @@ $(document).ready(function(){
 
                 var icons = L.divIcon({
                     iconSize:null,
-                    html:'<div class="map-label"><img src="/user_img/marker.png" width="30px"></img><div class="map-label-content">'+response[i].temple_name+'</div></div>'
+                    html:'<div class="map-label"><img src="/user_img/marker.png" width="25px"></img><div class="map-label-content ml-1">'+response[i].temple_name+'</div></div>'
                 });
                 marker = L.marker([response[i].latitude, response[i].longitude],{icon: icons}).on('click', markerOnClick)
                 markers.addLayer(marker);

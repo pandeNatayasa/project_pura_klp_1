@@ -71,6 +71,7 @@ Route::post('/dropzone','UserController@dropzone')->name('dropzone');
 Route::get('/user/profile','UserController@profile')->name('user.profile');
 Route::put('/edit/profile/{id}','UserController@edit_profile')->name('edit.profile');
 Route::get('/user/contribution','UserController@contribution')->name('user.contribution');
+Route::get('/user/contribution-detail/{id}','UserController@contribution_details');
 
 // TEMPLE TYPE
 Route::resource('/temple-type','Admin\TempleTypeController');

@@ -315,10 +315,15 @@
                     <div class="form-group">
                         <label for="">Element<span class="required">*</span></label>
                         <br>
-                        <div class="text-right mb-3">
-                            <button data-target="#modal_add_element" data-toggle="modal" type="button" class="btn btn-outline-info"><i class="fa fa-plus"></i></button>
-                        </div>
-                        <div class="row">
+                        <div class="row mb-3 ">
+                          <div id="btn-add-element" class="card" style="width: 16rem;height: 18rem; margin-top: 19px">
+                            <button data-target="#modal_add_element" data-toggle="modal" type="button" class="btn btn-default bg-white" style="margin-top: auto; margin-bottom: auto; height: 100%; width: 100%">
+                                <div class="card-body">
+                                    <i class="fa fa-plus fa-xl"></i>
+                                </div>
+                            </button>
+                          </div>
+                            
                             <input type="hidden" name="number_of_card_element" id="number_of_card_element" value="0">
                             <input type="hidden" name="max_number_of_card_element" id="max_number_of_card_element" value="0">
                             {{-- <div class="col-sm-4" id="card_element_1" style="margin-top: 20px;">
