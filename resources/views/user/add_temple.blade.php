@@ -319,7 +319,7 @@
                           <div id="btn-add-element" class="card" style="width: 16rem;height: 18rem; margin-top: 19px">
                             <button data-target="#modal_add_element" data-toggle="modal" type="button" class="btn btn-default bg-white" style="margin-top: auto; margin-bottom: auto; height: 100%; width: 100%">
                                 <div class="card-body">
-                                    <i class="fa fa-plus fa-xl"></i>
+                                    <i class="fas fa-plus fa-3x" ></i>
                                 </div>
                             </button>
                           </div>
