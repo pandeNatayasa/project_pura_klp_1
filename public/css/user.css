@@ -52,5 +52,9 @@ body{
 }
 
 #btn-add-element{
-    border: 1px dashed #9b9b9b !important;
+    border: 1px dashed #007bff !important;
+}
+
+#btn-add-element i{
+    color: #007bff
 }
