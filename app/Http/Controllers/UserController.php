@@ -15,6 +15,7 @@ use App\Pancawara;
 use App\Temple;
 use App\TempleImage;
 use App\User;
+use Auth;
 
 class UserController extends Controller
 {
@@ -25,7 +26,8 @@ class UserController extends Controller
 
     //Maps Template
     public function maps(){
-        $marker = Temple::with('TempleType')->get();
+        // $image = TempleImage::where('temple_id','=','')
+        $marker = Temple::with('TempleType')->where('validate_status','=','1')->get();
         
         // return $marker;
         return view('user.index', compact('marker'));
@@ -51,8 +53,13 @@ class UserController extends Controller
     }
 
     public function contribution(){
-        
-        return view('user.contribution');
+        $contribution = Temple::where('user_id','=',Auth::user()->id)->get();
+        return view('user.contribution',compact('contribution'));
+    }
+
+    public function contribution_details($id){
+        $details = Temple::where('id','=',$id)->first();
+        return view('user.contribution_detail',compact('details'));
     }
 
     //Fetch Data Location
