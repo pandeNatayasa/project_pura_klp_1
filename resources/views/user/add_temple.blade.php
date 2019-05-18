@@ -594,7 +594,7 @@
           var id_input_foto = $(this).attr('id_input_foto');
 
           obj.onload = function(data){
-            
+            // console.log(data);
             var image = document.getElementById("image_"+id_input_foto);
             
             // console.log(id_input_foto);
