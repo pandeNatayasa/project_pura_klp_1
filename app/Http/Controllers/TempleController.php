@@ -96,7 +96,7 @@ class TempleController extends Controller
 
         // Validator input data pura oleh member
         $validator = Validator::make($request->all(), [
-            'temple_name' => 'required|string|max:255',
+            'temple_name' => 'required|string|max:255|unique:temples',
             'address' => 'required|string',
             'temple_type_id' => 'required|numeric',
             'odalan_type' => 'required|string',
@@ -104,13 +104,18 @@ class TempleController extends Controller
             'description' => 'required|string',
             'priest_name' => 'required|string',
             'address_priest' => 'required|string',
-            'priest_phone' => 'required|string'
+            'priest_phone' => 'required|string',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric'
         ]);
 
         // Check if validator error then return redirect with message
         if ($validator->fails()) {
             return redirect()->back()->with('warning',$validator->errors());
+        }elseif ($request->number_of_card_element == 0) {
+            return redirect()->back()->with('warning','Setiap pura harus memiliki minimal 1 elemen/pelinggih');
         }
+        // return $request->all();
 
         // If validator not fails, then save into database
 
@@ -221,28 +226,30 @@ class TempleController extends Controller
                 $new_temple_element->temple_id = $new->id;
                 $new_temple_element->save();
 
-                // return $request->get('inputHiddenElementImage_'.$a);
+                // Loop to save all image of element 
+                $total_image_element = $request->get('inputHiddenTotalElementImage_'.$a);
+                for ($i=1; $i <= $total_image_element ; $i++) { 
+                    // Check when upload profile image
+                    if (null !== $request->get('inputHiddenElement_'.$a.'_Image_'.$i)){
+                        if($request->get('inputHiddenElement_'.$a.'_Image_'.$i)){ // start success
+                            $max_id += 1;
+                            $image_str = $request->get('inputHiddenElement_'.$a.'_Image_'.$i);
+                            $array = explode(',', $image_str);
+                            $extension = explode('/', explode(':', substr($image_str, 0, strpos($image_str, ';')))[1])[1];
+                            $filePic = Image::make($array[1])->encode($extension); 
+                            
+                            $fileName = 'temple_element_image_'.$max_id;
+                            $path = 'temple_element_image/';
+                            $filePic->save($path . $fileName.'.'.$extension);
 
-                // Check when upload profile image
-                if (null !== $request->get('inputHiddenElementImage_'.$a)){
-                    if($request->get('inputHiddenElementImage_'.$a)){ // start success
-                        $max_id += 1;
-                        $image_str = $request->get('inputHiddenElementImage_'.$a);
-                        $array = explode(',', $image_str);
-                        $extension = explode('/', explode(':', substr($image_str, 0, strpos($image_str, ';')))[1])[1];
-                        $filePic = Image::make($array[1])->encode($extension); 
-                        
-                        $fileName = 'temple_element_image_'.$max_id;
-                        $path = 'temple_element_image/';
-                        $filePic->save($path . $fileName.'.'.$extension);
-
-                        $new_temple_element_image = new TempleElementImage();
-                        $new_temple_element_image->image_name = $path . $fileName.'.'.$extension;
-                        $new_temple_element_image->image_position = "default";
-                        $new_temple_element_image->temple_detail_id = $new_temple_element->id;
-                        $new_temple_element_image->save();
-                    }
-                }    
+                            $new_temple_element_image = new TempleElementImage();
+                            $new_temple_element_image->image_name = $path . $fileName.'.'.$extension;
+                            $new_temple_element_image->image_position = "default";
+                            $new_temple_element_image->temple_detail_id = $new_temple_element->id;
+                            $new_temple_element_image->save();
+                        }
+                    }        
+                }
             }
         }
 
