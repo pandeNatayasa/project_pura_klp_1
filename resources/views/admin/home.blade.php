@@ -24,9 +24,7 @@
                       <img src="{{ asset('user_img/user.png') }}" class="nav-avatar" />
                       <b class="caret"></b></a>
                       <ul class="dropdown-menu">
-                          <li><a href="#">Your Profile</a></li>
-                          <li><a href="#">Edit Profile</a></li>
-                          <li><a href="#">Account Settings</a></li>
+                          <li><a href="{{ route('show_profille_admin') }}">Your Profile</a></li>
                           <li class="divider"></li>
                           <li><a href="{{ route('admin.logout') }}">Logout</a></li>
                       </ul>

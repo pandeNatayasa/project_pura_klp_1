@@ -61,6 +61,12 @@ class DashboardController extends Controller
     return view('admin.list_temple',compact('temples'));
   }
 
+  // This is to show profille Admin
+  public function show_profille_admin()
+  {
+    return view('admin.profille_admin');
+  }
+
   public function verify_accept_temple($id)
   {
   	$temple = Temple::find($id);
