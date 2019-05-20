@@ -49,6 +49,18 @@ class DashboardController extends Controller
   	return view('admin.list_temple_validate',compact('temples'));
   }
 
+  // This is to show list of temple already validate
+  public function show_list_temple()
+  {
+    $temples = Temple::groupBy('temples.id')
+      ->where('temples.validate_status','!=','0')
+      ->select('temples.*', 'temple_images.image_name')
+      ->join('temple_images', 'temple_images.temple_id', '=', 'temples.id')
+      ->get();
+
+    return view('admin.list_temple',compact('temples'));
+  }
+
   public function verify_accept_temple($id)
   {
   	$temple = Temple::find($id);

@@ -122,7 +122,17 @@ class TempleController extends Controller
         // Save odalan into database
         if ($request->odalan_type == "sasih") {
             // If odalan_type is sasih
-            // Then save into odalan_sasih table
+            // First Validator input data odalan sasih
+            $validator_sasih = Validator::make($request->all(), [
+                'sasih' => 'required|numeric',
+                'rahinan' => 'required|numeric'
+            ]);
+
+            if ($validator_sasih->fails()) {
+                return redirect()->back()->with('warning', 'Jika memilih type odalan sasih, maka harus memilih sasih dan rahinan yang sesuai');
+            }
+
+            // If validator not fails, then save into odalan_sasih table
             $new_odalan = new OdalanSasih();
             $new_odalan->sasih_id = $request->sasih;
             $new_odalan->rahinan_id = $request->rahinan;
@@ -130,6 +140,17 @@ class TempleController extends Controller
 
         }elseif ($request->odalan_type == "wuku") {
             // If odalan_type id wuku,
+            // First Validator input data odalan sasih
+            $validator_wuku = Validator::make($request->all(), [
+                'saptawara' => 'required|numeric',
+                'pancawara' => 'required|numeric',
+                'wuku' => 'required|numeric'
+            ]);
+
+            if ($validator_wuku->fails()) {
+                return redirect()->back()->with('warning', 'Jika memilih type odalan wuku, maka harus memilih wuku, pancawara, dan wuku yang sesuai');
+            }
+
             // Then save into odalan_wuku_table
             $new_odalan = new OdalanWuku();
             $new_odalan->saptawara_id = $request->saptawara;
@@ -145,7 +166,7 @@ class TempleController extends Controller
         $new->temple_type_id = $request->temple_type_id;
         $new->odalan_id = $new_odalan->id;
         $new->odalan_type = $request->odalan_type;
-        $new->user_id = '1';
+        $new->user_id = Auth::id();
         $new->validate_status = '0';
         $new->sub_district_id = $request->sub_district;
         $new->description = $request->description;

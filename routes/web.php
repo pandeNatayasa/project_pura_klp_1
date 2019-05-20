@@ -89,6 +89,7 @@ Route::post('/fecth-location','TempleController@fetch')->name('fetch_location');
 // Route Admin => Dashboard
 Route::get('/admin/dashboard', 'Admin\DashboardController@index')->name('admin.home');
 Route::get('/admin/validate', 'Admin\DashboardController@show_list_temple_validate')->name('show_list_temple_validate');
+Route::get('/admin/list-temple','Admin\DashboardController@show_list_temple')->name('show_list_temple');
 Route::get('/admin/verify-accept-temple/{id}','Admin\DashboardController@verify_accept_temple');
 Route::get('/admin/verify-reject-temple/{id}','Admin\DashboardController@verify_reject_temple');
 Route::get('/admin/temple-detail/{id}','Admin\DashboardController@show_temple_detail')->name('show_temple_detail');

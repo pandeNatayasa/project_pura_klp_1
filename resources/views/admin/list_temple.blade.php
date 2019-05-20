@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Validasi</title>
+    <title>Daftar Pura</title>
 
     <!-- Bootstrap -->
     <link type="text/css" href="{{ asset('public_admin/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -20,11 +20,12 @@
 <body>  
   <div class="top_nav">
     <div class="nav_menu">
-      <nav >
+      <nav>
         <div class="brand" >
-          <a href="{{ route('admin.home') }}"><i style="color: black; margin-right: 10px;" class="fa fa-arrow-left"></i></a><a href="{{ route('show_list_temple_validate') }}">Validasi Data Pura </a>  
+          <a href="{{ route('admin.home') }}"><i style="color: black; margin-right: 10px;" class="fa fa-arrow-left"></i></a><a href="{{ route('show_list_temple') }}">Daftar Pura </a>  
         </div>
-        {{-- <ul class="nav navbar-nav navbar-right">
+        {{-- <a class="brand" href="{{ route('show_list_temple_validate') }}">Daftar Pura </a>
+        <ul class="nav navbar-nav navbar-right">
           <li class="">
             <a href="{{ route('admin.home') }}" class="user-profile" aria-expanded="false">
               Back To Dashboard

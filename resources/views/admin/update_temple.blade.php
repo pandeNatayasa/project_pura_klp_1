@@ -15,7 +15,7 @@
     <div class="card">
         <div class="card-header">
             <div class="float-left">
-                <a href="{{ route('show_list_temple_validate') }}" style="color:black"><i class="fa fa-arrow-left"></i></a>
+                <a href="@if($temple->validate_status == 0) {{ route('show_list_temple_validate') }} @else {{ route('show_list_temple') }} @endif" style="color:black"><i class="fa fa-arrow-left"></i></a>
                 {{-- window.history.go(-1); return false; --}}
             </div>
             <div class="text-center">

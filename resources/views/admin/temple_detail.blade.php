@@ -66,7 +66,7 @@
         <a class="brand" href="{{ route('show_temple_detail',$temple->id) }}">Detail Data Pura </a>
         <ul class="nav navbar-nav navbar-right">
           <li class="">
-            <a href="{{ route('show_list_temple_validate') }}" class="user-profile" aria-expanded="false">
+            <a href="@if($temple->validate_status == 0) {{ route('show_list_temple_validate') }} @else {{ route('show_list_temple') }} @endif" class="user-profile" aria-expanded="false">
               Back To Daftar Data Pura
             </a>
           
