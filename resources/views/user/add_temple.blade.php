@@ -35,15 +35,25 @@
       var element_god_name = document.getElementById('inputGodName').value;
       var element_description = document.getElementById('inputElementDescription').value;
       var element_position = document.getElementById('inputElementPosition').value;
-      var src_image = document.getElementById("view_element_image_1").src; 
 
-      // console.log('nama element : '+element_name);
-      // console.log('dewa element : '+element_god_name);
-      // console.log('deskripsi element : '+element_description);
-      // console.log('posisi element : '+element_position);
-      // console.log('src_image : '+src_image);
+      // Loop to get all input image because image can more than one
+      // First get total of input image element
+      var total_image_element = document.getElementById('total_semua_foto_elemen').value;
+      var src_image = new Array(total_image_element)
+      for (var i = 1; i <= total_image_element; i++) {
+        // Get src image every input image element
+        src_image[i] = document.getElementById("view_element_image_"+i).src;   
+      }
 
-      if (element_name && element_god_name && element_description && element_position && src_image) {
+      // Create variable to identified all input element image is required
+      var check = 1; // 0 is have input null, 1 is all input element image is required
+      for (var i = 1; i <= total_image_element; i++) {
+        if (!src_image[i]) {
+          check = 0;
+        }  
+      }
+
+      if (element_name && element_god_name && element_description && element_position && check==1) {
         document.getElementById("btn_add_element").disabled = false;
       }else{
         document.getElementById("btn_add_element").disabled = true;
@@ -56,15 +66,26 @@
       var element_god_name = document.getElementById('inputEditGodName').value;
       var element_description = document.getElementById('inputEditElementDescription').value;
       var element_position = document.getElementById('inputEditElementPosition').value;
-      var src_image = document.getElementById("view_edit_element_image_1").src; 
+      // var src_image = document.getElementById("view_edit_element_image_1").src; 
 
-      // console.log('nama element : '+element_name);
-      // console.log('dewa element : '+element_god_name);
-      // console.log('deskripsi element : '+element_description);
-      // console.log('posisi element : '+element_position);
-      // console.log('src_image : '+src_image);
+      // Loop to get all input image because image can more than one
+      // First get total of input image element in modal edit
+      var total_image_element = document.getElementById('total_semua_foto_element_in_modal_edit').value;
+      var src_image = new Array(total_image_element)
+      for (var i = 1; i <= total_image_element; i++) {
+        // Get src image every input image element
+        src_image[i] = document.getElementById("view_edit_element_image_"+i).src;   
+      }
 
-      if (element_name && element_god_name && element_description && element_position && src_image) {
+      // Create variable to identified all input element image is required
+      var check = 1; // 0 is have input null, 1 is all input element image is required
+      for (var i = 1; i <= total_image_element; i++) {
+        if (!src_image[i]) {
+          check = 0;
+        }  
+      }
+
+      if (element_name && element_god_name && element_description && element_position && check == 1) {
         document.getElementById("btn_edit_element_in_modal").disabled = false;
       }else{
         document.getElementById("btn_edit_element_in_modal").disabled = true;
@@ -157,14 +178,25 @@
                     <!-- Form Alamat Pura-->
                     <div class="form-group row">
                         <label for="inputAlamatPura" class="col-sm-3 col-md-3 col-xs-12 col-form-label" >Alamat Pura <span class="required">*</span></label>
-                        <div class="col-10 col-sm-8 col-md-8 col-xs-12 pr-0">
+                        <div class="col-sm-9 col-md-9 col-xs-12 pr-0">
                             <input type="text" class="form-control" id="inputAlamatPura" name="address" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputLatitude" class="col-sm-3 col-md-3 col-xs-12 col-form-label" >Latitude <span class="required">*</span></label>
+                        <div class="col-10 col-sm-8 col-md-8 col-xs-12">
+                            <input type="text"  class="form-control " name="latitude" id="latitude" value="" required onkeypress="return false;">
                         </div>
                         <div class="col-2 col-sm-1 text-center">
                             <button data-toggle="modal" data-target="#modal_add_location" class="btn btn-default bg-white p-0"> <img src="/user_img/maps.png" width="35" alt="">
-                              <input type="hidden" name="latitude" id="latitude" value="" required>
-                              <input type="hidden" name="longitude" id="longitude" value="" required>  
                             </button>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputAlamatPura" class="col-sm-3 col-md-3 col-xs-12 col-form-label" >Longitude <span class="required">*</span></label>
+                        <div class="col-10 col-sm-8 col-md-8 col-xs-12">
+                            <input type="text" class="form-control " name="longitude" id="longitude" value="" required onkeypress="return false;">  
                         </div>
                     </div>
 
@@ -428,20 +460,20 @@
                 <div class="col-md-12 col-xs-12 " >
                   <img id="view_element_image_1" class="col-md-offset-3 col-md-5 " style="margin-bottom: 5px; ">
                 </div>
-                <input name="input_element_image_1" id="input_element_image_1" id_input_foto="1" status_image="add" class="form-control col-md-12 col-xs-12" required="required" type="file" accept="image/*" onchange="showElementImage.call(this);">
+                <input name="input_element_image_1" id="input_element_image_1" id_input_foto_elemen="1" status_image="add" class="form-control col-md-12 col-xs-12" required="required" type="file" accept="image/*" onchange="showElementImage.call(this);">
                 <span class="text-danger" id='width_1'>* Max Width: 5128 pixel</span><span class="text-danger" id='height_1'>, Max Height: 5128 pixel</span>
                 <span class="text-danger" id="response_1"></span>
               </div>  
             </div>
-            {{-- <div style="margin-bottom: 20px;">
-              <div id="tombol_tambah_foto" class="row">
-                <input type="hidden" name="total_semua_foto" id="total_semua_foto" value="1">
+            <div style="margin-bottom: 20px;">
+              <div id="tombol_tambah_foto_elemen" class="row">
+                <input type="hidden" name="total_semua_foto_elemen" id="total_semua_foto_elemen" value="1">
                 <div class="col-md-3"></div>
                 <div class="col-md-4 col-sm-12 col-xs-12">
-                  <button name="tambah_foto" class="btn btn-success" type="button" id="tambah_foto">(+) Tambah</button ><button name="hapus_foto" class="btn btn-danger" type="button" id="hapus_foto">(-) Hapus</button>  
+                  <button name="tambah_foto_elemen" class="btn btn-success" type="button" id="tambah_foto_elemen">(+) Tambah</button ><button name="hapus_foto_elemen" class="btn btn-danger" type="button" id="hapus_foto_elemen">(-) Hapus</button>  
                 </div>
               </div>
-            </div> --}}
+            </div>
             <div class="form-group row">
                 <label for="inputNamePura" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Nama Element<span class="required">*</span></label>
                 <div class="col-sm-9 col-md-9 col-xs-12">
@@ -503,20 +535,20 @@
                 <div class="col-md-12 col-xs-12 " >
                   <img id="view_edit_element_image_1" class="col-md-offset-3 col-md-5 " style="margin-bottom: 5px; ">
                 </div>
-                <input name="input_edit_element_image_1" id="input_edit_element_image_1" id_input_foto="1" status_image="edit" class="form-control col-md-12 col-xs-12" required="required" type="file" accept="image/*" onchange="showElementImage.call(this);">
+                <input name="input_edit_element_image_1" id="input_edit_element_image_1" id_input_foto_elemen="1" status_image="edit" class="form-control col-md-12 col-xs-12" required="required" type="file" accept="image/*" onchange="showElementImage.call(this);">
                 <span class="text-danger" id='width_1'>* Max Width: 5128 pixel</span><span class="text-danger" id='height_1'>, Max Height: 5128 pixel</span>
                 <span class="text-danger" id="response_1"></span>
               </div>  
             </div>
-            {{-- <div style="margin-bottom: 20px;">
-              <div id="tombol_tambah_foto" class="row">
-                <input type="hidden" name="total_semua_foto" id="total_semua_foto" value="1">
+            <div style="margin-bottom: 20px;">
+              <div id="tombol_tambah_foto_element_in_modal_edit" class="row">
+                <input type="hidden" name="total_semua_foto_element_in_modal_edit" id="total_semua_foto_element_in_modal_edit" value="1">
                 <div class="col-md-3"></div>
                 <div class="col-md-4 col-sm-12 col-xs-12">
-                  <button name="tambah_foto" class="btn btn-success" type="button" id="tambah_foto">(+) Tambah</button ><button name="hapus_foto" class="btn btn-danger" type="button" id="hapus_foto">(-) Hapus</button>  
+                  <button name="tambah_foto_element_in_modal_edit" class="btn btn-success" type="button" id="tambah_foto_element_in_modal_edit">(+) Tambah</button ><button name="hapus_foto_element_in_modal_edit" class="btn btn-danger" type="button" id="hapus_foto_element_in_modal_edit">(-) Hapus</button>  
                 </div>
               </div>
-            </div> --}}
+            </div>
             <div class="form-group row">
                 <label for="inputNamePura" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Nama Element<span class="required">*</span></label>
                 <div class="col-sm-9 col-md-9 col-xs-12">
@@ -599,7 +631,7 @@
           var id_input_foto = $(this).attr('id_input_foto');
 
           obj.onload = function(data){
-            
+            // console.log(data);
             var image = document.getElementById("image_"+id_input_foto);
             
             // console.log(id_input_foto);
@@ -684,6 +716,94 @@
       });
       // End of dynamic input of image temple
 
+      // Javascript to make dymanic input image of element temple in modal add element
+      $(document).ready(function(){
+       function tambah_foto_elemen(){
+        var total_foto_elemen = document.getElementById('total_semua_foto_elemen').value;
+        total_foto_elemen++;
+
+        var isi = '<div class="form-group row" id="element_image_'+total_foto_elemen+'">';
+        isi +='<label class="col-sm-3 col-md-3 col-xs-12 col-form-label" >Foto Elemen <span class="required">*</span></label><div class="col-sm-9 col-md-9 col-xs-12"><div class="col-md-12 col-xs-12 " ><img id="view_element_image_'+total_foto_elemen+'" class="col-md-offset-3 col-md-5 " style="margin-bottom: 5px; "></div><input name="input_element_image_'+total_foto_elemen+'" id="input_element_image_'+total_foto_elemen+'" id_input_foto_elemen="'+total_foto_elemen+'" status_image="add" class="form-control col-md-12 col-xs-12" required="required" type="file" accept="image/*" onchange="showElementImage.call(this);"><span class="text-danger" id="width_'+total_foto_elemen+'">* Max Width: 5128 pixel</span><span class="text-danger" id="height_'+total_foto_elemen+'">, Max Height: 5128 pixel</span><span class="text-danger" id="response_'+total_foto_elemen+'"></span></div>';
+        isi +='</div>';
+
+        $('#tombol_tambah_foto_elemen').before(isi);
+        $('#element_image_'+total_foto_elemen).slideDown('medium');
+
+        $('#total_semua_foto_elemen').val(total_foto_elemen);
+
+        // This is for update status disable of btn add element in modal add element
+        enable_add_element();
+       }
+
+       function hapus_foto_elemen(){
+        var total_foto_elemen = document.getElementById('total_semua_foto_elemen').value;
+          if (total_foto_elemen >1) {
+            $('#element_image_'+total_foto_elemen).slideUp('medium', function(){
+              $(this).remove();
+            });
+            total_foto_elemen--;
+            $('#total_semua_foto_elemen').val(total_foto_elemen);  
+
+            // This is for update status disable of btn add element in modal add element
+            enable_add_element();
+          }
+          
+       }
+
+       $('#tambah_foto_elemen').click(function(){
+          tambah_foto_elemen();
+       });
+
+       $('#hapus_foto_elemen').click(function(){
+          hapus_foto_elemen();
+       });
+      });
+      // End of dynamic input image of element temple in modal add element
+
+      // Javascript to make dymanic input image of element temple in modal edt element
+      $(document).ready(function(){
+       function tambah_foto_elemen_in_modal_edit(){
+        var total_foto_elemen = document.getElementById('total_semua_foto_element_in_modal_edit').value;
+        total_foto_elemen++;
+
+        var isi = '<div class="form-group row" id="element_image_'+total_foto_elemen+'">';
+        isi +='<label class="col-sm-3 col-md-3 col-xs-12 col-form-label" >Foto Elemen <span class="required">*</span></label><div class="col-sm-9 col-md-9 col-xs-12"><div class="col-md-12 col-xs-12 " ><img id="view_edit_element_image_'+total_foto_elemen+'" class="col-md-offset-3 col-md-5 " style="margin-bottom: 5px; "></div><input name="input_edit_element_image_'+total_foto_elemen+'" id="input_edit_element_image_'+total_foto_elemen+'" id_input_foto_elemen="'+total_foto_elemen+'" status_image="edit" class="form-control col-md-12 col-xs-12" required="required" type="file" accept="image/*" onchange="showElementImage.call(this);"><span class="text-danger" id="width_'+total_foto_elemen+'">* Max Width: 5128 pixel</span><span class="text-danger" id="height_'+total_foto_elemen+'">, Max Height: 5128 pixel</span><span class="text-danger" id="response_'+total_foto_elemen+'"></span></div>';
+        isi +='</div>';
+
+        $('#tombol_tambah_foto_element_in_modal_edit').before(isi);
+        $('#element_image_'+total_foto_elemen).slideDown('medium');
+
+        $('#total_semua_foto_element_in_modal_edit').val(total_foto_elemen);
+
+        // This is for update status disable of btn add element in modal add element
+        enable_edit_element();
+       }
+
+       function hapus_foto_element_in_modal_edit(){
+        var total_foto_elemen = document.getElementById('total_semua_foto_element_in_modal_edit').value;
+          if (total_foto_elemen >1) {
+            $('#element_image_'+total_foto_elemen).slideUp('medium', function(){
+              $(this).remove();
+            });
+            total_foto_elemen--;
+            $('#total_semua_foto_element_in_modal_edit').val(total_foto_elemen);  
+
+            // This is for update status disable of btn add element in modal add element
+            enable_edit_element();
+          }
+          
+       }
+
+       $('#tambah_foto_element_in_modal_edit').click(function(){
+          tambah_foto_elemen_in_modal_edit();
+       });
+
+       $('#hapus_foto_element_in_modal_edit').click(function(){
+          hapus_foto_element_in_modal_edit();
+       });
+      });
+      // End of dynamic input image of element temple in modal edit
+
       // Javascript to make dynamic card element
       $(document).ready(function(){
         function add_element(element_name, element_god_name, element_description, element_position, src_image) {
@@ -694,7 +814,21 @@
 
           var element = '<div class="col-sm-4" id="card_element_'+max_number_of_card_element+'" style="margin-top: 20px;">';
 
-          element += '<input type="hidden" name="inputHiddenElementImage_'+max_number_of_card_element+'" id="inputHiddenElementImage_'+max_number_of_card_element+'" value="'+src_image+'"><input type="hidden" name="inputHiddenElementName_'+max_number_of_card_element+'" id="inputHiddenElementName_'+max_number_of_card_element+'" value="'+element_name+'"><input type="hidden" name="inputHiddenGodName_'+max_number_of_card_element+'" id="inputHiddenGodName_'+max_number_of_card_element+'" value="'+element_god_name+'"><input type="hidden" name="inputHiddenElementDescription_'+max_number_of_card_element+'" id="inputHiddenElementDescription_'+max_number_of_card_element+'" value="'+element_description+'"><input type="hidden" name="inputHiddenElementPosition_'+max_number_of_card_element+'" id="inputHiddenElementPosition_'+max_number_of_card_element+'" value="'+element_position+'"><div id="element" class="card"><img class="card-img-top" id="img_element_'+max_number_of_card_element+'" src="'+src_image+'" alt="Card image cap"><div class="card-body"><h5 class="card-title" id="card_title_'+max_number_of_card_element+'">'+element_name+'</h5><p id="card_text_'+max_number_of_card_element+'" class="card-text">'+element_god_name+' <br> '+element_position+' <br> '+element_description+'</p><div class="row "><div class="col-sm" id="space_for_btn_edit_'+max_number_of_card_element+'"><button id="btn_edit_element" data-target="#modal_edit_element" data-toggle="modal" type="button" class="btn btn-primary btn-block btn-sm" data-element_name="'+element_name+'" data-element_god_name="'+element_god_name+'" data-element_description="'+element_description+'" data-element_position="'+element_position+'" data-element_image="'+src_image+'" data-card_id="'+max_number_of_card_element+'">Ubah</button></div><div class="col-sm"><button type="button" id="btn_delete_card_element_'+max_number_of_card_element+'" onclick="delete_element('+max_number_of_card_element+');" class="btn btn-danger btn-block btn-sm">Hapus</button></div></div></div></div></div>';
+          // Loop to save all input image to input hidden
+          var total_image_element = document.getElementById('total_semua_foto_elemen').value;
+          for (var i = 1; i <= total_image_element; i++) {
+            element += '<input type="hidden" name="inputHiddenElement_'+max_number_of_card_element+'_Image_'+i+'" id="inputHiddenElement_'+max_number_of_card_element+'_Image_'+i+'" value="'+src_image[i]+'">';            
+          }
+
+          element += '<input type="hidden" name="inputHiddenTotalElementImage_'+max_number_of_card_element+'" id="inputHiddenTotalElementImage_'+max_number_of_card_element+'" value="'+total_image_element+'"><input type="hidden" name="inputHiddenElementName_'+max_number_of_card_element+'" id="inputHiddenElementName_'+max_number_of_card_element+'" value="'+element_name+'"><input type="hidden" name="inputHiddenGodName_'+max_number_of_card_element+'" id="inputHiddenGodName_'+max_number_of_card_element+'" value="'+element_god_name+'"><input type="hidden" name="inputHiddenElementDescription_'+max_number_of_card_element+'" id="inputHiddenElementDescription_'+max_number_of_card_element+'" value="'+element_description+'"><input type="hidden" name="inputHiddenElementPosition_'+max_number_of_card_element+'" id="inputHiddenElementPosition_'+max_number_of_card_element+'" value="'+element_position+'"><div id="element" class="card"><img class="card-img-top" id="img_element_'+max_number_of_card_element+'" src="'+src_image[1]+'" alt="Card image cap"><div class="card-body"><h5 class="card-title" id="card_title_'+max_number_of_card_element+'">'+element_name+'</h5><p id="card_text_'+max_number_of_card_element+'" class="card-text">'+element_god_name+' <br> '+element_position+' <br> '+element_description+'</p><div class="row "><div class="col-sm" id="space_for_btn_edit_'+max_number_of_card_element+'"><button id="btn_edit_element" data-target="#modal_edit_element" data-toggle="modal" type="button" class="btn btn-primary btn-block btn-sm" data-element_name="'+element_name+'" data-element_god_name="'+element_god_name+'" data-element_description="'+element_description+'" data-element_position="'+element_position+'" data-total_image_element="'+total_image_element+'"';
+
+          // This is to make enable parsing all image in element to modal
+          for (var i = 1; i <= total_image_element; i++) {
+            element += ' data-element_image_'+i+'="'+src_image[i]+'"';
+          }
+          
+          // Concat with end of modal
+          element += 'data-card_id="'+max_number_of_card_element+'">Ubah</button></div><div class="col-sm"><button type="button" id="btn_delete_card_element_'+max_number_of_card_element+'" onclick="delete_element('+max_number_of_card_element+');" class="btn btn-danger btn-block btn-sm">Hapus</button></div></div></div></div></div>';
 
           var position = max_number_of_card_element-1;
           if (position == 0) {
@@ -719,13 +853,17 @@
           var element_god_name = document.getElementById('inputGodName').value;
           var element_description = document.getElementById('inputElementDescription').value;
           var element_position = document.getElementById('inputElementPosition').value;
-          var src_image = document.getElementById("view_element_image_1").src;
 
-          // console.log('nama element : '+element_name);
-          // console.log('dewa element : '+element_god_name);
-          // console.log('deskripsi element : '+element_description);
-          // console.log('posisi element : '+element_position);
-          // console.log('src_image : '+src_image);
+          // First get total of input image element
+          // Loop to get all input image because image can more than one
+          var total_image_element = document.getElementById('total_semua_foto_elemen').value;
+          var src_image = new Array(total_image_element)
+          for (var i = 1; i <= total_image_element; i++) {
+            // Get src image every input image element
+            src_image[i] = document.getElementById("view_element_image_"+i).src;   
+          }
+          // console.log(src_image);
+          // var src_image = document.getElementById("view_element_image_1").src;
 
           add_element(element_name, element_god_name, element_description, element_position, src_image);
 
@@ -749,24 +887,56 @@
           var src_image = document.getElementById("view_edit_element_image_1").src;
           var card_id = document.getElementById('card_id_in_modal').value;
 
-          console.log(src_image);
-
           // This is source code to edit inputhidden in their card element
-          document.getElementById('inputHiddenElementImage_'+card_id).value = src_image;
           document.getElementById('inputHiddenElementName_'+card_id).value = element_name;
           document.getElementById('inputHiddenGodName_'+card_id).value = element_god_name;
           document.getElementById('inputHiddenElementDescription_'+card_id).value = element_description;
           document.getElementById('inputHiddenElementPosition_'+card_id).value = element_position;
 
+          // This is source code to edit inputHidden of image in their card
+          // First get total of input image element
+          // Loop to get all input image because image can more than one
+          var total_image_element = document.getElementById('total_semua_foto_element_in_modal_edit').value;
+          var total_image_element_in_card = document.getElementById('inputHiddenTotalElementImage_'+card_id).value;
+          // console.log("total_image_element : "+total_image_element);
+          var src_image = new Array(total_image_element)
+          for (var i = 1; i <= total_image_element; i++) {
+            // Get src image every input image element
+            src_image[i] = document.getElementById("view_edit_element_image_"+i).src;   
+            // console.log("src_image "+i+" : "+src_image[i])
+
+            // When add new image element in modal edit element, then add new tag input of hidden image in their card
+            if (i>total_image_element_in_card) {
+              // Add new tag input to save new image of element
+              var newInputHiddenImage = ' <input type="hidden" name="inputHiddenElement_'+card_id+'_Image_'+i+'" id="inputHiddenElement_'+card_id+'_Image_'+i+'" value="'+src_image[i]+'">';
+
+              $('#inputHiddenTotalElementImage_'+card_id).before(newInputHiddenImage);
+            }else{
+              document.getElementById('inputHiddenElement_'+card_id+'_Image_'+i).value = src_image[i];     
+            }
+          }
+          // Delete tag input image in card when their deleted in modal edit element
+          for (total_image_element_in_card; total_image_element_in_card > total_image_element; total_image_element_in_card--) {
+            document.getElementById('inputHiddenElement_'+card_id+'_Image_'+total_image_element_in_card).remove();
+          }
+          document.getElementById('inputHiddenTotalElementImage_'+card_id).value = total_image_element;
+
           // This is source code to edit their card
-          document.getElementById('img_element_'+card_id).src = src_image;
+          document.getElementById('img_element_'+card_id).src = src_image[1];
           document.getElementById('card_title_'+card_id).innerHTML = element_name;
           var text = element_god_name+' <br> '+element_position+' <br> '+element_description;
           document.getElementById('card_text_'+card_id).innerHTML = text;
-          var button_edit = '<button id="btn_edit_element" data-target="#modal_edit_element" data-toggle="modal" type="button" class="btn btn-primary btn-block btn-sm" data-element_name="'+element_name+'" data-element_god_name="'+element_god_name+'" data-element_description="'+element_description+'" data-element_position="'+element_position+'" data-element_image="'+src_image+'" data-card_id="'+card_id+'">Ubah</button>';
+
+          var button_edit = '<button id="btn_edit_element" data-target="#modal_edit_element" data-toggle="modal" type="button" class="btn btn-primary btn-block btn-sm" data-element_name="'+element_name+'" data-element_god_name="'+element_god_name+'" data-element_description="'+element_description+'" data-element_position="'+element_position+'" data-total_image_element="'+total_image_element+'"';
+          // This is to make enable parsing all image in in modal edit element to card of their element
+          for (var i = 1; i <= total_image_element; i++) {
+            button_edit += ' data-element_image_'+i+'="'+src_image[i]+'" ';
+          }
+          button_edit += ' data-card_id="'+card_id+'">Ubah</button> ';
+
           document.getElementById('space_for_btn_edit_'+card_id).innerHTML = button_edit;
 
-          console.log("card_id : "+card_id);
+          // console.log("card_id : "+card_id);
 
           // Clear all input in modal edit_element
           document.getElementById("btn_edit_element_in_modal").disabled = true;
@@ -776,18 +946,27 @@
           document.getElementById('inputEditElementPosition').value = '';
           document.getElementById("view_edit_element_image_1").src = '';
           document.getElementById("input_edit_element_image_1").value = '';
+          document.getElementById('total_semua_foto_element_in_modal_edit').value = 1;
+          if (total_image_element > 1) {
+            for (var i = 2; i <= total_image_element; i++) {
+              // Remove another tag input image than first tag input of image
+              $('#element_image_'+i).slideUp('medium', function(){
+                $(this).remove();
+              });
+            } 
+          }
           $('#modal_edit_element').modal('hide');
         });
       });
       
-      // This is function to show image in modal edit and add element
+      // This is function to show image in modal edit and modal add element
       function showElementImage(){
         if( this.files && this.files[0]){
           var obj = new FileReader();
           // var total_foto = document.getElementById('total_semua_foto').value;
           // console.log(total_foto);
 
-          var id_input_foto = $(this).attr('id_input_foto');
+          var id_input_foto = $(this).attr('id_input_foto_elemen');
           var status_image = $(this).attr('status_image');
 
           obj.onload = function(data){
@@ -799,40 +978,19 @@
               // This is for modal edit element
               var image = document.getElementById("view_edit_element_image_"+id_input_foto);  
             }
-            
-            // console.log(id_input_foto);
 
             image.src = data.target.result;
             image.style.display = "block";
 
             if (status_image == 'add') {
-              // This is javascript to enable button add element when all input not null
-              var element_name = document.getElementById('inputElementName').value;
-              var element_god_name = document.getElementById('inputGodName').value;
-              var element_description = document.getElementById('inputElementDescription').value;
-              var element_position = document.getElementById('inputElementPosition').value;
-              var src_image = document.getElementById("view_element_image_"+id_input_foto).src; 
-
-              if (element_name && element_god_name && element_description && element_position && src_image) {
-                document.getElementById("btn_add_element").disabled = false;
-              }else{
-                document.getElementById("btn_add_element").disabled = true;
-              }    
+              // This is javascript to enable button add element when all input not null in modal ad element
+              // Call function enable_add_element
+              enable_add_element();
             }else if(status_image == 'edit'){
-              // This is javascript to enable button edit element when all input not null
-              var element_name = document.getElementById('inputEditElementName').value;
-              var element_god_name = document.getElementById('inputEditGodName').value;
-              var element_description = document.getElementById('inputEditElementDescription').value;
-              var element_position = document.getElementById('inputEditElementPosition').value;
-              var src_image = document.getElementById("view_edit_element_image_"+id_input_foto).src; 
-
-              if (element_name && element_god_name && element_description && element_position && src_image) {
-                document.getElementById("btn_edit_element").disabled = false;
-              }else{
-                document.getElementById("btn_edit_element").disabled = true;
-              }    
+              // This is javascript to enable button edit element when all input not null in modal edit element
+              // Call function enable_edit_element
+              enable_edit_element()
             }
-            
           }
           obj.readAsDataURL(this.files[0]);
 
@@ -880,11 +1038,18 @@
         var element_god_name = button.data('element_god_name')
         var element_description = button.data('element_description')
         var element_position = button.data('element_position')
-        var element_image = button.data('element_image')
-        var card_id = button.data('card_id');
+        var card_id = button.data('card_id')
+        var total_image_element = button.data('total_image_element')
 
-        // console.log(element_image)
+        // Get all image
+        var src_image = new Array(total_image_element)
+        for (var i = 1; i <= total_image_element; i++) {
+          // Get src image every input image element
+          src_image[i] = button.data("element_image_"+i);   
+        }
 
+        // console.log("modal : "+src_image)
+        
         // This is to set all input in modal edit element
         var modal = $(this)
         modal.find('.modal-body #inputEditElementName').val(element_name)
@@ -892,10 +1057,69 @@
         modal.find('.modal-body #inputEditElementDescription').val(element_description)
         modal.find('.modal-body #inputEditElementPosition').val(element_position)
         modal.find('.modal-body #card_id_in_modal').val(card_id)
-        document.getElementById('view_edit_element_image_1').src = element_image
 
+        document.getElementById('view_edit_element_image_1').src = src_image[1]
+
+        if (total_image_element > 1) {
+          for (var i = 2; i <= total_image_element; i++) {
+            var isi = '<div class="form-group row" id="element_image_'+i+'">';
+            isi +='<label class="col-sm-3 col-md-3 col-xs-12 col-form-label" >Foto Elemen <span class="required">*</span></label><div class="col-sm-9 col-md-9 col-xs-12"><div class="col-md-12 col-xs-12 " ><img id="view_edit_element_image_'+i+'" class="col-md-offset-3 col-md-5 " style="margin-bottom: 5px; " src="'+src_image[i]+'"></div><input name="input_edit_element_image_'+i+'" id="input_edit_element_image_'+i+'" id_input_foto_elemen="'+i+'" status_image="edit" class="form-control col-md-12 col-xs-12" required="required" type="file" accept="image/*" onchange="showElementImage.call(this);"><span class="text-danger" id="width_'+i+'">* Max Width: 5128 pixel</span><span class="text-danger" id="height_'+i+'">, Max Height: 5128 pixel</span><span class="text-danger" id="response_'+i+'"></span></div>';
+            isi +='</div>';
+
+            // console.log("i : "+i);
+
+            $('#tombol_tambah_foto_element_in_modal_edit').before(isi);
+            $('#element_image_'+i).slideDown('medium');
+          }
+        }
+        $('#total_semua_foto_element_in_modal_edit').val(total_image_element);
+        // This is for update status disable of btn edit element in modal edit element
+        enable_edit_element();  
+        
         // This is to enable btn to save edit element
         document.getElementById("btn_edit_element_in_modal").disabled = false;
+      })
+
+      // This is to clean all input of modal add element when close the modal add element
+      $('#modal_add_element').on('hidden.bs.modal', function () {
+        $(this).find('form').trigger('reset');
+        $(this).find('#view_element_image_1').attr('src', '');
+
+        // Remove tag input of image when more than 1
+        var total_image_element = document.getElementById('total_semua_foto_elemen').value;
+        var total_image_element_backup = total_image_element;
+        if (total_image_element > 1) {
+          for (var i = 2; i <= total_image_element; i++) {
+            // Remove another tag input image than first tag input
+            $('#element_image_'+i).slideUp('medium', function(){
+              $(this).remove();
+            });
+            total_image_element_backup--;
+          } 
+          $('#total_semua_foto_elemen').val(total_image_element_backup);   
+        }
+        // console.log(total_image_element);
+      })
+
+      // This is to clean all input of modal edit element when close the modal edit element
+      $('#modal_edit_element').on('hidden.bs.modal', function () {
+        $(this).find('form').trigger('reset');
+        document.getElementById('total_semua_foto_element_in_modal_edit').value = 1;
+        $(this).find('#view_edit_element_image_1').attr('src', '');
+
+        // Remove tag input of image when more than 1 in modal edit element
+        var total_image_element = document.getElementById('total_semua_foto_element_in_modal_edit').value;
+        var total_image_element_backup = total_image_element;
+        if (total_image_element > 1) {
+          for (var i = 2; i <= total_image_element; i++) {
+            // Remove another tag input image than first tag input of image
+            $('#element_image_'+i).slideUp('medium', function(){
+              $(this).remove();
+            });
+            total_image_element_backup--;
+          } 
+          $('#total_semua_foto_element_in_modal_edit').val(total_image_element_backup);   
+        }
       })
     </script>
 @endsection

@@ -69,6 +69,7 @@ Route::post('/fetch_data','UserController@fetch')->name('fetch_data');
 Route::get('/loadMarker','LandingController@loadMarker');
 Route::post('/dropzone','UserController@dropzone')->name('dropzone');
 Route::get('/user/profile','UserController@profile')->name('user.profile');
+Route::post('/user/update-foto-profille','UserController@update_foto_profille')->name('user.update-foto-profille');
 Route::put('/edit/profile/{id}','UserController@edit_profile')->name('edit.profile');
 Route::get('/user/contribution','UserController@contribution')->name('user.contribution');
 Route::get('/user/contribution-detail/{id}','UserController@contribution_details');
