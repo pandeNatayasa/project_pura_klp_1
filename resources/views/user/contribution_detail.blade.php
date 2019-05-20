@@ -26,10 +26,17 @@
             <div class="container col-md-10">
                 <!-- Form List Gambar-->
                 {{-- <form class="dz-clickable mb-5 dropzone"  id="addImages" method="POST" action="{{route('temple.store')}}">
-                  <div class="dz-default dz-message m-5"><span>Drop/Click here to upload images</span></div>
+                    <div class="dz-default dz-message m-5"><span>Drop/Click here to upload images</span></div>
                 </form> --}}
-                <form class="form-horizontal form-label-left"  enctype="multipart/form-data"  accept-charset="utf-8" method="POST" action="">
+                <form class="form-horizontal form-label-left" action="">
                     <!-- Form Nama Pura-->
+                    <div id="temple-img-detail" class="card mb-3">
+                        <div class="card-body">
+                            @foreach ($img as $images)
+                                <img src="/{{$images->image_name}}" alt="" width="150px">
+                            @endforeach
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label for="inputNamePura" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Nama Pura<span class="required">*</span></label>
                         <div class="col-sm-9 col-md-9 col-xs-12">
@@ -44,7 +51,7 @@
                             <select class="form-control " required="required" id="temple_type_id" name="temple_type_id">
                             <option value="" disabled selected>Pilih Jenis Pura</option>
                             {{-- @foreach($type as $data)
-                              <option value="{{$data->id}}">{{$data->type_name}}</option>
+                                <option value="{{$data->id}}">{{$data->type_name}}</option>
                             @endforeach --}}
                             </select>
                         </div>
@@ -196,8 +203,26 @@
                         </div>
                     </div>
                     
-                    <!-- Button Submit-->
-                    <button  type="submit" id="addTemple" class="btn btn-primary btn-block">Tambahkan</button>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12 pl-0" for="name">Elements <span class="required">*</span>
+                    </label>
+                    <div class="row">
+                        @foreach ($elements as $elem)
+                        <div class="col-6 col-md-3">
+                            <div class="card " >
+                                <img class="card-img-top" src="/user_img/uluwatu.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">{{$elem->element_name}}</h5>
+                                    <p class="card-text">{{$elem->god}}</p>
+                                    <p class="card-text">{{$elem->element_position}}</p>
+                                    <div class="text-center">
+                                        <a href="/user/contribution-detail/{{$elem->id}}" class="btn btn-default">See Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        @endforeach
+                    </div>
                 </form>
             </div>
             

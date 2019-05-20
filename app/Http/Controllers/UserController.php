@@ -14,6 +14,7 @@ use App\Saptawara;
 use App\Pancawara;
 use App\Temple;
 use App\TempleImage;
+use App\TempleDetail;
 use App\User;
 use Auth;
 
@@ -58,8 +59,10 @@ class UserController extends Controller
     }
 
     public function contribution_details($id){
+        $img = TempleImage::where('id','=',$id)->get();
         $details = Temple::where('id','=',$id)->first();
-        return view('user.contribution_detail',compact('details'));
+        $elements = TempleDetail::where('id','=',$id)->get();
+        return view('user.contribution_detail',compact('details','img','elements'));
     }
 
     //Fetch Data Location

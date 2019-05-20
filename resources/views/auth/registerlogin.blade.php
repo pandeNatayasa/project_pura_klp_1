@@ -23,7 +23,7 @@
 <body>
     <div id="bg" style=".col-4"></div>
     <header>
-        <h3>Back To Login</h3>
+        <a href="/member/login"> <h3>Back To Login</h3></a>
     </header>
     <main>
         <div id="main-gambar" class="row">
