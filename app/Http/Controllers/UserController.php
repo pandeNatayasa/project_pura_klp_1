@@ -173,9 +173,9 @@ class UserController extends Controller
         $user = User::where('id', '=', Auth::user()->id)->first();
 
         if(Hash::check($request->password, $user->password)) {
-            return view('auth.passwords.reset');
+            return view('user.password_reset');
         } else {
-            return response()->json(['status'=>'false', 'message'=>'password is wrong']);
+            return back();
         }
 
         // return view('/home');
