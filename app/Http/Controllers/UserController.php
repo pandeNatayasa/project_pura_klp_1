@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Province;
 use App\City;
 use App\SubDistrict;
@@ -166,4 +167,18 @@ class UserController extends Controller
         }
         return "aa";        
     }
+
+    public function change_password(Request $request){
+
+        $user = User::where('id', '=', Auth::user()->id)->first();
+
+        if(Hash::check($request->password, $user->password)) {
+            return view('auth.passwords.reset');
+        } else {
+            return response()->json(['status'=>'false', 'message'=>'password is wrong']);
+        }
+
+        // return view('/home');
+    }
+
 }

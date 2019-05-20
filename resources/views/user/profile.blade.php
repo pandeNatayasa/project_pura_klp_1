@@ -85,19 +85,20 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
-                <div class="modal-body">
-                        <div class="form-group row">
-                            <div class="col">
-                                <input type="text" class="form-control form-control-sm" placeholder="Password Confirmation">
+                    <div class="modal-body">
+                        <form action="/change_password" method="POST">
+                            {{csrf_field()}}
+                            <div class="form-group row">
+                                <div class="col">
+                                    <input type="password" name="password" class="form-control form-control-sm" placeholder="Password Confirmation">
+                                </div>
                             </div>
-                            
-                        </div>
-                    <div class="float-right">
-                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
-                        <button type="button" class="btn btn-primary btn-sm">Confirm</button>
+                            <div class="float-right">
+                                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-primary btn-sm">Confirm</button>
+                            </div>
+                        </form>
                     </div>
-                    
-                </div>
             </div>
         </div>
     </div>
