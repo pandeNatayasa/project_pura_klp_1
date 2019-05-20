@@ -24,13 +24,6 @@
         <div class="brand" >
           <a href="{{ route('admin.home') }}"><i style="color: black; margin-right: 10px;" class="fa fa-arrow-left"></i></a><a href="{{ route('show_list_temple') }}">Daftar Pura </a>  
         </div>
-        {{-- <a class="brand" href="{{ route('show_list_temple_validate') }}">Daftar Pura </a>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="">
-            <a href="{{ route('admin.home') }}" class="user-profile" aria-expanded="false">
-              Back To Dashboard
-            </a>
-        </ul> --}}
       </nav>
     </div>
   </div>

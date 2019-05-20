@@ -19,7 +19,7 @@
         <div class="card-body ">
             <div class="container">
                 <div class="card  mx-auto" style="height: 200px; width:200px; border-radius: 50%; border: grey 6px solid" >
-                    <img id="foto_profille" src="{{ asset(Auth::user()->profille_image)}}" style="width: 100%;height: 100%;position: static;border-radius: 50%;" alt="">
+                    <img id="foto_profille" src="{{ asset(Auth::user('admin')->profille_image)}}" style="width: 100%;height: 100%;position: static;border-radius: 50%;" alt="">
                     <input type="file" id="file1" name="image"  accept="image/*" capture style="display:none" onchange="showImage.call(this)"><button id="upfile1"  type="button" class="btn btn-default btn-circle btn-xl" style="z-index: 1;right:0;bottom:0;position: absolute"><i class="fa fa-camera"></i></button>
                 </div>
                 <div class="mt-5">
@@ -30,21 +30,21 @@
                     <div class="form-group row">
                         <label for="inputNamaUser" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Nama<span class="required">*</span></label>
                         <div class="col-sm-9 col-md-9 col-xs-12">
-                        <input type="text" class="form-control " id="user_name" name="user_name" value="{{Auth::user()->name}}" required>
+                        <input type="text" class="form-control " id="user_name" name="user_name" value="{{Auth::user('admin')->name}}" required>
                         </div>
                     </div>
                     <!-- Form Email User-->
                     <div class="form-group row">
                         <label for="inputEmailUser" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Email<span class="required">*</span></label>
                         <div class="col-sm-9 col-md-9 col-xs-12">
-                            <input type="text" class="form-control " id="user_email" name="user_email" value="{{Auth::user()->email}}" required>
+                            <input type="text" class="form-control " id="user_email" name="user_email" value="{{Auth::user('admin')->email}}" required>
                         </div>
                     </div>
                     <!-- Form Telp User-->
                     <div class="form-group row">
                         <label for="inputTelpUser" class="col-sm-3 col-md-3 col-xs-12 col-form-label">No Telp<span class="required">*</span></label>
                         <div class="col-sm-9 col-md-9 col-xs-12">
-                            <input type="text" class="form-control " id="user_telp" name="user_telp" value="{{Auth::user()->no_telp}}" required>
+                            <input type="text" class="form-control " id="user_telp" name="user_telp" value="{{Auth::user('admin')->no_telp}}" required>
                         </div>
                     </div>
                     <!-- Form Password User-->

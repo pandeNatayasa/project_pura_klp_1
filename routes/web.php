@@ -96,6 +96,6 @@ Route::get('/admin/verify-reject-temple/{id}','Admin\DashboardController@verify_
 Route::get('/admin/temple-detail/{id}','Admin\DashboardController@show_temple_detail')->name('show_temple_detail');
 Route::get('/admin/update-temple/{id}','Admin\DashboardController@update_temple')->name('admin.update_temple');
 Route::get('/admin/profille','Admin\DashboardController@show_profille_admin')->name('show_profille_admin');
-Route::get('/admin/profille/{id}','Admin\DashboardController@update_profille_admin')->name('update_profille_admin');
+Route::put('/admin/profille/{id}','Admin\DashboardController@update_profille_admin')->name('update_profille_admin');
 
 

@@ -67,6 +67,12 @@ class DashboardController extends Controller
     return view('admin.profille_admin');
   }
 
+  // This is to update profille admin
+  public function update_profille_admin(Request $request, $id)
+  {
+    return "aa";
+  }
+
   public function verify_accept_temple($id)
   {
   	$temple = Temple::find($id);
