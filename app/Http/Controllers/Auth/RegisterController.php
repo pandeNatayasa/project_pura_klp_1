@@ -70,6 +70,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'profille_image' => 'profile_image_user/user.png'
         ]);
     }
 
@@ -78,9 +79,15 @@ class RegisterController extends Controller
         $validator = $this->validator($input);
 
         if($validator->passes()){
-            $user = $this->create($input)->toArray();
-            $user['link'] = str_random(30);
 
+            $user = $this->create([
+                'name' => $input['name'],
+                'email' => $input['email'],
+                'password' => $input['password'],
+                'profille_image' => 'profille_image_user/user.png'
+            ])->toArray();
+
+            $user['link'] = str_random(30);
 
             DB::table('users_activations')->insert(['id_user'=>$user['id'], 'token'=>$user['link']]);
             Mail::send('mail.activation', $user, function($message) use($user){

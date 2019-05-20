@@ -16,6 +16,7 @@ use App\Temple;
 use App\TempleImage;
 use App\User;
 use Auth;
+use Image;
 
 class UserController extends Controller
 {
@@ -137,5 +138,29 @@ class UserController extends Controller
         $profile->save();
 
         return back();
+    }
+
+    public function update_foto_profille(Request $request)
+    {
+        // Check when upload profile image
+        if (null !== $request->get('profille_image')){
+            if($request->get('profille_image')){ // start success
+                $image_str = $request->get('profille_image');
+                $array = explode(',', $image_str);
+                $extension = explode('/', explode(':', substr($image_str, 0, strpos($image_str, ';')))[1])[1];
+                $filePic = Image::make($array[1])->encode($extension); 
+                
+                $fileName = 'profille_image_'.Auth::id();
+                $path = 'profille_image_user/';
+                $filePic->save($path . $fileName.'.'.$extension);
+
+                $update_profile = User::find(Auth::id());
+                $update_profile->profille_image = $path . $fileName.'.'.$extension;
+                $update_profile->save();
+
+                return $update_profile->profille_image;
+            }
+        }
+        return "aa";        
     }
 }

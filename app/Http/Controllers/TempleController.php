@@ -229,7 +229,7 @@ class TempleController extends Controller
                 // Loop to save all image of element 
                 $total_image_element = $request->get('inputHiddenTotalElementImage_'.$a);
                 for ($i=1; $i <= $total_image_element ; $i++) { 
-                    // Check when upload profile image
+                    // Check when upload image of element
                     if (null !== $request->get('inputHiddenElement_'.$a.'_Image_'.$i)){
                         if($request->get('inputHiddenElement_'.$a.'_Image_'.$i)){ // start success
                             $max_id += 1;

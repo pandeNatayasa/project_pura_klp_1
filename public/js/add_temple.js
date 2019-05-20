@@ -45,17 +45,17 @@ $(document).ready(function(){
             
             var _token = $('input[name="_token"]').val();
             $.ajax({
-            url:"/fetch_data",
-            method:"POST",
-            data:{value:value,_token:_token,dependent:dependent},
-            success:function(result)
-            {
-                $('#'+dependent).html(result);
-            },
-            error(e)
-            {
-                console.log(e);
-            }
+                url:"/fetch_data",
+                method:"POST",
+                data:{value:value,_token:_token,dependent:dependent},
+                success:function(result)
+                {
+                    $('#'+dependent).html(result);
+                },
+                error(e)
+                {
+                    console.log(e);
+                }
             })  
         }
     });
