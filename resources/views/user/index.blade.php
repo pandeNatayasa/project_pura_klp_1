@@ -42,10 +42,10 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
-            </div>
-            <div class="card panorama-360">
-                {{-- <img id="myImg" src="/user_img/element/panorama.jpg" class="pano" style="height: 50px"> --}}
-                <div id="myPano{{$data->id}}" class="pano" style="border-radius: 10px"></div>
+                <div class="card panorama-360">
+                    {{-- <img id="myImg" src="/user_img/element/panorama.jpg" class="pano" style="height: 50px"> --}}
+                    <div id="myPano{{$data->id}}" class="pano" style="border-radius: 10px"></div>
+                </div>
             </div>
             <div class="card ml-2 mr-2 mt-3 pb-2 pt-1">
                 <h5 class="text-center m-0">{{$data->temple_name}}</h5>
