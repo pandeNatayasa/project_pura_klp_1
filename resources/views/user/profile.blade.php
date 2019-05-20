@@ -49,23 +49,8 @@
                         </div>
                     </div>
                     <!-- Form Password User-->
-                    <div class="form-group row">
-                        <label for="inputPasswordUser" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Password<span class="required">*</span></label>
-                        <div class="col-sm-7 col-md-7 col-xs-10">
-                            <input type="password" class="form-control " id="user_password" name="user_password" disabled>
-                        </div>
-                        <div class="col-sm-2 col-md-2 col-xs-2">
-                            <button type="button" class="btn btn-success btn-block" data-target="#passwordModal" data-toggle="modal">Ubah</button>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="inputConfirmPasswordUser" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Confirm Password<span class="required">*</span></label>
-                        <div class="col-sm-7 col-md-7 col-xs-10">
-                            <input type="password" class="form-control " id="user_confirm_password" name="user_confirm_password" disabled>
-                        </div>
-                    </div>
-                    <!--Button Simpan-->
-                    <div class="mt-5">
+                    <div class="container text-center">
+                        <a data-toggle="modal" href="#passwordModal">Change Password ?</a>
                         <button class="btn btn-primary btn-block" type="submit">Simpan</button>
                     </div>
                 </form>

@@ -67,6 +67,7 @@ Route::get('/user', 'UserController@maps')->name('user');
 Route::get('/user/add-temple', 'UserController@add_temple')->name('add_temple');
 Route::post('/fetch_data','UserController@fetch')->name('fetch_data');
 Route::get('/loadMarker','LandingController@loadMarker');
+Route::get('/change_password','UserController@change_password');
 Route::post('/change_password','UserController@change_password');
 Route::post('/dropzone','UserController@dropzone')->name('dropzone');
 Route::get('/user/profile','UserController@profile')->name('user.profile');
