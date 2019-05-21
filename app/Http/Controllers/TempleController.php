@@ -166,7 +166,8 @@ class TempleController extends Controller
         $new->temple_type_id = $request->temple_type_id;
         $new->odalan_id = $new_odalan->id;
         $new->odalan_type = $request->odalan_type;
-        $new->user_id = Auth::id();
+        $new->creator_id = Auth::id();
+        $new->creator_type = 'member';
         $new->validate_status = '0';
         $new->sub_district_id = $request->sub_district;
         $new->description = $request->description;

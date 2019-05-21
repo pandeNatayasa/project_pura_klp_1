@@ -23,7 +23,8 @@ class CreateTemplesTable extends Migration
             $table->unsignedInteger('temple_type_id');
             $table->unsignedInteger('odalan_id')->nullable();
             $table->enum('odalan_type',['wuku','sasih']);
-            $table->unsignedInteger('user_id');
+            $table->integer('creator_id');
+            $table->enum('creator_type',['member','admin']);
             $table->unsignedInteger('admin_id')->nullable();
             $table->enum('validate_status',['0','1','2']); // 0=not validate, 1=validate, 2=reject
             $table->datetime('date_validate')->nullable();
@@ -35,7 +36,7 @@ class CreateTemplesTable extends Migration
 
             Schema::disableForeignKeyConstraints();
             $table->foreign('temple_type_id')->references('id')->on('temple_types');
-            $table->foreign('user_id')->references('id')->on('users');
+            // $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('admin_id')->references('id')->on('admins');
             $table->foreign('sub_district_id')->references('id')->on('sub_districts');    
         });

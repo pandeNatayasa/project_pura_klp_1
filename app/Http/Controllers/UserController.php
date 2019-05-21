@@ -56,7 +56,7 @@ class UserController extends Controller
     }
 
     public function contribution(){
-        $contribution = Temple::where('user_id','=',Auth::user()->id)->get();
+        $contribution = Temple::where('creator_id','=',Auth::user()->id)->where('creator_type','=','member')->get();
         return view('user.contribution',compact('contribution'));
     }
 

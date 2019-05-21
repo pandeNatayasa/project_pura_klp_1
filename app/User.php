@@ -27,7 +27,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function Temple(){
-        return $this->hashMany('App\Temple');
-    }
+    // public function Temple(){
+    //     return $this->hashMany('App\Temple');
+    // }
 }

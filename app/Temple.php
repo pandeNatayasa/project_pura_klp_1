@@ -14,10 +14,10 @@ class Temple extends Model
         return $this->belongsTo('App\Admin','admin_id');
     }
 
-    public function User()
-    {
-    	return $this->belongsTo('App\User','user_id');
-    }
+    // public function User()
+    // {
+    // 	return $this->belongsTo('App\User','user_id');
+    // }
 
     public function TempleImage()
     {
