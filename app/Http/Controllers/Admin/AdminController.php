@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Image;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -31,7 +33,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.list_admin');
     }
 
     /**
@@ -77,6 +79,30 @@ class AdminController extends Controller
     public function update(Request $request, Admin $admin)
     {
         //
+    }
+
+    public function update_foto_profille(Request $request)
+    {
+        // Check when upload profile image
+        if (null !== $request->get('profille_image')){
+            if($request->get('profille_image')){ // start success
+                $image_str = $request->get('profille_image');
+                $array = explode(',', $image_str);
+                $extension = explode('/', explode(':', substr($image_str, 0, strpos($image_str, ';')))[1])[1];
+                $filePic = Image::make($array[1])->encode($extension); 
+                
+                $fileName = 'profille_image_admin_'.Auth::id();
+                $path = 'profille_image_admin/';
+                $filePic->save($path . $fileName.'.'.$extension);
+
+                $update_profile = Admin::find(Auth::id());
+                $update_profile->profille_image = $path . $fileName.'.'.$extension;
+                $update_profile->save();
+
+                return $update_profile->profille_image;
+            }
+        }
+        return "aa";        
     }
 
     /**

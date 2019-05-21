@@ -17,11 +17,11 @@
 		<div class="navbar-inner">
 			<div class="container">
 				<a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-          <i class="icon-reorder shaded"></i></a><a class="brand" href="/">SISTEM INFORMASI PURA </a>
+          <i class="icon-reorder shaded"></i></a><a class="brand" href="{{ route('admin.home') }}">SISTEM INFORMASI PURA </a>
           <div class="nav-collapse collapse navbar-inverse-collapse">
               <ul class="nav pull-right">
                   <li class="nav-user dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      <img src="{{ asset('user_img/user.png') }}" class="nav-avatar" />
+                      <img src="{{ asset(Auth::user('admin')->profille_image) }}" class="nav-avatar" />
                       <b class="caret"></b></a>
                       <ul class="dropdown-menu">
                           <li><a href="{{ route('show_profille_admin') }}">Your Profile</a></li>

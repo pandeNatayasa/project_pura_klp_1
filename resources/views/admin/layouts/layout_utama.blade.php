@@ -34,7 +34,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="{{ asset('user_img/user.png') }}" alt="..." class="img-circle profile_img">
+                <img src="{{ asset(Auth::user('admin')->profille_image) }}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Selamat Datang,</span>
@@ -47,15 +47,14 @@
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
-                  <!-- <li class="@yield('menu_dashboard')"><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> Dashboard </a></li>
-                  <li><a><i class="fa fa-dashboard"></i> Pura <span class="fa fa-chevron-down"></span></a>
+                  {{-- <li class="@yield('menu_dashboard')"><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> Dashboard </a></li> --}}
+                  <li><a><i class="fa fa-users"></i> Users <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li class="fa fa-plus-circle @yield('menu_add_product')"><a href="{{route('temple.create')}}">Tambah Pura</a></li>
-                      <li class="fa fa-list @yield('menu_list_product')"><a href="{{route('temple.index')}}">Daftar Pura</a></li>
-                      <li class="fa fa-edit @yield('menu_update_temple')"><a href="#">Edit Pura</a></li>
+                      <li class="fa fa-list @yield('menu_list_admin')"><a href="{{ route('admin.list-admin') }}">Daftar Admin</a></li>
+                      <li class="fa fa-list @yield('menu_list_member')"><a href="{{ route('list-member.index') }}">Daftar Member</a></li>
                     </ul>
-                  </li> -->
-                  <!-- <li class="@yield('menu_pemangku')"><a href="#"><i class="fa fa-users"></i> Pemangku </a></li> -->
+                  </li>
+                  {{-- <li class="@yield('menu_pemangku')"><a href="#"><i class="fa fa-users"></i> Pemangku </a></li> --}}
                   <li class="@yield('menu_temple_type')"><a href="{{url('/admin/temple-type')}}"><i class="fa fa-diamond"></i> Jenis Pura </a></li>
                   <li><a><i class="fa fa-diamond"></i> Sasih <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -110,10 +109,11 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="#" alt="">admin
+                    <img src="{{ asset(Auth::user('admin')->profille_image) }}" alt="">admin
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li><a href="{{ route('show_profille_admin') }}"> Profille </a></li>
                     <li><a href="{{ route('admin.logout') }}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>

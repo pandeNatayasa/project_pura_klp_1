@@ -61,6 +61,10 @@ Route::resource('/admin/rahinan','Admin\RahinanController');
 // Route Admin => Temple Type
 Route::resource('/admin/temple-type','Admin\TempleTypeController');
 
+// Route Admin => Users
+Route::get('/admin/list-admin', 'Admin\AdminController@create')->name('admin.list-admin');
+Route::resource('/admin/list-member', 'Admin\MemberController');
+
 // User
 Route::get('/', 'LandingController@maps')->name('landing');
 Route::get('/user', 'UserController@maps')->name('user');
@@ -98,5 +102,6 @@ Route::get('/admin/temple-detail/{id}','Admin\DashboardController@show_temple_de
 Route::get('/admin/update-temple/{id}','Admin\DashboardController@update_temple')->name('admin.update_temple');
 Route::get('/admin/profille','Admin\DashboardController@show_profille_admin')->name('show_profille_admin');
 Route::put('/admin/profille/{id}','Admin\DashboardController@update_profille_admin')->name('update_profille_admin');
+Route::post('/admin/update-foto-profille','Admin\AdminController@update_foto_profille')->name('admin.update-foto-profille');
 
 

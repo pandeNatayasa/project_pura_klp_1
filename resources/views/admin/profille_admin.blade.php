@@ -124,7 +124,7 @@
                 // Ajax to save into database
                 var _token = $('input[name="_token"]').val();
                 $.ajax({
-                    url:"/user/update-foto-profille",
+                    url:"/admin/update-foto-profille",
                     method:"POST",
                     data:{profille_image:data.target.result,_token:_token},
                     success:function(result)
