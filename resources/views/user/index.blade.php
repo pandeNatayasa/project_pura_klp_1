@@ -161,7 +161,7 @@
         <!--Login FLoating-->
         <div class="login-floating p-0">
             @auth
-            <a id="sidebar-nav" href="#" class="p-0"><img src="{{Auth::user()->profille_image}}" style="border-radius: 50%;border:black 1px solid; width: 22px; height: 22px" alt=""></a>
+            <a id="sidebar-nav" href="#" class="p-0"><img src="/{{Auth::user()->profille_image}}" style="border-radius: 50%;border:black 1px solid; width: 22px; height: 22px" alt=""></a>
             @else
                 <ul class="row  mr-2 p-0 ">
                     <a href="{{ route('member.login') }}" style="color:black">Login</a><span class="mx-2"></span> | <span class="mx-2"></span>

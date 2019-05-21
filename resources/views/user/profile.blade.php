@@ -50,8 +50,11 @@
                     </div>
                     <!-- Form Password User-->
                     <div class="container text-center">
-                        <a data-toggle="modal" href="#passwordModal">Change Password ?</a>
                         <button class="btn btn-primary btn-block" type="submit">Simpan</button>
+                        <div class="mt-3">
+                            <a data-toggle="modal" href="#passwordModal">Change Password ?</a>
+                        </div>
+                        
                     </div>
                 </form>
                 </div>
