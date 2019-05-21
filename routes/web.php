@@ -67,6 +67,8 @@ Route::resource('/admin/list-member', 'Admin\MemberController');
 
 // User
 Route::get('/', 'LandingController@maps')->name('landing');
+Route::get('/temple-detail/{id}','LandingController@show_temple_detail')->name('temple_detail');
+Route::get('/temple-element-detail/{id}','LandingController@show_temple_element_detail');
 Route::get('/user', 'UserController@maps')->name('user');
 Route::get('/user/add-temple', 'UserController@add_temple')->name('add_temple');
 Route::post('/fetch_data','UserController@fetch')->name('fetch_data');

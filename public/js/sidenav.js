@@ -1,4 +1,8 @@
 $(document).ready(function(){
+    // $('.element_image').click(function(){
+    //     console.log("hello this is element detail")
+    // });
+
     $("#close-element,.element").click(function(){
         $("#myElement").animate({
         width: "toggle"

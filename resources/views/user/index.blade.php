@@ -10,20 +10,65 @@
 
     <!--Custome Css-->
     <link rel="stylesheet" href="/css/sidenav.css">
+
+    <script type="text/javascript">
+        // Here function to view element detail
+        function view_element_detail() {
+            var element_name = $(this).attr("element_name")
+            var element_god = $(this).attr("element_god")
+            var element_description = $(this).attr("element_description")
+            var element_id = $(this).attr("element_id")
+
+            // Here ajax to request all image of element
+            $.ajax({
+                url: "/temple-element-detail/"+element_id,
+                type: "get",
+                dataType: 'json',
+                success: function (response){
+
+                    var element_image_string = ""
+                    var i = 0
+                    response.forEach(function(element) {
+                        if (i==0) {
+                            element_image_string += '<div class="carousel-item active"><img src="'+element.image_name+'" alt="" width="100%" height="163" ></div>';
+                        }else{
+                            element_image_string += '<div class="carousel-item"><img src="'+element.image_name+'" alt="" width="100%" height="163" ></div>';
+                        }
+                        i++;
+                    });
+                    console.log(element_image_string)
+
+                    document.getElementById('sidebar_element_image').innerHTML = element_image_string;
+                },
+                error: function(e) {
+                    console.log("error : "+ e)
+                }
+            });
+
+            // Here to set detail of element
+            document.getElementById('sidebar_element_name').innerHTML = element_name;
+            document.getElementById('sidebar_element_god').innerHTML = element_god;
+            document.getElementById('sidebar_element_description').innerHTML = " Deskripsi : "+element_description;
+
+            $("#myElement").animate({
+                width: "toggle"
+            });
+        }
+    </script>
 @endsection
 
 @section('context')
     <div class="page-wrapper chiller-theme toggled">
     <!--Sidebar-->
     <nav id="sidebar" class="sidebar-wrapper bg-white loading">
-        @foreach($marker as $data)
-        @if($data->count('id') != null)
+        {{-- foreach($marker as $data)
+        if($data->count('id') != null) --}}
         <!-- Main Sidebar-->
         <div class="dots-loader"></div>
-        <div id="sidebar-content{{$data->id}}" class="sidebar-content" >
+        <div id="sidebar-content(here_temple_id)" class="sidebar-content" >
         <div class="sidebar-menu">
             <div id="carouselElement" class="carousel slide">
-                <div class="carousel-inner">
+                <div class="carousel-inner" id="sidebar_image_temple">
                     <div class="carousel-item active">
                         <img src="/user_img/uluwatu.jpg" alt="" width="100%" height="200px" >
                     </div>
@@ -44,24 +89,24 @@
                 </a>
                 <div class="card panorama-360">
                     {{-- <img id="myImg" src="/user_img/element/panorama.jpg" class="pano" style="height: 50px"> --}}
-                    <div id="myPano{{$data->id}}" class="pano" style="border-radius: 10px"></div>
+                    <div id="myPano(here_temple_id)" class="pano" style="border-radius: 10px"></div>
                 </div>
             </div>
             <div class="card ml-2 mr-2 mt-3 pb-2 pt-1">
-                <h5 class="text-center m-0">{{$data->temple_name}}</h5>
-                <small class="text-center">{{$data->TempleType->type_name}}</small>
+                <h5 class="text-center m-0" id="sidebar_temple_name">here temple name</h5>
+                <small class="text-center" id="sidebar_temple_type">here type of temple</small>
             </div>
             <div class="container mt-3">
-                <p><i class="fas fa-map-marker-alt fa-sm mb-2"></i><span class="mx-1"></span> {{$data->address}}</p>
-                <p><i class="fas fa-user fa-sm mb-2"></i><span class="mx-1"></span> {{$data->priest_name}}</p>
-                <p><i class="fas fa-calendar-week fa-sm mb-2"></i><span class="mx-1"></span> Sasih Kapitu</p>
-                <p class="mb-0"><i class="fas fa-landmark fa-sm mb-2"></i><span class="mx-1"></span> Sejarah :</p>
-                <small>{{$data->description}}</small>
+                <p><i class="fas fa-map-marker-alt fa-sm mb-2"></i><span class="mx-1" ></span><small id="icon_address_of_temple" style="font-size:100%;"></small></p>
+                <p><i class="fas fa-user fa-sm mb-2"></i><span class="mx-1" ></span><small id="icon_priest_name" style="font-size:100%;"></small> </p>
+                <p><i class="fas fa-calendar-week fa-sm mb-2"></i><span class="mx-1" ></span><small id="icon_odalan" style="font-size:100%;"></small></p>
+                <p class="mb-0"><i class="fas fa-landmark fa-sm mb-2"></i><span class="mx-1" id="icon_sejarah"></span> Sejarah :</p>
+                <small id="space_for_temple_description"> here description</small>
             </div>
             <div class="container mt-3">
                 <p class="mb-1"><img src="/user_img/element.png" width="21" alt="" class="mb-1"><span class="mx-1"></span> Element Pura :</p>
-                <div class="row">
-                    <div class="element col-4 mb-2 pr-0">
+                <div class="row" id="sidebar_temple_element">
+                    <div class="element col-4 mb-2 pr-0" onclick="view_element_detail">
                         <img src="/user_img/element/element1.1.jpg" width="90px" height="50px" alt="Card image">
                     </div>
                     <div class="element2 col-4">
@@ -100,7 +145,7 @@
                 </button>
             </div>
             <div id="carouselElement" class="carousel slide">
-                <div class="carousel-inner">
+                <div class="carousel-inner" id="sidebar_element_image">
                     <div class="carousel-item active">
                         <img src="/user_img/element/element1.1.jpg" alt="" width="100%" height="163" >
                     </div>
@@ -121,16 +166,16 @@
                 </a>
             </div>
             <div class="card ml-2 mr-2 mt-3 pt-1">
-                <h5 class="text-center">Element 1</h5>
+                <h5 class="text-center" id="sidebar_element_name">Element 1</h5>
             </div>
             <div class="container mt-3">
-                <p><img src="/user_img/god.png" width="12" class="mb-2" alt=""/><span class="mx-1"></span> Dewa Siwa</p>
-                <p><i class="fas fa-calendar-week fa-sm mb-2"></i><span class="mx-1"></span> Sasih Kapitu</p>
-                <p class="mb-0"><i class="fas fa-landmark fa-sm mb-2"></i><span class="mx-1"></span> Deskripsi :</p>
+                <p><img src="/user_img/god.png" width="12" class="mb-2" alt=""/><span class="mx-1"></span><small id="sidebar_element_god" style="font-size:100%;"></small></p>
+                {{-- <p><i class="fas fa-calendar-week fa-sm mb-2"></i><span class="mx-1"></span> Sasih Kapitu</p> --}}
+                <p class="mb-0"><i class="fas fa-landmark fa-sm mb-2"></i><span class="mx-1"></span><small id="sidebar_element_description" style="font-size:100%;"></small></p>
             </div>
         </div>
 
-        <div id="myElement2" class="hide">
+       {{--  <div id="myElement2" class="hide">
             <div class="sidebar-brand p-1 mx-auto">
                 <button class="btn btn-default bg-white btn-sm" id="close-element2">
                     <i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i>
@@ -147,9 +192,9 @@
                 <p><i class="fas fa-calendar-week fa-sm mb-2"></i><span class="mx-1"></span> Sasih Kapitu</p>
                 <p class="mb-0"><i class="fas fa-landmark fa-sm mb-2"></i><span class="mx-1"></span> Deskripsi :</p>
             </div>
-        </div>
-        @endif
-        @endforeach
+        </div> --}}
+        {{-- endif
+        endforeach --}}
     </nav>
 
     <!-- Main Content -->

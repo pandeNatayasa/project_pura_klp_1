@@ -65,7 +65,6 @@
                         <th>Jenis</th>
                         <th>Gambar</th>
                         <th>Alamat</th>
-                        <th>Pengguna</th>
                         <th>Actions</th>
                         <th>Status</th>
                       </tr>
@@ -78,7 +77,6 @@
                           <td>{{ $data->TempleType->type_name }}</td>
                           <td><img style="height: 100px;" src="{{ asset($data->image_name) }}"></td>
                           <td>{{ $data->address }}</td>
-                          <td>{{ $data->User->name }}</td>
                           <td>
                             <a href="{{ route('show_temple_detail',$data->id) }}"><button class="btn btn-info " data-toggle="tooltip" data-placement="right" title="Detail Pura"><i class="fa fa-eye"></i></button></a>
                             <a href="{{ route('admin.update_temple',$data->id) }}"><button class="btn btn-primary " name="temple_edit" data-toggle="tooltip" data-placement="right" title="Edit"><i class="fa fa-edit"></i></button></a> 

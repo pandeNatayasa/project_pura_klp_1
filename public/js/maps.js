@@ -93,6 +93,81 @@ $(document).ready(function(){
     // var marker = L.marker([-8.7105212,115.1814639],{icon: icons, title: 'Pura Goa Gong'}).addTo(map).on('click', markerOnClick);
     // markers.addLayer(marker);
 
+    function markerClick(e) {
+        // console.log(" here ajas to load data and view in side bar");
+        var html_icon = e.sourceTarget._icon.innerHTML; // this is html of icons with type string
+
+        // This is proccess to get temple_id from html_icon
+        var array_html = html_icon.split('temple_id="');
+        // console.log("arry_html[1] : "+array_html[1]);
+        var array_temple_id = array_html[1].split('"');
+        var temple_id = array_temple_id[0]
+        // console.log("temple id : "+temple_id);
+        // End of proccess to get temple_id
+
+        // This ajax to load data from database and view in sidebar
+        $.ajax({
+            url: "/temple-detail/"+temple_id,
+            type: "get",
+            dataType: 'json',
+            success: function (response){
+                // var temple_name = response[0];
+                // console.log(response);
+                // console.log(response[1]);
+                // console.log(response[2]);
+                // console.log(response.temple_name)
+                var temple = response[0];
+                var temple_image = response[1];
+                var odalan = response[2];
+                var temple_type = response[3];
+                var temple_element = response[4];
+
+                // Foreach image of temple and set in sidebar info
+                var temple_image_string = "";
+                var i = 0;
+                temple_image.forEach(function(element) {
+                    // console.log(element.image_name);
+                    if (i == 0) {
+                        // console.log(temple_image[i].image_name)
+                        temple_image_string += '<div class="carousel-item active"><img src="'+element.image_name+'" alt="" width="100%" height="200px" ></div>';    
+                    }else{
+                        temple_image_string += '<div class="carousel-item"><img src="'+element.image_name+'" alt="" width="100%" height="200px" ></div>';    
+                    }
+                    i++;
+                });
+                document.getElementById('sidebar_image_temple').innerHTML = temple_image_string;
+
+                // This is to set side bar info
+                document.getElementById('sidebar_temple_name').innerHTML = temple.temple_name;
+                document.getElementById('sidebar_temple_type').innerHTML = response[3].type_name;
+                document.getElementById('icon_address_of_temple').innerHTML = response[0].address;
+                document.getElementById('icon_priest_name').innerHTML = response[0].priest_name;
+
+                // Check if odalan type is sasih or wuku
+                if (temple.odalan_type == 'sasih') {
+                    var odalan_string = odalan.rahinan_name+", Sasih "+odalan.sasih_name ;
+                }
+                if(temple.odalan_type == 'wuku'){
+                    var odalan_string = odalan.saptawara_name+" "+odalan.pancawara_name +", Wuku "+odalan.wuku_name;
+                }
+
+                document.getElementById('icon_odalan').innerHTML = odalan_string;
+                document.getElementById('space_for_temple_description').innerHTML = response[0].description;                            
+
+                // Setting temple element
+                var temple_element_string = "";
+                temple_element.forEach(function(element){
+                    temple_element_string += '<div class="element_image col-4 mb-2 pr-0" element_id="'+element.id+'" element_name="'+element.element_name+'" element_description="'+element.element_description+'" element_god="'+element.god+'" onclick="view_element_detail.call(this)"><img src="/'+element.image_name+'" width="90px" height="50px" alt="Card image"></div>';
+                });
+                document.getElementById('sidebar_temple_element').innerHTML = temple_element_string;
+
+            },
+            error: function(e) {
+                console.log("error : "+ e)
+            }
+        });
+    }
+
     //Load Marker From Database
     $.ajax({
         url: "/loadMarker",
@@ -133,6 +208,8 @@ $(document).ready(function(){
                 })
 
                 function markerOnClick(e) {
+                    markerClick(e)
+
                     $('.sidebar-wrapper').animate({
                         width: "360px"
                     });;;
@@ -141,11 +218,11 @@ $(document).ready(function(){
 
                 var icons = L.divIcon({
                     iconSize:null,
-                    html:'<div class="map-label"><img src="/user_img/marker.png" width="25px"></img><div class="map-label-content ml-1">'+response[i].temple_name+'</div></div>'
+                    html:'<div class="map-label"><img src="/user_img/marker.png" width="25px" temple_id="'+response[i].id+'"></img><div class="map-label-content ml-1">'+response[i].temple_name+'</div></div>'
                 });
                 marker = L.marker([response[i].latitude, response[i].longitude],{icon: icons}).on('click', markerOnClick)
                 markers.addLayer(marker);
-                console.log(response)
+                // console.log(response)
             });
         },
         error: function(e){
