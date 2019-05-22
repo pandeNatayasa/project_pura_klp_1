@@ -202,7 +202,7 @@ $(document).ready(function(){
                 map.on('click', function(){
                     $('.sidebar-wrapper').animate({
                         width: "0"
-                    });;
+                    });
                     $('#myElement').hide();
                     $('#myElement2').hide();
                 })

@@ -16,7 +16,6 @@ class CreateTempleImagesTable extends Migration
         Schema::create('temple_images', function (Blueprint $table) {
             $table->increments('id');
             $table->string('image_name',200);
-            $table->text('image_position');
             $table->unsignedInteger('temple_id');
             $table->timestamps();
 

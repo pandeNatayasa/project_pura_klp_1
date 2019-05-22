@@ -2,6 +2,11 @@ $(document).ready(function(){
     // $('.element_image').click(function(){
     //     console.log("hello this is element detail")
     // });
+    setTimeout(function(){ 
+        $('.sidebar-wrapper').animate({
+            width: "0"
+        });
+    }, 3000);
 
     $("#close-element,.element").click(function(){
         $("#myElement").animate({

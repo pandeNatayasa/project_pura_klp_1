@@ -54,6 +54,7 @@
                 width: "toggle"
             });
         }
+        
     </script>
 @endsection
 
