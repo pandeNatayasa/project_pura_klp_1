@@ -100,11 +100,11 @@
     <div class="card">
         <div class="card-header">
             <div class="float-left">
-                <a href="{{ route('user') }}" style="color:black"><i class="fa fa-arrow-left"></i></a>
+                <a href="@if($temple->validate_status == 0) {{ route('show_list_temple_validate') }} @else {{ route('show_list_temple') }} @endif" style="color:black"><i class="fa fa-arrow-left"></i></a>
                 {{-- window.history.go(-1); return false; --}}
             </div>
             <div class="text-center">
-                TAMBAH LOKASI PURA
+                UPDATE PURA
             </div> 
         </div>  
         <div class="card-body">
@@ -113,8 +113,9 @@
                 {{-- <form class="dz-clickable mb-5 dropzone"  id="addImages" method="POST" action="{{route('temple.store')}}">
                   <div class="dz-default dz-message m-5"><span>Drop/Click here to upload images</span></div>
                 </form> --}}
-                <form class="form-horizontal form-label-left"  enctype="multipart/form-data"  accept-charset="utf-8" method="POST" action="{{route('temple.store')}}">
+                <form class="form-horizontal form-label-left"  enctype="multipart/form-data"  accept-charset="utf-8" method="POST" action="{{route('admin.update_temple',$temple->id)}}">
                     {{ csrf_field() }}
+                    {{ method_field('PUT') }}
                     @if($message =    Session::get('success'))
                       <div class="alert alert-success alert-dismissible">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -132,7 +133,7 @@
                     <div class="form-group row">
                         <label for="inputNamePura" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Nama Pura<span class="required">*</span></label>
                         <div class="col-sm-9 col-md-9 col-xs-12">
-                            <input type="text" class="form-control " id="temple_name" name="temple_name" required>
+                            <input type="text" class="form-control " id="temple_name" name="temple_name" value="{{ $temple->temple_name }}" required>
                         </div>
                     </div>
 
@@ -143,7 +144,11 @@
                             <select class="form-control " required="required" id="temple_type_id" name="temple_type_id">
                             <option value="" disabled selected>Pilih Jenis Pura</option>
                             @foreach($type as $data)
-                              <option value="{{$data->id}}">{{$data->type_name}}</option>
+                              @if ($data->id == $temple->TempleType->id)
+                                <option value="{{$data->id}}" selected>{{$data->type_name}}</option>
+                              @else
+                                <option value="{{$data->id}}">{{$data->type_name}}</option>  
+                              @endif
                             @endforeach
                             </select>
                         </div>
@@ -153,7 +158,7 @@
                     <div class="form-group row">
                         <label for="inputNamePemangku" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Pemangku<span class="required">*</span></label>
                         <div class="col-10 col-sm-8 col-md-8 col-xs-12 pr-0">
-                            <input type="text" class="form-control" id="priest_name" name="priest_name" required>
+                            <input type="text" class="form-control" id="priest_name" name="priest_name" required value="{{ $temple->priest_name }}">
                         </div>
                         <div class="col-2 col-sm-1 text-center">
                             <button id="btn-detail-pemangku" class="btn btn-defaultp-0" type="button"> <i class="fa fa-chevron-up"></i></button>
@@ -165,13 +170,13 @@
                         <span class="col-sm-3 col-md-3"></span>
                         <label for="inputAlamatPemangku" class="col-sm-2 col-md-2 col-xs-12 col-form-label">Alamat<span class="required">*</span></label>
                         <div class="col-sm-7 col-md-7 col-xs-12 mb-2">
-                            <input type="text" class="form-control" id="address_priest" name="address_priest" required>
+                            <input type="text" class="form-control" id="address_priest" name="address_priest" required value="{{ $temple->priest_address }}">
                         </div>
                         <br/>
                         <span class="col-sm-3 col-md-3"></span>
                         <label for="inputNoTelp" class="col-sm-2 col-md-2 col-xs-12 col-form-label">No Telp<span class="required">*</span></label>
                         <div class="col-sm-7 col-md-7 col-xs-12">
-                            <input type="text" class="form-control" id="priest_phone" name="priest_phone" required>
+                            <input type="text" class="form-control" id="priest_phone" name="priest_phone" required value="{{ $temple->priest_phone }}">
                         </div>
                     </div>
 
@@ -179,14 +184,14 @@
                     <div class="form-group row">
                         <label for="inputAlamatPura" class="col-sm-3 col-md-3 col-xs-12 col-form-label" >Alamat Pura <span class="required">*</span></label>
                         <div class="col-sm-9 col-md-9 col-xs-12 pr-0">
-                            <input type="text" class="form-control" id="inputAlamatPura" name="address" required>
+                            <input type="text" class="form-control" id="inputAlamatPura" name="address" required value="{{ $temple->address }}">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="inputLatitude" class="col-sm-3 col-md-3 col-xs-12 col-form-label" >Latitude <span class="required">*</span></label>
                         <div class="col-10 col-sm-8 col-md-8 col-xs-12">
-                            <input type="text"  class="form-control " name="latitude" id="latitude" value="" required onkeypress="return false;">
+                            <input value="{{ $temple->latitude }}" type="text"  class="form-control " name="latitude" id="latitude" value="" required onkeypress="return false;" >
                         </div>
                         <div class="col-2 col-sm-1 text-center">
                             <button data-toggle="modal" data-target="#modal_add_location" class="btn btn-default bg-white p-0"> <img src="/user_img/maps.png" width="35" alt="">
@@ -196,7 +201,7 @@
                     <div class="form-group row">
                         <label for="inputAlamatPura" class="col-sm-3 col-md-3 col-xs-12 col-form-label" >Longitude <span class="required">*</span></label>
                         <div class="col-10 col-sm-8 col-md-8 col-xs-12">
-                            <input type="text" class="form-control " name="longitude" id="longitude" value="" required onkeypress="return false;">  
+                            <input value="{{ $temple->longitude }}" type="text" class="form-control " name="longitude" id="longitude" value="" required onkeypress="return false;" >  
                         </div>
                     </div>
 
@@ -207,7 +212,11 @@
                             <select class="form-control dynamic" required="required" id="province" name="province" data-dependent="city">
                             <option value="" disabled selected>Pilih Provinsi</option>
                             @foreach($province as $data)
-                              <option value="{{$data->id}}">{{$data->province_name}}</option>
+                              @if ($data->id == $temple->SubDistrict->City->province_id)
+                                <option value="{{$data->id}}" selected>{{$data->province_name}}</option>  
+                              @else
+                                <option value="{{$data->id}}">{{$data->province_name}}</option>
+                              @endif
                             @endforeach
                             </select>
                         </div>
@@ -219,6 +228,13 @@
                         <div class="col-md-9 col-sm-8 col-xs-12">
                             <select class="form-control dynamic" required="required" id="city" name="city" data-dependent="subdistrict">
                               <option value="" disabled selected>Pilih Kabupaten/Kota</option>
+                              @foreach($cities as $data)
+                                @if ($data->id == $temple->SubDistrict->city_id)
+                                  <option value="{{$data->id}}" selected>{{$data->city_name}}</option>  
+                                @else
+                                  <option value="{{$data->id}}">{{$data->city_name}}</option>
+                                @endif
+                              @endforeach
                             </select>
                         </div>
                     </div>
@@ -229,6 +245,13 @@
                         <div class="col-md-9 col-sm-8 col-xs-12">
                             <select class="form-control" required="required" id="subdistrict" name="sub_district">
                               <option value="" disabled selected>Pilih Kecamatan</option>
+                              @foreach($sub_districts as $data)
+                                @if ($data->id == $temple->sub_district_id)
+                                  <option value="{{$data->id}}" selected>{{$data->sub_district_name}}</option>  
+                                @else
+                                  <option value="{{$data->id}}">{{$data->sub_district_name}}</option>
+                                @endif
+                              @endforeach
                             </select>
                         </div>
                     </div>
@@ -240,72 +263,124 @@
                       <div class="col-md-9 col-sm-9 col-xs-12 inline-group">
                         <!-- Tab links -->
                         <div class="tab">
-                          <div class="radio-inline input-odalan"><input type="radio" name="odalan_type" id="odalan_sasih" value="sasih" onclick="openOdalanType(event, 'Sasih')"> Sasih</div>
-                          <div class="radio-inline input-odalan"><input type="radio" name="odalan_type" id="odalan_wuku" value="wuku" onclick="openOdalanType(event, 'Wuku')"> Wuku</div>
+                          <div class="radio-inline input-odalan"><input type="radio" name="odalan_type" id="odalan_sasih" value="sasih" onclick="openOdalanType(event, 'Sasih')" @if ($temple->odalan_type=="sasih") checked @endif > Sasih</div>
+                          <div class="radio-inline input-odalan"><input type="radio" name="odalan_type" id="odalan_wuku" value="wuku" onclick="openOdalanType(event, 'Wuku')" @if ($temple->odalan_type=="wuku") checked @endif > Wuku</div>
                           <!-- <button class="tablinks" onclick="openCity(event, 'Sasih')">Sasih</button>
                           <button class="tablinks" onclick="openCity(event, 'Wuku')">Wuku</button> -->
                         </div>  
                         <!-- Tab content -->
                         <div id="Sasih" class="tabcontent">
-                          <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Rahinan <span class="required">*</span>
+                          <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 col-xs-12" for="name">Rahinan <span class="required">*</span>
                             </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-8 col-sm-8 col-xs-12">
                               <select id="rahinan" name="rahinan" class="form-control" >
                                 <option value="" disabled selected>Pilih Hari Rahinan</option>
-                                @foreach($rahinan as $data)
-                                  <option value="{{$data->id}}">{{$data->rahinan_name}}</option>
-                                @endforeach
+                                @if ($temple->odalan_type=="sasih")
+                                  aaaaaaaaaaaaaa
+                                  @foreach($rahinan as $data)
+                                    {{ $data->id }} , {{ $odalan->rahinan_id }}
+                                    @if ($data->id == $odalan->rahinan_id)
+                                      <option value="{{$data->id}}" selected>{{$data->rahinan_name}}</option>
+                                    @else
+                                      <option value="{{$data->id}}">{{$data->rahinan_name}}</option>
+                                    @endif
+                                  @endforeach
+                                @else
+                                  @foreach($rahinan as $data)
+                                    <option value="{{$data->id}}">{{$data->rahinan_name}}</option>
+                                  @endforeach
+                                @endif
                               </select>
                             </div>
                           </div>
-                          <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Sasih <span class="required">*</span>
+                          <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 col-xs-12" for="name">Sasih <span class="required">*</span>
                             </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-8 col-sm-8 col-xs-12">
                               <select id="sasih" name="sasih" class="form-control" >
                                 <option value="" disabled selected>Pilih Sasih</option>
-                                @foreach($sasih as $data)
-                                  <option value="{{$data->id}}">{{$data->sasih_name}}</option>
-                                @endforeach
+                                @if ($temple->odalan_type=="sasih")
+                                  @foreach($sasih as $data)
+                                    @if ($data->id == $odalan->sasih_id)
+                                      <option value="{{$data->id}}" selected>{{$data->sasih_name}}</option>
+                                    @else
+                                      <option value="{{$data->id}}">{{$data->sasih_name}}</option>
+                                    @endif
+                                  @endforeach
+                                @else
+                                  @foreach($sasih as $data)
+                                    <option value="{{$data->id}}">{{$data->sasih_name}}</option>
+                                  @endforeach
+                                @endif
                               </select>
                             </div>
                           </div>
                         </div>
                         <div id="Wuku" class="tabcontent">
-                          <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Samptawara <span class="required">*</span>
+                          <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 col-xs-12" for="name">Samptawara <span class="required">*</span>
                             </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-8 col-sm-8 col-xs-12">
                               <select id="saptawara" name="saptawara" class="form-control" >
                                 <option value="" disabled selected>Pilih Saptawara</option>
-                                @foreach($saptawara as $data)
-                                  <option value="{{$data->id}}" >{{$data->saptawara_name}}</option>
-                                @endforeach
+                                @if ($temple->odalan_type=="wuku")
+                                  @foreach($saptawara as $data)
+                                    @if ($data->id == $odalan->saptawara_id)
+                                      <option value="{{$data->id}}" selected>{{$data->saptawara_name}}</option>
+                                    @else
+                                      <option value="{{$data->id}}" >{{$data->saptawara_name}}</option>
+                                    @endif
+                                  @endforeach  
+                                @else
+                                  @foreach($saptawara as $data)
+                                    <option value="{{$data->id}}" >{{$data->saptawara_name}}</option>
+                                  @endforeach  
+                                @endif
                               </select>
                             </div>
                           </div>
-                          <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Pancawara <span class="required">*</span>
+                          <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 col-xs-12" for="name">Pancawara <span class="required">*</span>
                             </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-8 col-sm-8 col-xs-12">
                               <select id="pancawara" name="pancawara" class="form-control" >
                                 <option value="" disabled selected>Pilih Pancawara</option>
-                                @foreach($pancawara as $data)
-                                  <option value="{{$data->id}}" >{{$data->pancawara_name}}</option>
-                                @endforeach
+                                @if ($temple->odalan_type=="wuku")
+                                  @foreach($pancawara as $data)
+                                    @if ($data->id == $odalan->pancawara_id)
+                                      <option value="{{$data->id}}" selected>{{$data->pancawara_name}}</option>
+                                    @else
+                                      <option value="{{$data->id}}" >{{$data->pancawara_name}}</option>
+                                    @endif
+                                  @endforeach  
+                                @else
+                                  @foreach($pancawara as $data)
+                                    <option value="{{$data->id}}" >{{$data->pancawara_name}}</option>
+                                  @endforeach  
+                                @endif
                               </select>
                             </div>
                           </div>
-                          <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Wuku <span class="required">*</span>
+                          <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 col-xs-12" for="name">Wuku <span class="required">*</span>
                             </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-8 col-sm-8 col-xs-12">
                               <select id="wuku" name="wuku" class="form-control" >
                                 <option value="" disabled selected>Pilih Wuku</option>
-                                @foreach($wuku as $data)
-                                  <option value="{{$data->id}}">{{$data->wuku_name}}</option>
-                                @endforeach
+                                @if ($temple->odalan_type=="wuku")
+                                  @foreach($wuku as $data)
+                                    @if ($data->id == $odalan->wuku_id)
+                                      <option value="{{$data->id}}" selected>{{$data->wuku_name}}</option>
+                                    @else
+                                      <option value="{{$data->id}}">{{$data->wuku_name}}</option>
+                                    @endif
+                                  @endforeach  
+                                @else
+                                  @foreach($wuku as $data)
+                                    <option value="{{$data->id}}">{{$data->wuku_name}}</option>
+                                  @endforeach  
+                                @endif
                               </select>
                             </div>
                           </div>
@@ -317,11 +392,24 @@
                     <div class="form-group row">
                         <label for="inputDescription" class="col-sm-3 col-md-3 col-xs-12 col-form-label">Sejarah<span class="required">*</span></label>
                         <div class="col-sm-9 col-md-9 col-xs-12">
-                            <textarea type="text" class="form-control" id="inputDescription" name="description"></textarea>
+                            <textarea style="height: 150px;" type="text" class="form-control" id="inputDescription" name="description">{{ $temple->description }}</textarea>
                         </div>
                     </div>
-
-                    <div class="form-group row" id="foto">
+                    @foreach ($temple_images as $data)
+                      <div class="form-group row" id="tambah_foto_{{ $loop->iteration }}">
+                        <label class="col-sm-3 col-md-3 col-xs-12 col-form-label" >Foto Pura <span class="required">*</span>
+                        </label>
+                        <div class="col-sm-9 col-md-9 col-xs-12">
+                          <div class="col-md-12 col-xs-12 " >
+                            <img id="image_{{$loop->iteration}}" src="{{ asset($data->image_name) }}" class="col-md-offset-3 col-md-5 " style="margin-bottom: 5px; ">
+                          </div>
+                          <input name="foto_pura_{{$loop->iteration}}" id="file_{{$loop->iteration}}" id_input_foto="1" class="form-control col-md-12 col-xs-12" required="required" type="file" accept="image/*" onchange="showImage.call(this)">
+                          <span class="text-danger" id='width_{{$loop->iteration}}'>* Max Width: 5128 pixel</span><span class="text-danger" id='height_{{$loop->iteration}}'>, Max Height: 5128 pixel</span>
+                          <span class="text-danger" id="response_{{$loop->iteration}}"></span>
+                        </div>  
+                      </div>
+                    @endforeach
+                    {{-- <div class="form-group row" id="foto">
                       <label class="col-sm-3 col-md-3 col-xs-12 col-form-label" >Foto Pura <span class="required">*</span>
                       </label>
                       <div class="col-sm-9 col-md-9 col-xs-12">
@@ -332,10 +420,10 @@
                         <span class="text-danger" id='width_1'>* Max Width: 5128 pixel</span><span class="text-danger" id='height_1'>, Max Height: 5128 pixel</span>
                         <span class="text-danger" id="response_1"></span>
                       </div>  
-                    </div>
+                    </div> --}}
                     <div style="margin-bottom: 20px;">
                       <div id="tombol_tambah_foto" class="row">
-                        <input type="hidden" name="total_semua_foto" id="total_semua_foto" value="1">
+                        <input type="hidden" name="total_semua_foto" id="total_semua_foto" value="{{count($temple_images)}}">
                         <div class="col-md-3"></div>
                         <div class="col-md-4 col-sm-12 col-xs-12">
                           <button name="tambah_foto" class="btn btn-success" type="button" id="tambah_foto">(+) Tambah</button ><button name="hapus_foto" class="btn btn-danger" type="button" id="hapus_foto">(-) Hapus</button>  
@@ -355,9 +443,82 @@
                                 </div>
                             </button>
                           </div>
-                            
-                            <input type="hidden" name="number_of_card_element" id="number_of_card_element" value="0">
-                            <input type="hidden" name="max_number_of_card_element" id="max_number_of_card_element" value="0">
+                            <input type="hidden" name="number_of_card_element" id="number_of_card_element" value="{{ sizeof($temple_element) }}">
+                            <input type="hidden" name="max_number_of_card_element" id="max_number_of_card_element" value="{{ sizeof($temple_element) }}">
+                            {{-- @for ($i = 1; $i <= sizeof($temple_element) ; $i++)
+                              <div class="col-sm-4" id="card_element_{{$i}}" style="margin-top: 20px;">
+
+                                <input type="hidden" name="inputHiddenTotalElementImage_{{$i}}" id="inputHiddenTotalElementImage_{{$i}}" value="{{ $temple_element[$i]['element_name'] }}">
+
+                                <input type="hidden" name="inputHiddenElementName_{{ $i }}" id="inputHiddenElementName_{{ $i }}" value="'+element_name+'">
+
+                                <input type="hidden" name="inputHiddenGodName_{{ $i }}" id="inputHiddenGodName_{{ $i }}" value="'+element_god_name+'">
+
+                                <input type="hidden" name="inputHiddenElementDescription_{{ $i }}" id="inputHiddenElementDescription_{{ $i }}" value="'+element_description+'">
+
+                                <input type="hidden" name="inputHiddenElementPosition_{{ $i }}" id="inputHiddenElementPosition_{{ $i }}" value="'+element_position+'">
+
+                                <div id="element" class="card">
+                                  <img class="card-img-top" id="img_element_{{ $i }}" src="{{ asset($temple_element[$i]['image_name']) }}" alt="Card image cap">
+                                  <div class="card-body">
+                                    <h5 class="card-title" id="card_title_{{ $i }}">{{ $temple_element[$i]['element_name'] }}</h5>
+                                    <p id="card_text_{{$loop->iteration}}" class="card-text"> $element->god <br>  $element->element_position }} <br> {{ @if (strlen($element->element_description) > 100) {{substr($element->element_description,0,100) }}@endif... }}</p>
+                                    <div class="row ">
+                                      <div class="col-sm" id="space_for_btn_edit_{{ $i }}">
+                                        <button id="btn_edit_element" data-target="#modal_edit_element" data-toggle="modal" type="button" class="btn btn-primary btn-block btn-sm" data-element_name="'+element_name+'" data-element_god_name="'+element_god_name+'" data-element_description="'+element_description+'" data-element_position="'+element_position+'" data-total_image_element="'+total_image_element+'" data-card_id="{{ $i }}">Ubah</button>
+                                      </div>
+                                      <div class="col-sm">
+                                        <button type="button" id="btn_delete_card_element_'+max_number_of_card_element+'" onclick="delete_element({{ $i }});" class="btn btn-danger btn-block btn-sm">Hapus</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            @endfor --}}
+                            <?php $i = 0 ?>
+                            @foreach ($temple_element as $element)
+                              <?php $i++ ?>
+                              {{-- var total_image_element = document.getElementById('total_semua_foto_elemen').value;
+                                for (var i = 1; i <= total_image_element; i++) {
+                                  element += '<input type="hidden" name="inputHiddenElement_'+max_number_of_card_element+'_Image_'+i+'" id="inputHiddenElement_'+max_number_of_card_element+'_Image_'+i+'" value="'+src_image[i]+'">';            
+                                } 
+                                // This is to make enable parsing all image in element to modal
+                                for (var i = 1; i <= total_image_element; i++) {
+                                  element += ' data-element_image_'+i+'="'+src_image[i]+'"';
+                              }--}}
+                              <div class="col-sm-4" id="card_element_{{$loop->iteration}}" style="margin-top: 20px;">
+
+                                <input type="hidden" name="inputHiddenTotalElementImage_{{$loop->iteration}}" id="inputHiddenTotalElementImage_{{$loop->iteration}}" value="{{ sizeof($element[0]) }}">
+
+                                <input type="hidden" name="inputHiddenElementName_{{$loop->iteration}}" id="inputHiddenElementName_{{$loop->iteration}}" value="'+element_name+'">
+
+                                <input type="hidden" name="inputHiddenGodName_{{$loop->iteration}}" id="inputHiddenGodName_{{$loop->iteration}}" value="'+element_god_name+'">
+
+                                <input type="hidden" name="inputHiddenElementDescription_{{$loop->iteration}}" id="inputHiddenElementDescription_{{$loop->iteration}}" value="'+element_description+'">
+
+                                <input type="hidden" name="inputHiddenElementPosition_{{$loop->iteration}}" id="inputHiddenElementPosition_{{$loop->iteration}}" value="'+element_position+'">
+
+                                @foreach ($element[0] as $element_image)
+                                  <input type="hidden" name="inputHiddenElement_{{ $i }}_Image_{{ $loop->iteration }}" id="inputHiddenElement_{{ $i }}_Image_{{ $loop->iteration }}" value="{{ $element_image->image_name }}">
+                                @endforeach
+
+                                <div id="element" class="card">
+                                  <img class="card-img-top" id="img_element_{{$loop->iteration}}" src="{{ asset($element['image_name']) }}" alt="Card image cap">
+                                  <div class="card-body">
+                                    <h5 class="card-title" id="card_title_{{$loop->iteration}}">{{ $element['element_name'] }}</h5>
+                                    <p id="card_text_{{$loop->iteration}}" class="card-text">{{ $element['god'] }}<br> {{ $element['element_position'] }} <br> @if (strlen($element['element_description']) > 100) {{substr($element['element_description'],0,100) }}@endif...</p>
+                                    <div class="row ">
+                                      <div class="col-sm" id="space_for_btn_edit_{{$loop->iteration}}">
+                                        <button id="btn_edit_element" data-target="#modal_edit_element" data-toggle="modal" type="button" class="btn btn-primary btn-block btn-sm" data-element_name="{{ $element['element_name'] }}" data-element_god_name="{{ $element['god'] }}" data-element_description="{{ $element['element_description'] }}" data-element_position="{{ $element['element_position'] }}" data-total_image_element="{{ sizeof($element[0]) }}" @foreach ($element[0] as $element_image) data-element_image_{{ $loop->iteration }}="/{{ $element_image->image_name }}" @endforeach data-card_id="{{$loop->iteration}}">Ubah</button>
+                                      </div>
+                                      <div class="col-sm">
+                                        <button type="button" id="btn_delete_card_element_'+max_number_of_card_element+'" onclick="delete_element({{$loop->iteration}});" class="btn btn-danger btn-block btn-sm">Hapus</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            @endforeach
                             {{-- <div class="col-sm-4" id="card_element_1" style="margin-top: 20px;">
                                 <input type="hidden" name="inputHiddenElementImage" id="inputHiddenElementImage" value="">
                                 <input type="hidden" name="inputHiddenElementName" id="inputHiddenElementName" value="">
@@ -385,7 +546,7 @@
                     </div>
                     
                     <!-- Button Submit-->
-                    <button  type="submit" id="addTemple" class="btn btn-primary btn-block">Tambahkan</button>
+                    <button  type="submit" id="addTemple" class="btn btn-primary btn-block">Perbaharui</button>
                 </form>
             </div>
             
@@ -681,7 +842,7 @@
 
       $(document).ready(function(){
        // Javascript to make dymanic input of image temple
-       var total_foto = 1;
+       var total_foto = document.getElementById('total_semua_foto').value;
        function tambah_foto(){
         total_foto++;
 
@@ -820,7 +981,12 @@
             element += '<input type="hidden" name="inputHiddenElement_'+max_number_of_card_element+'_Image_'+i+'" id="inputHiddenElement_'+max_number_of_card_element+'_Image_'+i+'" value="'+src_image[i]+'">';            
           }
 
-          element += '<input type="hidden" name="inputHiddenTotalElementImage_'+max_number_of_card_element+'" id="inputHiddenTotalElementImage_'+max_number_of_card_element+'" value="'+total_image_element+'"><input type="hidden" name="inputHiddenElementName_'+max_number_of_card_element+'" id="inputHiddenElementName_'+max_number_of_card_element+'" value="'+element_name+'"><input type="hidden" name="inputHiddenGodName_'+max_number_of_card_element+'" id="inputHiddenGodName_'+max_number_of_card_element+'" value="'+element_god_name+'"><input type="hidden" name="inputHiddenElementDescription_'+max_number_of_card_element+'" id="inputHiddenElementDescription_'+max_number_of_card_element+'" value="'+element_description+'"><input type="hidden" name="inputHiddenElementPosition_'+max_number_of_card_element+'" id="inputHiddenElementPosition_'+max_number_of_card_element+'" value="'+element_position+'"><div id="element" class="card"><img class="card-img-top" id="img_element_'+max_number_of_card_element+'" src="'+src_image[1]+'" alt="Card image cap"><div class="card-body"><h5 class="card-title" id="card_title_'+max_number_of_card_element+'">'+element_name+'</h5><p id="card_text_'+max_number_of_card_element+'" class="card-text">'+element_god_name+' <br> '+element_position+' <br> '+element_description+'</p><div class="row "><div class="col-sm" id="space_for_btn_edit_'+max_number_of_card_element+'"><button id="btn_edit_element" data-target="#modal_edit_element" data-toggle="modal" type="button" class="btn btn-primary btn-block btn-sm" data-element_name="'+element_name+'" data-element_god_name="'+element_god_name+'" data-element_description="'+element_description+'" data-element_position="'+element_position+'" data-total_image_element="'+total_image_element+'"';
+          if(element_description.length > 100){
+            var description_in_card =  element_description.substr(0,100) 
+            var element_description = description_in_card + "..."
+          }   
+          
+          element += '<input type="hidden" name="inputHiddenTotalElementImage_'+max_number_of_card_element+'" id="inputHiddenTotalElementImage_'+max_number_of_card_element+'" value="'+total_image_element+'"><input type="hidden" name="inputHiddenElementName_'+max_number_of_card_element+'" id="inputHiddenElementName_'+max_number_of_card_element+'" value="'+element_name+'"><input type="hidden" name="inputHiddenGodName_'+max_number_of_card_element+'" id="inputHiddenGodName_'+max_number_of_card_element+'" value="'+element_god_name+'"><input type="hidden" name="inputHiddenElementDescription_'+max_number_of_card_element+'" id="inputHiddenElementDescription_'+max_number_of_card_element+'" value="'+element_description+'"><input type="hidden" name="inputHiddenElementPosition_'+max_number_of_card_element+'" id="inputHiddenElementPosition_'+max_number_of_card_element+'" value="'+element_position+'"><div id="element" class="card"><img class="card-img-top" id="img_element_'+max_number_of_card_element+'" src="'+src_image[1]+'" alt="Card image cap"><div class="card-body"><h5 class="card-title" id="card_title_'+max_number_of_card_element+'">'+element_name+'</h5><p id="card_text_'+max_number_of_card_element+'" class="card-text">'+element_god_name+' <br> '+element_position+' <br>'+ element_description +'</p><div class="row "><div class="col-sm" id="space_for_btn_edit_'+max_number_of_card_element+'"><button id="btn_edit_element" data-target="#modal_edit_element" data-toggle="modal" type="button" class="btn btn-primary btn-block btn-sm" data-element_name="'+element_name+'" data-element_god_name="'+element_god_name+'" data-element_description="'+element_description+'" data-element_position="'+element_position+'" data-total_image_element="'+total_image_element+'"';
 
           // This is to make enable parsing all image in element to modal
           for (var i = 1; i <= total_image_element; i++) {
@@ -924,6 +1090,10 @@
           // This is source code to edit their card
           document.getElementById('img_element_'+card_id).src = src_image[1];
           document.getElementById('card_title_'+card_id).innerHTML = element_name;
+          if(element_description.length > 100){
+            var description_in_card =  element_description.substr(0,100) 
+            var element_description = description_in_card + "..."
+          }   
           var text = element_god_name+' <br> '+element_position+' <br> '+element_description;
           document.getElementById('card_text_'+card_id).innerHTML = text;
 
@@ -1118,7 +1288,6 @@
           } 
           $('#total_semua_foto_element_in_modal_edit').val(total_image_element_backup);   
         }
-
         document.getElementById('total_semua_foto_element_in_modal_edit').value = 1;
         $(this).find('#view_edit_element_image_1').attr('src', '');
       })

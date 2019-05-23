@@ -63,6 +63,9 @@ Route::resource('/admin/temple-type','Admin\TempleTypeController');
 
 // Route Admin => Users
 Route::get('/admin/list-admin', 'Admin\AdminController@create')->name('admin.list-admin');
+Route::post('/admin/list-admin', 'Admin\AdminController@store')->name('admin.list-admin.store');
+Route::put('/admin/list-admin/{id}', 'Admin\AdminController@update')->name('admin.list-admin.update');
+Route::delete('/admin/list-admin/{id}', 'Admin\AdminController@destroy')->name('admin.list-admin.delete');
 Route::resource('/admin/list-member', 'Admin\MemberController');
 
 // User
@@ -100,8 +103,11 @@ Route::get('/admin/validate', 'Admin\DashboardController@show_list_temple_valida
 Route::get('/admin/list-temple','Admin\DashboardController@show_list_temple')->name('show_list_temple');
 Route::get('/admin/verify-accept-temple/{id}','Admin\DashboardController@verify_accept_temple');
 Route::get('/admin/verify-reject-temple/{id}','Admin\DashboardController@verify_reject_temple');
+
 Route::get('/admin/temple-detail/{id}','Admin\DashboardController@show_temple_detail')->name('show_temple_detail');
 Route::get('/admin/update-temple/{id}','Admin\DashboardController@update_temple')->name('admin.update_temple');
+Route::put('/admin/update-temple/{id}','Admin\DashboardController@save_update_temple')->name('admin.update_temple');
+
 Route::get('/admin/profille','Admin\DashboardController@show_profille_admin')->name('show_profille_admin');
 Route::put('/admin/profille/{id}','Admin\DashboardController@update_profille_admin')->name('update_profille_admin');
 Route::post('/admin/update-foto-profille','Admin\AdminController@update_foto_profille')->name('admin.update-foto-profille');

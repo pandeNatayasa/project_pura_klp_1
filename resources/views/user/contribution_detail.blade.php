@@ -8,6 +8,35 @@
   crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
   crossorigin=""></script>
+  <style type="text/css">
+    /* Style the tab */
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+      padding-left: 20px;
+    }
+
+    /* Style the buttons inside the tab */
+    .input-odalan {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 10px 10px;
+      transition: 0.3s;
+      font-size: 17px;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+    #mymap {top: 10px; margin-bottom: 20px;height: 300px;}
+  </style>
 @endsection
 
 @section('context')
@@ -137,8 +166,8 @@
                       <div class="col-md-9 col-sm-9 col-xs-12 inline-group">
                         <!-- Tab links -->
                         <div class="tab">
-                          <div class="radio-inline input-odalan"><input type="radio" name="odalan_type" id="odalan_sasih" value="sasih"> Sasih</div>
-                          <div class="radio-inline input-odalan"><input type="radio" name="odalan_type" id="odalan_wuku" value="wuku"> Wuku</div>
+                          <div class="radio-inline input-odalan"><input type="radio" name="odalan_type" id="odalan_sasih" value="sasih" onclick="openOdalanType(event, 'Sasih')"> Sasih</div>
+                          <div class="radio-inline input-odalan"><input type="radio" name="odalan_type" id="odalan_wuku" value="wuku" onclick="openOdalanType(event, 'Wuku')"> Wuku</div>
                           <!-- <button class="tablinks" onclick="openCity(event, 'Sasih')">Sasih</button>
                           <button class="tablinks" onclick="openCity(event, 'Wuku')">Wuku</button> -->
                         </div>  
@@ -427,4 +456,27 @@
 @endsection
 
 @section('script')
+  <script type="text/javascript">
+    //Odalan
+    function openOdalanType(evt, odalanType) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+            }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(odalanType).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+  </script>
 @endsection

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Image;
 use Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -33,7 +34,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin.users.list_admin');
+        $admin = Admin::all();
+        return view('admin.users.list_admin',compact('admin'));
     }
 
     /**
@@ -44,7 +46,25 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $validator = Validator::make($input, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        if($validator->passes()){
+
+            $user = new aAdmin();
+            $user->name = $input['name'];
+            $user->email = $input['email'];
+            $user->password = $input['password'];
+            $user->profille_image = 'profille_image_admin/admin.png';
+            $user->save();
+
+            return redirect()->back()->with('success',"Admin baru berhasil ditambahkan");
+        }
+        return back()->with('warning',$validator->errors());
     }
 
     /**
@@ -76,9 +96,36 @@ class AdminController extends Controller
      * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        // return $input;
+        $validator = Validator::make($input, [
+            'admin_name_edit' => 'required|string|max:255',
+            'admin_email_edit' => 'required|string|email|max:255',
+            'admin_no_telp_edit' => 'required|numeric'
+        ]);
+
+        if($validator->passes()){
+            $user = Admin::find($id);
+            $user->name = $input['admin_name_edit'];
+            $user->email = $input['admin_email_edit'];
+            $user->no_telp = $input['admin_no_telp_edit'];
+
+            if ($request->hasFile('foto_profille')) {
+                $filePic   = $request->file('foto_profille');
+                $extension = $filePic->getClientOriginalExtension();
+                $fileName  = 'profille_image_user_' . $id;
+                $filePic->move('profille_image_user/', $fileName . '.' . $extension);
+
+                $user->profille_image = 'profille_image_user/' . $fileName . '.' . $extension;
+            }
+
+            $user->save();
+
+            return redirect()->back()->with('success',"admin berhasil diperbaharui");
+        }
+        return back()->with('warning',$validator->errors());
     }
 
     public function update_foto_profille(Request $request)
@@ -111,8 +158,11 @@ class AdminController extends Controller
      * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admin $admin)
+    public function destroy($id)
     {
-        //
+        $delete = Admin::find($id);
+        $delete->delete();
+
+        return redirect()->back()->with('success',"Admin berhasil dihapus");
     }
 }

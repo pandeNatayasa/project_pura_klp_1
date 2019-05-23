@@ -61,9 +61,9 @@ class UserController extends Controller
     }
 
     public function contribution_details($id){
-        $img = TempleImage::where('id','=',$id)->get();
+        $img = TempleImage::where('temple_id','=',$id)->get();
         $details = Temple::where('id','=',$id)->first();
-        $elements = TempleDetail::where('id','=',$id)->get();
+        $elements = TempleDetail::where('temple_id','=',$id)->get();
         return view('user.contribution_detail',compact('details','img','elements'));
     }
 

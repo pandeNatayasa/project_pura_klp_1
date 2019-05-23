@@ -37,7 +37,7 @@
                 <img src="{{ asset(Auth::guard('admin')->user()->profille_image) }}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <span>Selamat Datang,</span>
+                <span>Selamat Datang {{ Auth::guard('admin')->user()->name }}</span>
                 <h2></h2>
               </div>
             </div>
@@ -109,7 +109,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="{{ asset(Auth::guard('admin')->user()->profille_image) }}" alt="">admin
+                    <img src="{{ asset(Auth::guard('admin')->user()->profille_image) }}" alt="">{{ Auth::guard('admin')->user()->name }}
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
